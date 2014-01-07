@@ -1,0 +1,9 @@
+lib(name = "simple_cacher",
+    hdr = [ "simple_cacher.h" ])
+
+test(name = "simple_cacher_test",
+     src = [ "simple_cacher_test.cc" ],
+     dep = [ "simple_cacher",
+             "../test/basic",
+             "../test/stress",
+           ])

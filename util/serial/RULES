@@ -1,0 +1,119 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "serialization_data",
+    src  = [ "serialization_data.cc" ],
+    hdr  = [ "serialization_data.h" ],
+    dep  = [ "/base/defs",
+             "/base/demangle",
+             "/public/util/templates/container_util",
+             "/public/util/templates/hash",
+             "/public/util/templates/type_traits",
+             "type_handlers/zero_default",
+             "type_handlers/binary_deserialization",
+             "type_handlers/json_deserialization",
+           ])
+
+lib(name = "serializer",
+    hdr  = [ "serializer.h" ],
+    dep  = [ "/base/common",
+             "serializer_macros",
+             "type_handlers/binary_serialization",
+             "type_handlers/binary_deserialization",
+             "type_handlers/json_deserialization",
+             "type_handlers/json_serialization",
+           ],
+    flag = [ "-DR77_USE_SERIALIZER" ])
+
+lib(name = "serializer_macros",
+    hdr  = [ "serializer_macros.h" ],
+    dep  = [ "/base/common",
+             "/public/util/templates/container_util",
+             "/public/util/templates/type_traits",
+             "serialization_data",
+             "serializer_binary",
+             "serializer_json",
+             "serializer_csv",
+             "utils/serializer_util",
+           ])
+
+lib(name = "serializer_binary",
+    src  = [ "serializer_binary.cc" ],
+    hdr  = [ "serializer_binary.h" ],
+    dep  = [ "/base/defs",
+             "type_handlers/deserialization_callback",
+             "type_handlers/binary_serialization",
+             "type_handlers/binary_deserialization",
+             "type_handlers/type_size",
+             "types/varint",
+             "utils/serializer_util",
+             "utils/stream_util",
+           ])
+
+lib(name = "serializer_csv",
+    hdr  = [ "serializer_csv.h" ],
+    dep  = [ "/base/common" ])
+
+lib(name = "serializer_json",
+    src  = [ "serializer_json.cc" ],
+    hdr  = [ "serializer_json.h" ],
+    dep  = [ "/base/defs",
+             "type_handlers/deserialization_callback",
+             "type_handlers/json_serialization",
+             "type_handlers/json_deserialization",
+             "utils/json_util",
+             "utils/serializer_util",
+             "utils/stream_util",
+           ])
+
+lib(name = "serializer_raw_binary",
+    hdr  = [ "serializer_binary.h" ],
+    dep  = [ "/base/common",
+             "type_handlers/deserialization_callback",
+             "type_handlers/binary_serialization",
+             "utils/serializer_util",
+             "utils/stream_util",
+           ])
+
+# Binaries
+
+# Tests
+test(name = "serialization_data_test",
+     src  = [ "serialization_data_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "serialization_data",
+              "utils/serializer_util",
+            ])
+
+test(name = "serializer_binary_test",
+     src  = [ "serializer_binary_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "serializer_macros",
+              "serializer_binary",
+              "type_handlers/test_util",
+              "utils/serializer_util",
+              "utils/test_util",
+            ])
+
+test(name = "serializer_json_test",
+     src  = [ "serializer_json_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "serializer_macros",
+              "serializer_json",
+              "type_handlers/test_util",
+              "utils/serializer_util",
+              "utils/test_util",
+            ])
+
+test(name = "serializer_raw_binary_test",
+     src  = [ "serializer_raw_binary_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "serializer_macros",
+              "serializer_raw_binary",
+              "type_handlers/test_util",
+              "utils/serializer_util",
+              "utils/test_util",
+            ])

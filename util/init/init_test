@@ -1,0 +1,8 @@
+../../scripts/build_and_run init_test \
+init \
+main \
+../../base/args/args \
+../../base/args/arg_info \
+../../base/demangle \
+../../base/logging \
+../../base/system

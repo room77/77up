@@ -1,0 +1,90 @@
+Serialization library used throughout the Room77 codebase.
+
+Various formats have full or partial support:
+- raw binary:   Non-extensible but very dense / fast format.
+- binary:       Extensible fairly compact and efficient binary format.
+- json:         We can output to and input from json.
+- csv:          From / To CSV. Not all data structures can be serialized though.
+
+Some properties of Room77's serializer (both pros and cons):
+- Compact and fast in binary formats.
+- Extensible with other formats.
+- Highly C++ centric. There is no extra definition language / "proto compiler".
+- Declare fields and tag numbers within structs via a simple macro.
+- Can directly be used with your own C++ classes and structs.
+- No need to decouple "data structs" from classes if you don't want to.
+- Works fine with inheritence (you need SERIALIZE macros in derived classes).
+
+Binary representation is somewhat similar to protocol buffers from google.
+It also uses tags, but it is more efficient under certain conditions and has
+full support for various other data structures such as maps, unordered_maps,
+unique storage, etc. Support for arbitrary types you may want can be added as
+long as the appropriate bindings are implemented.
+
+Example struct (native C++ code fracments):
+
+class City : public Region {  // Inheritence is ok (optional)
+ public:
+  City();                     // ctor / dtor if you want (optional)
+  virtual ~City();
+  void SomeMethod();          // You can have methods (optional)
+
+  string city;                // These fields are public.
+  string state;
+  string country;
+
+  // Default value for this field is set. DEFAULT_CUSTOM is used in SERIALIZE
+  // macro below. When we deserialize this struct / class from a file or stream
+  // where this field is not set, it will automatically be set to 10 by the
+  // serializer. If we used DEFAULT_ZERO instead, it would have been set to 0
+  // during deserialization.
+  int num = 10;
+
+ protected:                   // OK to hide serialized fields from end users.
+  double lat_ = 0;            // Trailing '_' is ignored during serialization.
+  double lon_ = 0;            // So in JSON these fields will be "lat" and "lon".
+
+  // This field is internal to the struct / class. We may use it to pass around
+  // extra information within the binary but not across binaries or client code.
+  // This information will not be exposed to the outside when serialized.
+  bool show_in_auto_complete_ = false;
+
+ public:
+  // Define fields that will be used for serialization and assign tag numbers.
+  // DEFAULT_CUSTOM means that if the fields are not set, we will use the
+  // default values (rather than 0 or "empty" initialize everything.
+  // Note that eid field (entity id) is inherited from the Region class).
+  SERIALIZE(DEFAULT_CUSTOM / eid*1 / city*2 / state*3 / country*4 / num*5 /
+            lat_*6 / lon_*7);
+};
+
+...
+
+ifstream file("user.dat");
+User user;
+serial::Serializer::FromBinary(file, &user);
+
+// The following are equivalent for structs:
+cout << serial::Serializer::ToJSON(user) << endl;
+// For classes / structs, this would also work:
+cout << user.ToJSON() << endl;
+
+...
+
+// You can serialize pretty much anything.
+map<string, int> my_map;
+// Fill the map.
+ofstream file("my_map.dat");
+serial::Serializer::ToBinary(file, my_map);
+
+shared_ptr<MyClass> my_class_ptr;
+// If my_class is nullptr, it is automatically allocated via default constructor
+// and filled via the serializer.
+serial::Serializer::FromBinary(some_file, &my_class_ptr);
+
+// Raw pointers behaves similarly, if they are not-null, we assume it is a valid
+// pointer and we try to fill it. If it is nullptr, we "new" it first then fill.
+
+..
+
+See tests for more usage examples.

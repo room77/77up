@@ -1,0 +1,40 @@
+#!/bin/bash -e
+# Author: Uygar Oztekin
+
+# Checks and, if easy, fixes #ifndef BLAH #define BLAH #endif type of header
+# guards. If it cannot fix some files, it prints a message with a suggestion.
+# Pretty handy after moving a bunch of files around.
+
+[ "$1" == "--help" ] && echo "Usage `basename $0` [ header_files ]" && exit 0
+[ "$1" == "-h" ] && echo "Usage `basename $0` [ header_files ]" && exit 0
+[ -n "$2" ] && echo "$@" | xargs -n 1 $0 && exit 0
+[ -z "$1" ] && find . -name "*.h" -exec $0 {} \; && exit 0
+
+echo $1 | grep -q "third_party/" && exit 0
+
+FILE=`readlink -f $1 | sed 's#$(pwd)##'`
+
+cd `dirname $1`
+cd `git rev-parse --show-toplevel`
+
+BASE="`pwd`/"
+FILE=`echo $FILE | sed "s#$BASE##"`
+
+PATTERN="_`echo ${FILE^^} | tr '.' '_' | tr '/' '_'`_"
+
+if [ `grep -c "#ifndef " $FILE` != 1 ] || [ `grep -c "#define " $FILE` != 1 ] || [ `grep -c "#endif" $FILE` -lt 1 ] ;then
+  grep -q "^#ifndef $PATTERN\$" $FILE && grep -q "^#define $PATTERN\$" $FILE && exit 0
+  echo "Cannot fix $FILE Use:"
+  echo "#ifndef $PATTERN"
+  echo "#define $PATTERN"
+  exit 0
+else
+  if [ `grep -c "^#ifndef $PATTERN$" $FILE` != 1 ] || [ `grep -c "^#define $PATTERN$" $FILE` != 1 ] ; then
+    echo "Fixing $FILE"
+    sed -i "s/#ifndef .*/#ifndef $PATTERN/" $FILE
+    sed -i "s/#define .*/#define $PATTERN/" $FILE
+    sed -i "s/#endif.*/#endif  \/\/ $PATTERN/" $FILE
+  # else
+    # echo "Passed $FILE"
+  fi
+fi

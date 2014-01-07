@@ -1,0 +1,2 @@
+# We cannot auto-detect store test dependencies (yet). Manually add them.
+../../../bin/build_and_run simple_cacher_test.cc ../test/test.cc ../test/basic.cc ../test/stress.cc

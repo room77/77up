@@ -1,0 +1,18 @@
+lib(name = "init",
+    src = [ "init.cc" ],
+    hdr = [ "init.h" ],
+    dep = [ "/public/base/args/args",
+            "/public/base/logging",
+          ])
+
+lib(name = "main",
+    src = [ "main.cc" ],
+    hdr = [ "main.h" ],
+    dep = [ "/public//base/args/args",
+            "/public/base/logging",
+            "init",
+          ])
+
+test(name = "init_test",
+    src = [ "init_test.cc" ],
+    dep = [ "init", "main" ])

@@ -1,0 +1,14 @@
+lib(name = "store_converter",
+    hdr = [ "store_converter.h" ],
+    dep = [ "/public/util/serial/serializer" ])
+
+test(name = "store_converter_test",
+     src = [ "store_converter_test.cc" ],
+     dep = [ "store_converter",
+             "../test/basic",
+             "../test/stress",
+             "../test/mutation",
+             "../test/forward_iteration",
+             "../test/sorted_forward_iteration",
+             "../test/lower_upper_bound",
+           ])

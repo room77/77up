@@ -1,0 +1,2 @@
+lib(name = "store",
+    hdr = [ "store.h"])

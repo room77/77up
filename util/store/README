@@ -1,0 +1,82 @@
+Generic / unified library for key/value stores.
+
+The following information is extracted from store.h.
+See individual headers and tests for further examples.
+
+---
+
+Store abstraction provides a unified, stl-like interface over a number of
+data storage options where keys and values are strings. The API is not fully
+stl compatible due to efficiency / practicality.
+
+End user should use the factory mechanism to get a proxy to the store and use
+it via the unified API. This way, underlying storage implementation can be
+replaced without extra effort / code change at any time. For example, you
+start with a local leveldb store to store your data and access it. In the
+future your data requirements or restrictions change in a way that you can
+no longer use leveldb, but switch to another alternative (e.g. a redis store).
+Hopefully, you won't need to change any of the end user code. You would just
+change the registered store to be redis instead of leveldb.
+
+Warning: Due to the limitations in most derived "iterator implementations",
+store iterators have alias semantics. If you copy an iterator, it actually
+shares the same underneat iterator implementation. Hence once one is modified
+the other copy is also modified the same way. To avoid undesirable side
+effects, store iterators should not be copied unless the original copy is
+about to be destroyed. One advantage of this approach is efficiency. It is
+fairly efficient to return or copy store iterators. Even though they are not
+marked as such, due to compactness concerns, all store iterators are const.
+They should not / cannot be used to mutate elements.
+
+Not all stores support all the functionality. Various API components are
+optional. In end-user code, try not to use extra optional functionality that
+not all stores are supposed to support. This maximizes your chances of being
+able to swap a store backend with another when your needs change.
+
+Typical store return types (iterator or result<T>) actually contain extra
+information such as error() or supported(). They can be used to check
+whether or not an operation did or did not succeed for other reasons.
+
+E.g. auto it = store.begin();
+
+- it.error() -> true if there has been another error (e.g. timeout).
+- it.supported() -> true if the operation is implemented.
+  (store does not support this method).
+
+Similarly auto result = store.insert(make_pair("foo", "bar"));
+
+- result.value() / result casted to bool -> true if success, false otherwise.
+- result.error() -> true if there was some sort of error (e.g. timeout).
+- result.supported() -> is the method implemented by this store?
+
+All basic and advanced stores typically support:
+- find()
+- checking an iterator against end()
+
+- size() / empty() are optional (cannot always be implemented efficiently).
+
+Stores that support forward iteration over all elements also support:
+- begin()
+- checking an iterator against any other iterator of the same type.
+- operator ++ on the iterator
+
+Mutable stores, in addition to basic methods, support the following:
+- erase()
+- insert()
+
+- clear() is optional for mutable stores.
+
+In general, if an operation cannot be efficiently implemented by a store,
+it may be preferable not to implement it at all.
+
+If a store does not implement a method, all calls to that method should
+return a result type with the supported bit set to false. Hence, you
+may assert test the methods you depend on once during initialization and
+abort if the methods you rely on are not implemented rather than checking
+this bit on the fly everytime.
+
+error() can be checked if you really care about why an operation has failed.
+if you don't care, the actual return type may be sufficient. Stores should be
+implemented in such a way that, if an error happened, in addition to error()
+bit being set, the actual return type is also sensible (e.g. find() returns
+end(), insert returns false etc.).

@@ -1,0 +1,16 @@
+lib(name = "file",
+    src = [ "file.cc" ],
+    hdr = [ "file.h" ],
+    dep = [ "/public/base/args/args", "/public/base/logging" ])
+
+test(name = "file_test",
+     src = [ "file_test.cc"],
+     dep = [ "/test/cc/unit_test_main",
+             "file",
+           ])
+
+lib(name = "monitor_file_access",
+    src = [ "monitor_file_access.cc" ],
+    hdr = [ "monitor_file_access.h" ],
+    dep = [ "/public/base/args/args", "/public/base/logging", "/public/util/init/init" ])
+

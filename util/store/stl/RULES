@@ -1,0 +1,13 @@
+lib(name = "stl_store",
+    hdr = [ "stl_store.h" ])
+
+test(name = "stl_store_test",
+     src = [ "stl_store_test.cc" ],
+     dep = [ "stl_store",
+             "../test/basic",
+             "../test/stress",
+             "../test/mutation",
+             "../test/forward_iteration",
+             "../test/sorted_forward_iteration",
+             "../test/lower_upper_bound",
+           ])

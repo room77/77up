@@ -1,0 +1,87 @@
+#!/bin/bash -e
+# Copyright 2013 B. Uygar Oztekin
+#
+# Quick and dirty script that can be used to compile & run various binaries.
+# It can be used to compile some of the open sourced targets as an example.
+#
+# This is NOT the build system (flash) used in Room77. Until we can open source
+# that (needs some cleanups), this can be used to compile and run targets.
+#
+# The script does not need explicit rules or make files. Examines the sources
+# and guesses the dependencies automatically:
+#
+# - Uses compiler's dependency generation to get an initial set of files.
+# - For any .h in dependencies, if there is a corresponding .cc, assumes that
+#   it is also a dependency.
+# - Recursively examines all dependencies keeping track of what it had already
+#   checked.
+# - At the end, produces a list of .cc files to compile.
+#
+# Does not know if the targets are "current". Builds from scratch everytime.
+# More sophisticated components should use the Room77 flash build system.
+#
+
+# If there is no parameters (this is a symlink) try to compile the .cc file
+# with the same name as the symlink.
+if [ -z "$1" ] ; then
+  COMMAND="`readlink -f $0` $0.cc"
+  echo Running via symlink...
+  echo $COMMAND
+  echo
+  $COMMAND
+  exit 0
+fi
+
+# Figure out the root directory we should use. All comilations and includes
+# are assumed to be relative to this directory.
+SRC_ROOT=`readlink -f $(dirname $(readlink -f $0))/../`
+
+# Default to clang to notice potential issues faster for open sourced code.
+# (We already run continuous builds / tests with gcc internally).
+CC=`which clang++ g++ | head -n 1`          # Pick an available compiler.
+CCLINK="$CCLINK -lpthread"                  # Most of our code uses multi-threading.
+CCFLAGS="$CCFLAGS -std=c++11 -I $SRC_ROOT"  # Our code requires latest C++11 features.
+
+function check_files() {
+  for i in $* ; do
+    [ -e $i ] && echo "$i"
+  done
+}
+
+function relpath() {
+  readlink -f $* | sed "s#$SRC_ROOT/##g"
+}
+
+# This will keep track of targets already checked.
+declare -A checked_targets
+
+# Recursively guess dependencies of targets.
+function guess_libs() {
+  TARGETS=""
+  for i in `relpath $*` ; do
+    if [ "${checked_targets[$i]}" != "1" ] ; then
+      TARGETS="$TARGETS $i"
+      checked_targets[$i]=1
+      echo $i
+    fi
+  done
+  if [ -n "$TARGETS" ] ; then
+    cd $SRC_ROOT
+    CC_FILES=$(relpath $(check_files $($CC $CCFLAGS -MM $TARGETS | sed 's/.*://g;s/\\//g' | xargs readlink -f 2>/dev/null | sed 's/\.h/\.cc/g' | sort | uniq)))
+    guess_libs $CC_FILES
+  fi
+}
+
+echo "Guessing dependencies ..."
+TARGETS=`guess_libs $*`
+echo $TARGETS
+
+NAME=`basename $1 | sed 's/\.cc//g'`
+TMP=/tmp
+
+cd $SRC_ROOT
+
+echo
+echo "Compiling ..."
+echo $CC $CCLINK $CCFLAGS $TARGETS -o $TMP/$NAME
+$CC $CCLINK $CCFLAGS $TARGETS -o $TMP/$NAME && echo && echo Running $TMP/$NAME ... && $TMP/$NAME

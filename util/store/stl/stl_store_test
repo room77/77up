@@ -1,0 +1,2 @@
+# We cannot auto-detect store test dependencies (yet). Manually add them.
+../../../bin/build_and_run stl_store_test.cc ../test/*.cc

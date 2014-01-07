@@ -1,0 +1,18 @@
+lib(name = "sst_reader",
+    hdr = [ "sst_reader.h" ],
+    link = [ "-lleveldb" ])
+
+lib(name = "sst_writer",
+    hdr = [ "sst_reader.h" ],
+    link = [ "-lleveldb" ])
+
+test(name = "sst_test",
+     src = [ "sst_test.cc" ],
+     dep = [ "sst_reader",
+             "sst_writer",
+             "../test/basic",
+             "../test/stress",
+             "../test/forward_iteration",
+             "../test/sorted_forward_iteration",
+             "../test/lower_upper_bound",
+           ])

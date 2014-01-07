@@ -1,0 +1,14 @@
+Quick and dirty utility scripts useful for maintaining codebases.
+Pretty handy for fixing patterns during refactoring / moving things around.
+
+You would want to call them from a suitable depth (subdirectories should not be
+too large). Top level is probably fine for small codebases.
+
+search: Search for string in subdirs.
+    e.g. search "class Foo {"
+
+replace: search and replace occurence of first pattern with second pattern.
+    e.g. replace "class Foo {" "class Bar {"
+
+fix_include_guards: recursively search for .h files. Check and potentially
+    fix #ifndef FOO #define FOO #endif type include guards.

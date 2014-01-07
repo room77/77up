@@ -1,0 +1,27 @@
+lib(name = "test",
+    src = [ "test.cc"],
+    dep = [ "../store", "/base/heap_check" ])
+
+lib(name = "basic",
+    src = [ "basic.cc" ],
+    dep = [ "test" ])
+
+lib(name = "stress",
+    src = [ "stress.cc" ],
+    dep = [ "test" ])
+
+lib(name = "forward_iteration",
+    src = [ "forward_iteration.cc" ],
+    dep = [ "test" ])
+
+lib(name = "sorted_forward_iteration",
+    src = [ "sorted_forward_iteration.cc" ],
+    dep = [ "test" ])
+
+lib(name = "lower_upper_bound",
+    src = [ "lower_upper_bound.cc" ],
+    dep = [ "test" ])
+
+lib(name = "mutation",
+    src = [ "mutation.cc" ],
+    dep = [ "test" ])

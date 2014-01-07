@@ -1,0 +1,17 @@
+lib(name = "strutil",
+    src = [ "strutil.cc" ],
+    hdr = [ "strutil.h" ],
+    dep = [ "/base/logging" ])
+
+test(name = "strutil_test",
+     src = [ "strutil_test.cc"],
+     dep = [ "strutil", "/test/cc/unit_test_main" ])
+
+lib(name = "unicode",
+    src = [ "unicode.cc"],
+    dep = [ "/public/util/init/init" ],
+    link = ["-licuio -licuuc -licui18n"])
+
+test(name = "unicode_test",
+     src  = [ "unicode_test.cc" ],
+     dep  = [ "unicode", "/test/cc/unit_test_main" ])

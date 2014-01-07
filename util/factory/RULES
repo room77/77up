@@ -1,0 +1,14 @@
+lib(name = "factory",
+    hdr = ["factory.h"])
+
+lib(name = "factory_extra",
+    hdr = [ "factory_extra.h"])
+
+lib(name = "tuple_util",
+    hdr = ["tuple_util.h"])
+
+test(name = "factory_test",
+     src = ["factory_test.cc"])
+
+test(name = "tuple_util_test",
+     src  = ["tuple_util_test.cc"])

@@ -1,0 +1,47 @@
+#!/bin/bash -e
+# Author: Uygar Oztekin
+
+# Convenient hack to search for stuff inside current directory.
+# Suitable for small codebases.
+
+[ -z "$1" ] && echo "Usage: `basename $0` [OPTIONS] [GREP OPTIONS] SEARCH_PATTERN
+
+Searhes files in subdirectories for the pattern and displays the occurences.
+
+OPTIONS are:
+
+  --help              print usage information and exit
+  -p FILE_PATTERN     add this pattern to files to search (e.g. -p RULES)
+  .EXT                shorthand for -p \"*.EXT\"
+  --c++               short hand for .cc .h -p RULES
+  --                  any arguments after this are passed to grep
+
+If no options are specified --c++ is assumed (.cc .h RULES files).
+
+Multiple patterns or short hands can be specified.
+
+Examples:
+
+`basename $0` .cc .h -p RULES Server
+`basename $0` .cc .h -p RULES meta.*server
+`basename $0` .cc .h .py .sh .js .php .html -- -i \"Author:.*`whoami`\"
+`basename $0` -i \"TODO.*`whoami`\"
+" && exit 0
+
+PATTERN=""
+
+while true ; do
+case $1 in
+  -h|--help)   $0 && exit 0 ;;
+  --c++)    PATTERN="$PATTERN *.cc *.h RULES" ;;
+  .*)       PATTERN="$PATTERN *$1" ;;
+  -p)       shift && PATTERN="$PATTERN $1" && [ -z "$1" ] && $0 && exit 1;;
+  --)       shift && break ;;
+  *)        break ;;
+esac
+shift
+done
+
+[ -z "$PATTERN" ] && PATTERN="*.cc *.h RULES"
+
+eval find `echo $PATTERN | sed 's/ /" -o -name "/g' | sed 's/^/-name "/g' | sed 's/$/"/g'`  | grep -v "third_party/\|gen/" | xargs grep "$@"

@@ -1,0 +1,11 @@
+lib(name = "gzip",
+    src = ["gzip.cc"],
+    hdr = ["gzip.h"],
+    dep = ["/base/common"],
+    link = ["-lz"])
+
+test(name = "gzip_test",
+     src = ["gzip_test.cc"],
+     dep = ["gzip",
+            "/test/cc/unit_test_main"],
+     link = ["-lz"])

@@ -1,0 +1,45 @@
+This directory contains useful classes for caching.
+
+* Shared LRU Cache
+
+Implements a thread safe, in memory cache with an stl-like API. shared_ptrs are
+used to minimize the amount of time the cache needs to be locked for concurrent
+access. This class is used by various Room77 servers to cache data structures or
+to communicate between various independent components (e.g. producers may dump
+their outputs into the cache. Pollers / consumers may check the cache for latest
+updates etc.).
+
+
+* Group cache
+
+If your usage patterns are such that you have a lot of keys accessed together
+in a short amount of time (or on the same RPC), and you can predict which keys
+are likely to be accessed together, this class may be interesting to you.
+
+Implements an interesting "grouping" disk and memory based cache. It uses user
+defined locality groups. There is a notion of a "grouper" that takes a key, and
+maps it to a group.
+
+Whenever a key is looked up or updated, we compute the group it belongs to. If
+the group is in memory, we return or update the key within the group from the
+in-memory data structure without having to go to disk. This is fairly fast.
+If the group is not in memory, we bring the whole group in memory in one shot
+and process the key.
+
+This class can be used as a compromise between full in-memory data structures
+(fast but costly) vs. on-disk data bases (cheap but slow). It allowed Room77 to
+use orders of magnitude less resources then in memory alternatives (such as
+redis caches) while achieving acceptable performance to store and serve
+gigabytes to terabytes of data.
+
+Imagine that you are looking up prices for the closest 1000 hotels around an
+arbitrary lat / lon (e.g. an address). Keys are hotel ids and values are pricing
+information. You need to lookup, say around 10k+ prices per search. If you group
+hotels in a lat / lon grid, every such search can efficiently be fullfilled by
+touching a few groups without having to waste too much "keys" loaded in memory
+that you don't need.
+
+Room77 binary serializer is used for efficient storage / retrieval of keys.
+
+Compression can be achieved by compressing the blobs, or by using a filesystem
+that supports transparent compression (e.g. btrfs).

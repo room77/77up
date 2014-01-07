@@ -1,0 +1,46 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "json_util",
+    src  = [ "json_util.cc" ],
+    hdr  = [ "json_util.h" ],
+    dep  = [ "/base/common",
+             "stream_util",
+           ])
+
+lib(name = "serializer_util",
+    src  = [ "serializer_util.cc" ],
+    hdr  = [ "serializer_util.h" ],
+    dep  = [ "/base/common",
+             "/public/util/templates/container_util",
+           ])
+
+lib(name = "stream_util",
+    src  = [ "stream_util.cc" ],
+    hdr  = [ "stream_util.h" ],
+    dep  = [ "/base/common" ])
+
+# Binaries
+
+# Tests
+lib(name = "test_util",
+    hdr  = [ "test_util.h" ],
+    dep  = [ "/base/common",
+             "../serializer_macros",
+           ],
+    test_only = 1)
+
+test(name = "json_util_test",
+     src  = [ "json_util_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "json_util",
+            ])
+
+test(name = "stream_util_test",
+     src  = [ "stream_util_test.cc" ],
+     dep  = [ "/test/cc/unit_test_main",
+              "stream_util",
+            ])

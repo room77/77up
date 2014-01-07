@@ -1,0 +1,43 @@
+#!/bin/bash -e
+# Author: B. Uygar Oztekin
+
+if [ -z $1 ] ; then
+echo "Usage: `basename $0` file1 [ file2 [ ... ] ]
+
+Deprecates one or more files specified as arguments. You need to be somewhere
+within your git directory for this to work properly.
+
+Moves the specified files to a mirrored directory stucture under deprecated.
+Automatically creates directories as needed.
+"
+exit 0
+fi
+
+while true
+do
+
+[ -z $1 ] && exit 0
+
+pushd . > /dev/null
+ROOT_DIR=`pwd`
+while true
+do
+  ROOT_DIR=`pwd`
+  if [ -d .git ] ; then break ; fi
+  ROOT_DIR=`pwd`
+  cd ..
+  if [ "$ROOT_DIR" == `pwd` ] ; then exit 1 ; fi
+done
+popd > /dev/null
+
+SOURCE="`pwd`/$1"
+TARGET="`dirname $SOURCE | sed "s#$ROOT_DIR#$ROOT_DIR""/deprecated#"`/`basename $1`"
+
+echo "Deprecating $1"
+
+mkdir -p `dirname $TARGET`
+git mv $SOURCE $TARGET
+
+shift
+
+done

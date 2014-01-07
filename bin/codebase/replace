@@ -1,0 +1,40 @@
+#!/bin/bash -e
+# Author: Uygar Oztekin
+
+# Convenient hack to search and replace stuff inside current directory.
+# Suitable for small codebases.
+
+# Not as configurable as the search script (did not feel the need yet).
+
+if [ -z "$1" ] || [ -z "$2" ] ; then
+  echo "Usage: `basename $0` SEARCH_PATTERN REPLACE_PATTERN
+
+Recursively finds .h, .cc, and RULES files under the currenc directory and
+replaces all occurences of SEARCH_PATTERN with REPLACE_PATTERN.
+
+Patterns must not contain characters @ and \"
+"
+
+  exit 0
+fi
+
+LIST=`find . \( -name "RULES" -o -name "*.cc" -o -name "*.h" \) -exec grep -H "$1" {} \; | sed 's/:.*//g' | sort | uniq`
+
+if [ -z "$LIST" ] ; then
+  echo "Pattern did not match any files."
+  exit 0
+fi
+
+find . \( -name "RULES" -o -name "*.cc" -o -name "*.h" \) -exec grep -H "$1" {} \; | sed 's/:.*//g' | sort | uniq
+
+echo
+echo "About to replace all occurences of '$1' with '$2'"
+echo -n "Above files will be affected. Continue? [y/N]:"
+read INPUT
+
+if [ "$INPUT" == "y" ] || [ "$INPUT" == "Y" ] ; then
+  find . \( -name "RULES" -o -name "*.cc" -o -name "*.h" \) -exec sed -i "s@$1@$2@g" {} \;
+  echo Done
+else
+  echo Aborting ...
+fi

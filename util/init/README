@@ -1,0 +1,14 @@
+Initialization / Finalization framework used in Room77 codebase.
+You can register init and exit hooks (lamda functions) with assigned groups and
+priorities.
+
+Instead of using your own main, you define init_main instead (defined in main.cc
+here). init hooks are called in parallel in priority order right before main.
+exit hooks are called in parallel in priority order right before main exits.
+
+You can enable / disable some of the groups via commandline parameters (e.g. to
+skip expensive initializations you don't need for debugging your current work).
+
+Most of Room77 intializations are designed in a way that they are lazy and
+loaded on demand in a thread safe way as needed. For production use, we use the
+init mechanisms to trigger the lazy initializations to prep the servers.

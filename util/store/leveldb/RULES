@@ -1,0 +1,14 @@
+lib(name = "leveldb_store",
+    hdr = [ "leveldb_store.h" ],
+    link = [ "-lleveldb" ])
+
+test(name = "leveldb_store_test",
+     src = [ "leveldb_store_test.cc" ],
+     dep = [ "leveldb_store",
+             "../test/basic",
+             "../test/stress",
+             "../test/mutation",
+             "../test/forward_iteration",
+             "../test/sorted_forward_iteration",
+             "../test/lower_upper_bound",
+           ])

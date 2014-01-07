@@ -1,0 +1,19 @@
+lib(name = "group_cache",
+    hdr = [ "group_cache.h" ],
+    dep = [ "/base/common",
+            "/public/util/file/file",
+            "/public/util/serial/serializer",
+          ])
+
+lib(name = "shared_lru_cache",
+    hdr = [ "shared_lru_cache.h" ])
+
+test(name = "group_cache_test",
+     src  = [ "group_cache_test.cc"],
+     dep  = [ "group_cache",
+              "/public/util/serial/serializer",
+            ])
+
+test(name = "shared_lru_cache_test",
+     src = [ "shared_lru_cache_test.cc" ],
+     dep = [ "shared_lru_cache" ])

@@ -1,0 +1,8 @@
+File and file io related utility libraries. Some are pretty old and they are not
+portable. A linux variant is assumed. Known to work with GCC. May or may not
+work with other compilers. If you need to use code that depends on these on
+other platforms, you may need to implement a subset of the APIs yourself.
+
+APIs are old and not on par with current Room77 practices. Some could have been
+implemented in a better way as well. Some of the libraries / tests we would like
+to open source use a subset of the functionality defined here.

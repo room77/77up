@@ -1,0 +1,28 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+
+lib(name = "common_methods",
+    dep  = [ "params/edit_param_method",
+             "get_counters_method",
+             "ping_method",
+           ])
+
+lib(name = "get_counters_method",
+    src  = [ "get_counters_method.cc" ],
+    dep  = [ "/base/args/args",
+             "/public/util/network/method/server_method",
+             "/util/counter/counter_base",
+           ])
+
+lib(name = "ping_method",
+    src  = [ "ping_method.cc" ],
+    dep  = [ "/public/util/network/method/server_method",
+           ])
+
+# Binaries
+
+# Tests

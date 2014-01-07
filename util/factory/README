@@ -1,0 +1,8 @@
+This is an independent component that implements a useful factory mechanism that
+takes care of handling thread safety and sharing of thread safe class hierarcy
+instances. A large fraction of room77 codebase uses this class as a building
+block.
+
+See factory.h and factory_test.cc for example usage.
+
+Uygar Oztekin

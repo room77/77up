@@ -1,0 +1,33 @@
+# Libs
+lib(name = "common",
+    dep = [ "logging", "args/args" ])
+
+lib(name = "demangle",
+    src = [ "demangle.cc" ],
+    hdr = [ "demangle.h" ])
+
+lib(name = "logging",
+    src = [ "logging.cc" ],
+    hdr = [ "logging.h" ],
+    dep = [ "sysinfo", "system" ])
+
+lib(name = "sysinfo",
+    src = [ "sysinfo.cc" ],
+    hdr = [ "sysinfo.h" ],
+    dep = [ "args/args", "logging" ])
+
+lib(name = "system",
+    src = [ "system.cc" ],
+    hdr = [ "system.h" ],
+    link = ["-ldl"])
+
+# Tests
+test(name = "demangle_test",
+     src = [ "demangle_test.cc"],
+     dep = [ "/test/cc/unit_test_main",
+             "demangle",
+           ])
+
+test(name = "logging_test",
+     src = [ "logging_test.cc"],
+     dep = [ "logging" ])

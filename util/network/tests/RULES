@@ -1,0 +1,66 @@
+# unittests
+
+test(name = "netclient_test",
+     src  = ["netclient_test.cc"],
+     dep  = ["/public/util/network/netclient"])
+
+test(name = "sslclient_test",
+     src  = ["sslclient_test.cc"],
+     dep  = ["/public/util/network/sslclient"])
+
+test(name = "httpclient_test",
+     src  = ["httpclient_test.cc"],
+     dep  = ["/public/util/network/httpclient"])
+
+test(name = "cached_httpclient_test",
+     src  = ["cached_httpclient_test.cc"],
+     dep  = ["/public/util/network/httpclient", "/util/shared_lru_cache"])
+
+test(name = "ssl_memoryleak_test",
+     src  = ["ssl_memoryleak_test.cc"],
+     dep  = ["/public/util/network/sslclient"],
+     link = ["-ltcmalloc", "-lpthread"])
+
+# client/server tests
+test(name = "echoclientserver_test",
+     src  = [ "echoclientserver_test.cc" ],
+     dep  = [ "/public/util/network/netclient",
+              "/public/util/network/server",
+              "/test/cc/unit_test_main",
+            ])
+
+test(name = "rpcclientserver_test",
+     src  = [ "rpcclientserver_test.cc" ],
+     dep  = [ "/public/util/network/rpcclient",
+              "/public/util/network/rpcserver",
+              "/public/util/network/wrapped_httpclient",
+              "/public/util/network/method/server_method",
+              "/test/cc/unit_test_main",
+            ])
+
+test(name = "two_rpcclientservers_test",
+     src  = [ "two_rpcclientservers_test.cc" ],
+     dep  = [ "/public/util/network/rpcclient",
+              "/public/util/network/rpcserver",
+              "/public/util/network/method/server_method",
+              "/test/cc/unit_test_main",
+            ])
+
+test(name = "util_test",
+     src  = [ "util_test.cc" ],
+     dep  = [ "/public/util/network/util",
+              "/test/cc/unit_test_main",
+            ])
+
+test(name = "webserver_test",
+     src  = [ "webserver_test.cc" ],
+     dep  = [ "/public/util/network/httpclient",
+              "/public/util/network/webserver",
+              "/test/cc/unit_test_main",
+            ])
+
+bin(name = "rpcserver_sample",
+    src  = [ "rpcserver_sample.cc" ],
+    dep  = [ "/public/util/network/rpcserver",
+             "/public/util/network/method/server_method",
+           ])

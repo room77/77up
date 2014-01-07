@@ -1,0 +1,6 @@
+lib(name = "unique",
+    hdr = [ "unique.h"])
+
+test(name = "unique_test",
+     src = [ "unique_test.cc" ],
+     dep = [ "unique"])

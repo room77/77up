@@ -1,0 +1,18 @@
+This directory contains various networking related libraries such as basic http
+https clients, http server and rpc client and server implementations.
+
+A good deal of the code is pretty old. Style is not pn par with our latest
+practices and we know that some portions can be implemented more efficiently.
+We also have a few cleanups in mind that we did not get around to do yet.
+Some portions of the code is relatively new and good quality (methods API).
+Most of our internal code use the high level methods API and does not even refer
+to the lower level libraries.
+
+This is one of the components we deemed useful enough that you may either use it
+as is or as a starting point rather than starting from scratch.
+We do not consider this portion highest quality.
+
+There are one or two missing dependencies for some targets. We will get to them
+in time. Most of the basic targets should compile (except servers).
+
+See various tests for example usage.

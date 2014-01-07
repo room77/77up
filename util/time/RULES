@@ -1,0 +1,2 @@
+lib(name = "duration",
+    hdr  = ["duration.h"])
