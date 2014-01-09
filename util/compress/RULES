@@ -7,5 +7,5 @@ lib(name = "gzip",
 test(name = "gzip_test",
      src = ["gzip_test.cc"],
      dep = ["gzip",
-            "/test/cc/unit_test_main"],
+            "/public/test/cc/test_main"],
      link = ["-lz"])

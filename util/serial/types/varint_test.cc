@@ -4,9 +4,11 @@
 #include "util/serial/types/varint.h"
 
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 
 #include "base/common.h"
+#include "util/init/main.h"
 
 int Value(int i) { return i; }
 

@@ -40,34 +40,34 @@ lib(name = "type_traits",
 # Tests.
 test(name = "comparator_test",
      src  = [ "comparator_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "comparator",
             ])
 
 test(name = "container_util_test",
      src  = [ "container_util_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "container_util",
             ])
 
 test(name = "functional_test",
     src = [ "functional_test.cc" ],
     dep = [ "functional",
-            "/test/cc/unit_test_main" ])
+            "/public/test/cc/test_main" ])
 
 test(name = "hash_test",
     src = [ "hash_test.cc" ],
     dep = [ "hash",
-            "/test/cc/unit_test_main" ])
+            "/public/test/cc/test_main" ])
 
 test(name = "iterator_test",
      src  = [ "iterator_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "iterator",
             ])
 
 test(name = "sfinae_test",
      src  = [ "sfinae_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "sfinae",
             ])

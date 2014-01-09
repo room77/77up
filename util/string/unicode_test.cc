@@ -4,7 +4,7 @@
 #include <deque>
 #include <future>
 #include "unicode.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 TEST(RemoveAccent, Sanity) {
   EXPECT_EQ(" aAaa cc eeEE oO y r ",

@@ -3,7 +3,7 @@
 
 #include <thread>
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/thread/rate_limited_shared_queue.h"
 
 namespace util {

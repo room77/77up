@@ -24,7 +24,7 @@ lib(name = "system",
 # Tests
 test(name = "demangle_test",
      src = [ "demangle_test.cc"],
-     dep = [ "/test/cc/unit_test_main",
+     dep = [ "/public/test/cc/test_main",
              "demangle",
            ])
 

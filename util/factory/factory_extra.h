@@ -13,7 +13,7 @@
 #include <memory>
 #include <tuple>
 
-#include "util/tuple_util.h"
+#include "tuple_util.h"
 
 // Helper functor that assumes that the Base class has the following virtual
 // methods:

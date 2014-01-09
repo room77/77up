@@ -35,12 +35,12 @@ lib(name = "test_util",
 
 test(name = "json_util_test",
      src  = [ "json_util_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "json_util",
             ])
 
 test(name = "stream_util_test",
      src  = [ "stream_util_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "stream_util",
             ])

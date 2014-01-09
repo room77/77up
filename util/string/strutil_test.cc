@@ -1,7 +1,7 @@
 #include "base/common.h"
 
 #include "strutil.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace strutil {
 namespace test {

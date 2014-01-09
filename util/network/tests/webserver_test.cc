@@ -11,7 +11,7 @@
 #include "util/network/webserver.h"
 
 #include "util/network/httpclient.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 FLAG_string(server, "localhost", "server hostname.");
 FLAG_int(port, 11115, "server port number");

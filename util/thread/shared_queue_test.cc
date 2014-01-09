@@ -8,8 +8,8 @@
 #include <thread>
 #include <vector>
 
-#include "base/strutil.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
+#include "util/string/strutil.h"
 #include "util/thread/shared_queue.h"
 #include "util/thread/shared_queue_consumers.h"
 #include "util/thread/test_util.h"

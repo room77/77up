@@ -21,12 +21,12 @@ lib(name = "endian",
 # Tests
 test(name = "encoding_test",
      src  = [ "encoding_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "encoding",
             ])
 
 test(name = "endian_test",
      src  = [ "endian_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "endian",
             ])

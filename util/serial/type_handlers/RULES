@@ -61,12 +61,12 @@ lib(name = "zero_default",
 lib(name = "test_util",
      hdr  = [ "test_util.h" ],
      dep  = [ "/base/common",
-              "/test/cc/unit_test",
+              "/public/test/cc/test",
             ])
 
 test(name = "binary_serialization_deserialization_test",
      src  = [ "binary_serialization_deserialization_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "test_util",
               "binary_deserialization",
               "binary_serialization",
@@ -74,14 +74,14 @@ test(name = "binary_serialization_deserialization_test",
 
 test(name = "deserialization_callback_test",
      src  = [ "deserialization_callback_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "test_util",
               "deserialization_callback",
             ])
 
 test(name = "json_serialization_deserialization_test",
      src  = [ "json_serialization_deserialization_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "test_util",
 #              "binary_deserialization",
               "json_serialization",
@@ -89,14 +89,14 @@ test(name = "json_serialization_deserialization_test",
 
 test(name = "type_size_test",
      src  = [ "type_size_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "test_util",
               "type_size",
             ])
 
 test(name = "zero_default_test",
      src  = [ "zero_default_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "test_util",
               "zero_default",
             ])

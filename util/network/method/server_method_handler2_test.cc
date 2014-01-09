@@ -5,7 +5,7 @@
 
 #include "util/network/tests/rpcstruct_test.h"
 #include "util/network/method/server_method.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace network {
 namespace test {

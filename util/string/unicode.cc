@@ -1,6 +1,8 @@
 // Copyright 2013 Room77 Inc. All Rights Reserved.
 // Author: Uygar Oztekin
 
+// @flags: -licuio -licuuc -licui18n
+
 #include "util/init/init.h"
 #include "util/string/unicode.h"
 

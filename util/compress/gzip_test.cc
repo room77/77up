@@ -4,9 +4,10 @@
 // Test cases for compression functions
 
 #include "gzip.h"
-#include "test/cc/unit_test.h"
+#include "util/file/file.h"
+#include "test/cc/test_main.h"
 
-FLAG_string(test_path, "util/testdata/", "The path to the test data files");
+FLAG_string(test_path, "util/compress/testdata/", "The path to the test data files");
 
 namespace Compression {
 namespace test {
@@ -52,10 +53,12 @@ TEST(Compression, LineCompression) {
     "If you say it to my face, I'll crash your plane.\n\n"
     "--Auralnauts Dark Knight Rises outtakes\n";
   // http://www.youtube.com/watch?v=fLFAXvFYhsE
+  string path = gFlag_test_path + "compression_test_given.txt.gz";
+
+  if (!file::Exists(path)) path = "public/" + path;
 
   string concatenated;
-  Compression::ProcessGzipLines(gFlag_test_path + "compression_test_given.txt.gz",
-      [&concatenated](const string& input) -> bool {
+  Compression::ProcessGzipLines(path, [&concatenated](const string& input) -> bool {
     concatenated.append(input);
     return input.size();
   });

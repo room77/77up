@@ -1,0 +1,7 @@
+This directory hosts third party code not written by Room77.
+Top level license does NOT apply to the code within this directory (and its
+subdirectories).
+
+We will typically put a description or scripts to fetch the corresponding
+libraries for your convenience. We will NOT include them here unless they are
+very trivial (single small header etc.).

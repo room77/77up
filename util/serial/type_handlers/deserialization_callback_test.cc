@@ -4,7 +4,7 @@
 #include "util/serial/type_handlers/deserialization_callback.h"
 
 #include "util/serial/type_handlers/test_util.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace serial {
 namespace test {

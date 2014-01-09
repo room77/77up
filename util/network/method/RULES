@@ -44,26 +44,26 @@ lib(name = "context_builders",
 test(name = "server_method_test",
      src  = [ "server_method_test.cc" ],
      dep  = [ "server_method",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "server_method_handler_test",
      src  = [ "server_method_handler_test.cc" ],
      dep  = [ "server_method_handler",
               "server_method",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 test(name = "server_method_handler2_test",
      src  = [ "server_method_handler2_test.cc" ],
      dep  = [ "server_method_handler",
               "server_method",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "server_method_forward_test",
      src  = [ "server_method_forward_test.cc" ],
      dep  = [ "server_method_forward",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "context_builder_test",

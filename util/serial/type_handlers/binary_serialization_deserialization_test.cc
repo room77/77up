@@ -11,7 +11,7 @@
 
 #include <sstream>
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/serial/type_handlers/test_util.h"
 
 namespace serial {

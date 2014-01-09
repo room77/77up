@@ -2,7 +2,7 @@
 // Author: kyle@room77.com (Kyle Konrad)
 
 #include "util/templates/comparator.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace util {
 namespace tl {

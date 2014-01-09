@@ -1,0 +1,3 @@
+Some of Room77's open sourced libraries' use gmock and gtest for testing.
+If you would like to install them, you can call the install scripts under
+gmock and gtest. Do not call the install script here directly.

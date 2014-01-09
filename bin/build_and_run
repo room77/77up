@@ -7,22 +7,26 @@
 # This is NOT the build system (flash) used in Room77. Until we can open source
 # that (needs some cleanups), this can be used to compile and run targets.
 #
-# The script does not need explicit rules or make files. Examines the sources
-# and guesses the dependencies automatically:
+# This script does not need explicit rules, make files or hints in most cases.
+# Examines the sources and guesses the dependencies automatically:
 #
 # - Uses compiler's dependency generation to get an initial set of files.
 # - For any .h in dependencies, if there is a corresponding .cc, assumes that
 #   it is also a dependency.
 # - Recursively examines all dependencies keeping track of what it had already
-#   checked.
-# - At the end, produces a list of .cc files to compile.
+#   processed.
+# - .cc files are checked for the "// @flag: PARAMS" pattern. If found, PARAMS
+#   are passed to the compiler / linker. This can be used to specify external
+#   dependencies of that particular library outside of the codebase.
+# - At the end, produces a list of compiler parameters and .cc files to compile.
 #
-# Does not know if the targets are "current". Builds from scratch everytime.
-# More sophisticated components should use the Room77 flash build system.
+# Does not know if the targets are "current". Builds from scratch every time.
+# More sophisticated components should use the Room77 flash build system in the
+# future.
 #
 
-# If there is no parameters (this is a symlink) try to compile the .cc file
-# with the same name as the symlink.
+# If there are no parameters assume that this is a symlink.
+# Try to compile the .cc file with the same name as the symlink.
 if [ -z "$1" ] ; then
   COMMAND="`readlink -f $0` $0.cc"
   echo Running via symlink...
@@ -32,7 +36,7 @@ if [ -z "$1" ] ; then
   exit 0
 fi
 
-# Figure out the root directory we should use. All comilations and includes
+# Figure out the root directory we should use. All compilations and includes
 # are assumed to be relative to this directory.
 SRC_ROOT=`readlink -f $(dirname $(readlink -f $0))/../`
 
@@ -40,11 +44,30 @@ SRC_ROOT=`readlink -f $(dirname $(readlink -f $0))/../`
 # (We already run continuous builds / tests with gcc internally).
 CC=`which clang++ g++ | head -n 1`          # Pick an available compiler.
 CCLINK="$CCLINK -lpthread"                  # Most of our code uses multi-threading.
-CCFLAGS="$CCFLAGS -std=c++11 -I $SRC_ROOT"  # Our code requires latest C++11 features.
+CCFLAGS="$CCFLAGS -std=c++11 -I $SRC_ROOT \
+-I $SRC_ROOT/third_party/google/gmock/latest/include \
+-L $SRC_ROOT/third_party/google/gmock/latest/lib/.libs \
+-I $SRC_ROOT/third_party/google/gtest/latest/include \
+-L $SRC_ROOT/third_party/google/gtest/latest/lib/.libs"
 
 function check_files() {
   for i in $* ; do
-    [ -e $i ] && echo "$i"
+    if [ -e $i ] ; then
+      echo "$i"
+      # Try to see if there are special flags within the source file.
+      # We extract anything after "// @flags:"
+      FLAGS=`grep "//[ ]*@flags:.*" "$i" | sed 's/.*@flags://g'`
+      if [ -n "$FLAGS" ] ; then
+        CCLINK="$CCFLAGS $FLAGS"
+      fi
+    fi
+  done
+}
+
+function extract_flags() {
+  cd $SRC_ROOT
+  for i in $* ; do
+    grep "//[ ]*@flags:.*" "$i" | sed 's/.*@flags://g'
   done
 }
 
@@ -72,9 +95,14 @@ function guess_libs() {
   fi
 }
 
-echo "Guessing dependencies ..."
+echo "Dependencies:"
 TARGETS=`guess_libs $*`
 echo $TARGETS
+
+echo
+echo "Extra flags:"
+CCLINK="$CCLINK `extract_flags $TARGETS`"
+echo $CCLINK
 
 NAME=`basename $1 | sed 's/\.cc//g'`
 TMP=/tmp
@@ -82,6 +110,7 @@ TMP=/tmp
 cd $SRC_ROOT
 
 echo
-echo "Compiling ..."
+echo "Compile command:"
 echo $CC $CCLINK $CCFLAGS $TARGETS -o $TMP/$NAME
-$CC $CCLINK $CCFLAGS $TARGETS -o $TMP/$NAME && echo && echo Running $TMP/$NAME ... && $TMP/$NAME
+$CC $CCLINK $CCFLAGS $TARGETS -o $TMP/$NAME && echo && echo Running $TMP/$NAME ... && \
+LD_LIBRARY_PATH="$SRC_ROOT/third_party/google/gmock/latest/lib/.libs:$SRC_ROOT/third_party/google/gtest/latest/lib/.libs" $TMP/$NAME

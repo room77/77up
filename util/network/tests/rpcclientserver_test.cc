@@ -12,7 +12,7 @@
 #include "util/network/wrapped_httpclient.h"
 #include "util/network/method/server_method.h"
 #include "util/network/tests/rpcstruct_test.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 FLAG_string(server, "localhost", "server hostname.");
 FLAG_int(port, 11112, "server port number.");

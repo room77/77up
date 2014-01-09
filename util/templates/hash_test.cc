@@ -3,7 +3,7 @@
 
 #include "util/templates/hash.h"
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace util {
 namespace tl {

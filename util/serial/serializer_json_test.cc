@@ -5,7 +5,7 @@
 
 #include "util/serial/serializer_macros.h"
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/serial/type_handlers/test_util.h"
 #include "util/serial/utils/test_util.h"
 

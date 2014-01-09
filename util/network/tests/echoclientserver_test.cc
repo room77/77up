@@ -9,7 +9,7 @@
 
 #include "util/network/netclient.h"
 #include "util/network/netserver.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 FLAG_string(server, "localhost", "echo server hostname");
 FLAG_int(port, 11111, "echo server port number");

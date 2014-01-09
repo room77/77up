@@ -85,20 +85,20 @@ lib(name = "test_util",
 test(name = "counters_test",
      src  = [ "counters_test.cc" ],
      dep  = [ "/base/common",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
               "counters",
             ])
 
 test(name = "rate_limited_shared_queue_test",
      src  = ["rate_limited_shared_queue_test.cc"],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "rate_limited_shared_queue"
             ])
 
 test(name = "shared_queue_test",
      src  = [ "shared_queue_test.cc" ],
      dep  = [ "/base/common",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
               "counters",
               "shared_queue",
               "shared_queue_consumers",
@@ -112,7 +112,7 @@ test(name = "task_test",
 test(name = "thread_pool_test",
      src  = [ "thread_pool_test.cc" ],
      dep  = [ "/base/common",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
               "test_util",
               "thread_pool",
             ])

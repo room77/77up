@@ -7,7 +7,7 @@
 #include <sstream>
 #include <unordered_set>
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace serial {
 namespace util {

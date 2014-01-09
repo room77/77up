@@ -15,7 +15,7 @@ bool DeSerializeJSON::Deserialize(istream& in, char* res, const string& type_nam
   if (!in.good()) return false;
 
   istream::pos_type orig_pos = in.tellg();
-  ASSERT_NEQ(static_cast<long>(orig_pos), -1);
+  ASSERT_NE(static_cast<long>(orig_pos), -1);
 
   if (!util::ExpectNext(in, "{", true, params_.err)) return false;
 

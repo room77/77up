@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <memory>
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/templates/container/test_util.h"
 
 namespace tl {

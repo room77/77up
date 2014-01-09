@@ -5,7 +5,7 @@ lib(name = "strutil",
 
 test(name = "strutil_test",
      src = [ "strutil_test.cc"],
-     dep = [ "strutil", "/test/cc/unit_test_main" ])
+     dep = [ "strutil", "/public/test/cc/test_main" ])
 
 lib(name = "unicode",
     src = [ "unicode.cc"],
@@ -14,4 +14,4 @@ lib(name = "unicode",
 
 test(name = "unicode_test",
      src  = [ "unicode_test.cc" ],
-     dep  = [ "unicode", "/test/cc/unit_test_main" ])
+     dep  = [ "unicode", "/public/test/cc/test_main" ])

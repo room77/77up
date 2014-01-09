@@ -64,7 +64,7 @@ enum {
 
 // ASSERT_xx family of macros (==, !=, <, >, <=, >=)
 #define ASSERT_EQ(e1, e2)  ASSERT((e1) == (e2)) << "(" << (e1) << " vs. " << (e2) << ") "
-#define ASSERT_NEQ(e1, e2) ASSERT((e1) != (e2)) << "(" << (e1) << " vs. " << (e2) << ") "
+#define ASSERT_NE(e1, e2) ASSERT((e1) != (e2)) << "(" << (e1) << " vs. " << (e2) << ") "
 #define ASSERT_LT(e1, e2)  ASSERT((e1) <  (e2)) << "(" << (e1) << " vs. " << (e2) << ") "
 #define ASSERT_GT(e1, e2)  ASSERT((e1) >  (e2)) << "(" << (e1) << " vs. " << (e2) << ") "
 #define ASSERT_LE(e1, e2)  ASSERT((e1) <= (e2)) << "(" << (e1) << " vs. " << (e2) << ") "

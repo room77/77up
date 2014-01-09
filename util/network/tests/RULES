@@ -26,7 +26,7 @@ test(name = "echoclientserver_test",
      src  = [ "echoclientserver_test.cc" ],
      dep  = [ "/public/util/network/netclient",
               "/public/util/network/server",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "rpcclientserver_test",
@@ -35,7 +35,7 @@ test(name = "rpcclientserver_test",
               "/public/util/network/rpcserver",
               "/public/util/network/wrapped_httpclient",
               "/public/util/network/method/server_method",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "two_rpcclientservers_test",
@@ -43,20 +43,20 @@ test(name = "two_rpcclientservers_test",
      dep  = [ "/public/util/network/rpcclient",
               "/public/util/network/rpcserver",
               "/public/util/network/method/server_method",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "util_test",
      src  = [ "util_test.cc" ],
      dep  = [ "/public/util/network/util",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 test(name = "webserver_test",
      src  = [ "webserver_test.cc" ],
      dep  = [ "/public/util/network/httpclient",
               "/public/util/network/webserver",
-              "/test/cc/unit_test_main",
+              "/public/test/cc/test_main",
             ])
 
 bin(name = "rpcserver_sample",

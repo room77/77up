@@ -11,8 +11,8 @@
 #include <thread>
 #include <vector>
 
-#include "base/strutil.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
+#include "util/string/strutil.h"
 #include "util/thread/counters.h"
 #include "util/thread/thread_pool.h"
 #include "util/thread/test_util.h"

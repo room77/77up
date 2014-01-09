@@ -13,7 +13,7 @@ bool DeSerializeBinary::Deserialize(istream& in, char* res, const string& type_n
   if (!in.good()) return false;
 
   istream::pos_type orig_pos = in.tellg();
-  ASSERT_NEQ(static_cast<long>(orig_pos), -1);
+  ASSERT_NE(static_cast<long>(orig_pos), -1);
 
   bool parsed_ids[data_.max_id() + 1];
   memset(parsed_ids, 0, data_.max_id() + 1);

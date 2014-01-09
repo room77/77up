@@ -14,7 +14,7 @@
 #include "util/network/rpcserver.h"
 #include "util/network/method/server_method.h"
 #include "util/network/tests/rpcstruct_test.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 FLAG_string(server, "localhost", "server hostname.");
 FLAG_int(port1, 11113, "server port for server 1.");

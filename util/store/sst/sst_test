@@ -1,0 +1,5 @@
+# We cannot auto-detect store test dependencies (yet). Manually add them.
+# We also need leveldb lib.
+export CCLINK="-lleveldb"
+../../../bin/build_and_run sst_test.cc \
+../test/{basic,stress,forward_iteration,sorted_forward_iteration,lower_upper_bound}.cc

@@ -5,7 +5,7 @@ Copyright 2013, Room 77, Inc.
 Test for util
 */
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/network/util.h"
 
 TEST(UtilTest, TestParseCGIArgumentsUnstrict_Basic) {

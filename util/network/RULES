@@ -99,4 +99,4 @@ lib(name = "wrapped_httpclient",
 test(name = "util_test",
      src  = [ "util_test.cc" ],
      dep  = [ "util",
-              "/test/cc/unit_test_main" ])
+              "/public/test/cc/test_main" ])

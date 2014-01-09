@@ -3,7 +3,7 @@
 
 #include "base/demangle.h"
 
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 
 namespace base {
 namespace test {

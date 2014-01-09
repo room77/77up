@@ -19,7 +19,7 @@ lib(name = "varint",
 # Tests
 test(name = "arbit_blob_test",
      src  = [ "arbit_blob_test.cc" ],
-     dep  = [ "/test/cc/unit_test_main",
+     dep  = [ "/public/test/cc/test_main",
               "/public/util/serial/type_handlers/test_util",
               "/public/util/serial/utils/test_util",
               "arbit_blob",

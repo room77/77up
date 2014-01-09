@@ -1,3 +1,8 @@
+77up
+====
+
+Various core libraries and utilities open sourced by Room77.
+
 This directory contains open sourced code. Some of the code is copyrighted by
 Optrip Inc., some by Room77 Inc., and some by individual authors.
 Some of the code are copyrighted by a mixture of the above as well.
@@ -25,17 +30,19 @@ dependencies that are not trivial to decouple. We tried to streamline the
 dependencies for most useful components when practical.
 
 Some of the code depend on external libraries (e.g. icu, leveldb, gunit etc.).
-In order to compile anduse them, you would need to install the appropriate
+In order to compile and use them, you would need to install the appropriate
 libraries yourself. We tried to minimize dependency on such libraries when
 practical.
 
-A good portion of the tests use gunit which is not provided as part of this
-package.
+A good portion of the tests use googletest / googlemock which are not included
+as part of this package. We added convenience scripts under third_party/google/*
+you can use to fetch and install them if you desire. Some of the tests and a
+small subset of libraries will not compile without them.
 
 Internally we use our own flash build system to build packages. We intent to
 open source this tool as well, but it will take time to remove internal
 dependencies and generalize it. RULES files you may see in various directories
-are used with flash and they are fairly intuitive. It should be relatively
+are used within flash and they are fairly intuitive. It should be relatively
 straightforward to see the dependencies and translate the RULES entries manually
 to your own favorite build systems for the libraries you care about. RULES files
 are provided as examples for now.

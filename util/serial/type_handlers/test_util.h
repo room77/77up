@@ -17,7 +17,7 @@
 #include <vector>
 
 #include "base/common.h"
-#include "test/cc/unit_test.h"
+#include "test/cc/test_main.h"
 #include "util/serial/types/varint.h"
 
 namespace serial {

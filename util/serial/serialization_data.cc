@@ -65,7 +65,7 @@ void SerializationData::Initialize(const string& varlist) {
 
     size_t id = strutil::FromString<unsigned int>(fields[1]);
 
-    ASSERT_NEQ(0, id) << "Id 0 is reserved. "
+    ASSERT_NE(0, id) << "Id 0 is reserved. "
                       << "Please choose another id for field: " << name;
 
     ASSERT(used.find(id) == used.end()) << "Id " << id
