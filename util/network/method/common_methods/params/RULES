@@ -7,14 +7,14 @@
 
 lib(name = "edit_param_method",
     src  = [ "edit_param_method.cc" ],
-    dep  = [ "/base/args/args",
+    dep  = [ "/public/base/args/args",
              "/public/util/network/method/server_method",
            ])
 
 lib(name = "param_editor",
     src  = [ "param_editor.cc" ],
     hdr  = [ "param_editor.h" ],
-    dep  = [ "/base/args/args",
+    dep  = [ "/public/base/args/args",
              "/base/common",
            ])
 

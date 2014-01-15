@@ -12,7 +12,7 @@
 
 #include "base/common.h"
 #include "base/strutil.h"
-#include "geo/lib/geoip.h"
+#include "util/geo/geoip.h"
 #include "util/network/netserver.h"
 #include "util/network/util.h"
 #include "util/md5/md5.h"

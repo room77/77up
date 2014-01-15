@@ -8,7 +8,6 @@
 #include "util/network/util.h"
 
 #include "base/external.h"
-#include "base/small_util.h"
 #include "util/network/dnslookup.h"
 #include "util/time/utime.h"
 

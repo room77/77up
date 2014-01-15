@@ -9,7 +9,9 @@
 #ifndef _PUBLIC_UTIL_NETWORK_NETSERVER_H_
 #define _PUBLIC_UTIL_NETWORK_NETSERVER_H_
 
+#include <cstdio>
 #include <netinet/in.h>
+#include <unistd.h>
 
 #include "base/common.h"
 #include "util/thread/thread_pool.h"

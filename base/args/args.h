@@ -27,6 +27,7 @@
 #include <algorithm>
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include "arg_info.h"
 #include "util/templates/singleton.h"
 

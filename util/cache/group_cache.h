@@ -36,11 +36,10 @@
 #include <list>
 #include <map>
 #include <set>
+#include <random>
 #include <unordered_map>
 #include <unordered_set>
 #include <cstdio>
-#include <time.h>
-#include <sys/time.h>
 
 #include "base/common.h"
 #include "util/file/file.h"

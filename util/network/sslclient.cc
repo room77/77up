@@ -4,6 +4,8 @@
 // Author: Calvin Yang
 //
 
+// @flags: -lssl -lcrypto
+
 #include <mutex>
 #include <netdb.h>
 

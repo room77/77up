@@ -157,7 +157,9 @@ TEST(EncodingTest, EncodeMultiByteUTF8Char) {
   { pair<string, int> res = EncodeMultiByteUTF8Char("\xFA\x81\x82\x83\x84", 5);
     EXPECT_EQ("\\u0204\\u20C4", res.first);
     EXPECT_EQ(5, res.second);
-    EXPECT_EQ("\U020420C4", "\xFA\x81\x82\x83\x84");
+    // TODO(pramodg,oztekin): This causes "invalid universal character error"
+    // in clang. Investigate more. Disable for now.
+    //EXPECT_EQ("\U020420C4", "\xFA\x81\x82\x83\x84");
   }
 
   // Test 6 byte UTF-8 char fail.
@@ -170,7 +172,9 @@ TEST(EncodingTest, EncodeMultiByteUTF8Char) {
   { pair<string, int> res = EncodeMultiByteUTF8Char("\xFD\x81\x82\x83\x84\x85", 6);
     EXPECT_EQ("\\u4108\\u3105", res.first);
     EXPECT_EQ(6, res.second);
-    EXPECT_EQ("\U41083105", "\xFD\x81\x82\x83\x84\x85");
+    // TODO(pramodg,oztekin): This causes "invalid universal character error"
+    // in clang. Investigate more. Disable for now.
+    //EXPECT_EQ("\U41083105", "\xFD\x81\x82\x83\x84\x85");
   }
 }
 

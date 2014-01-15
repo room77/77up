@@ -1,0 +1,4 @@
+lib(name = "geoip",
+    src = ["geoip.cc"],
+    dep = ["/base/common"],
+    link = ["-lGeoIP"])

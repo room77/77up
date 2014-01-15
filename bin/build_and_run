@@ -40,10 +40,8 @@ fi
 # are assumed to be relative to this directory.
 SRC_ROOT=`readlink -f $(dirname $(readlink -f $0))/../`
 
-# Default to clang to notice potential issues faster for open sourced code.
-# (We already run continuous builds / tests with gcc internally).
-CC=`which clang++ g++ | head -n 1`          # Pick an available compiler.
-CCLINK="$CCLINK -lpthread"                  # Most of our code uses multi-threading.
+CC=`which $CC g++ clang++ | head -n 1`  # Pick a compiler (override with CC).
+CCLINK="$CCLINK -lpthread"              # Most of our code uses multi-threading.
 CCFLAGS="$CCFLAGS -std=c++11 -I $SRC_ROOT \
 -I $SRC_ROOT/third_party/google/gmock/latest/include \
 -L $SRC_ROOT/third_party/google/gmock/latest/lib/.libs \

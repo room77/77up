@@ -78,7 +78,6 @@ class WrappedHttpBase : public HttpBase<NetBase> {
     if (!referrer.empty())
       this->AddHeader(string("Referer: ") + referrer);
 
-    int status_code;
     string response;
     HttpUtil::tHeaderType header;
     if (!Post(host, port, "/" + opname,
@@ -93,8 +92,8 @@ class WrappedHttpBase : public HttpBase<NetBase> {
  protected:
   // Returns true if the call succeeds, and false otherwise.
   bool Post(const string& host, int port, const string& path,
-              const string& message, string *reply,
-              string* output_cookie_full_spec_from_http) {
+            const string& message, string *reply,
+            string* output_cookie_full_spec_from_http) {
     bool res = false;
     int status_code = 0;
     HttpUtil::tHeaderType header;

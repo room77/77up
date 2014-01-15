@@ -6,6 +6,7 @@
 #include <thread>
 #include <string>
 #include "init.h"
+#include "main.h"
 
 using namespace std;
 

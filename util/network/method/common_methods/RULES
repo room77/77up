@@ -13,7 +13,7 @@ lib(name = "common_methods",
 
 lib(name = "get_counters_method",
     src  = [ "get_counters_method.cc" ],
-    dep  = [ "/base/args/args",
+    dep  = [ "/public/base/args/args",
              "/public/util/network/method/server_method",
              "/util/counter/counter_base",
            ])

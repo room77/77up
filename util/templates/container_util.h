@@ -281,14 +281,6 @@ typename C::value_type Min(const C& c, F&& f) {
   return *std::min_element(c.begin(), c.end(), std::forward<F>(f));
 }
 
-template<class C>
-vector<int> GetSortIndices(const C& c, bool desc=false) {
-  if (desc) {
-    return GetSortIndicesBy(c.size(), [&](int i, int j) { return c.at(i) > c.at(j); });
-  }
-  return GetSortIndicesBy(c.size(), [&](int i, int j) { return c.at(i) < c.at(j); });
-}
-
 // return a vector<int> of indices, such that out[i] = index of the ith smallest (using comp) element of c
 // comp is a binary function that takes two indices of c and returns a boolean
 inline vector<int> GetSortIndicesBy(int size, function<bool(int,int)> comp) {
@@ -300,13 +292,12 @@ inline vector<int> GetSortIndicesBy(int size, function<bool(int,int)> comp) {
   return indices;
 }
 
-
 template<class C>
-vector<int> GetOrdering(const C& c, bool desc=false) {
+vector<int> GetSortIndices(const C& c, bool desc=false) {
   if (desc) {
-    return GetOrderingBy(c.size(), [&](int i, int j) { return c.at(i) > c.at(j); });
+    return GetSortIndicesBy(c.size(), [&](int i, int j) { return c.at(i) > c.at(j); });
   }
-  return GetOrderingBy(c.size(), [&](int i, int j) { return c.at(i) < c.at(j); });
+  return GetSortIndicesBy(c.size(), [&](int i, int j) { return c.at(i) < c.at(j); });
 }
 
 // return a vector<int> of indices, such that i is the out[i] = order statistic of c[i]
@@ -320,6 +311,15 @@ inline vector<int> GetOrderingBy(int size, function<bool(int,int)>&& comp) {
   }
   return out;
 }
+
+template<class C>
+vector<int> GetOrdering(const C& c, bool desc=false) {
+  if (desc) {
+    return GetOrderingBy(c.size(), [&](int i, int j) { return c.at(i) > c.at(j); });
+  }
+  return GetOrderingBy(c.size(), [&](int i, int j) { return c.at(i) < c.at(j); });
+}
+
 
 // return a sorted vector (of pair of const pointers) of the given map
 template<class C>

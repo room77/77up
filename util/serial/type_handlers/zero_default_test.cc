@@ -50,7 +50,7 @@ TEST(ZeroDefaultTest, TestArithmetic) {
     EXPECT_EQ(0, a);
   }
 
-  { size_t a = 22.3;
+  { size_t a = 22;
     DefaultZeroByType()(a);
     EXPECT_EQ(0, a);
   }

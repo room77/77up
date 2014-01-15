@@ -13,8 +13,8 @@
 struct tServerRequestMessage {
   tServerRequestMessage(const string& opname = "", const string& m = "",
                         const string& c = "", const string& r = "",
-                        const unordered_map<string, string>& http_header = {},
-                        const unordered_map<string, string>& arg_map = {})
+                        const unordered_map<string, string>& http_header = unordered_map<string, string>{},
+                        const unordered_map<string, string>& arg_map = unordered_map<string, string>{})
    : opname(opname), message(m), referrer(r), cookie(c),
      http_header(http_header), arg_map(arg_map) {}
 

@@ -38,8 +38,6 @@ FLAG_bool(validate_server, false,
           "Validates the server and exits if set.");
 
 
-const int gMaxOpNameLength = 100;
-
 namespace network {
 
 // Support functions for input recording.

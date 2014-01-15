@@ -1,0 +1,5 @@
+# Ignore manual user generated files / dirs.
+gmock/gmock*
+gmock/latest
+gtest/gtest*
+gtest/latest

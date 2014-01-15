@@ -4,7 +4,11 @@
 // use google heap profiler to check for memory leaks in SSLClient
 //
 
+// @flags: -ltcmalloc
+
 #include "util/network/sslclient.h"
+#include "util/string/strutil.h"
+#include "util/init/main.h"
 #include <google/heap-profiler.h>
 
 FLAG_string(profile_prefix, "/localdisk/profile",

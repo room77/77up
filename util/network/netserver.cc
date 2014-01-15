@@ -7,8 +7,9 @@
 
 #include <chrono>
 #include <thread>
+#include <fstream>
 
-#include "base/small_util.h"
+#include "util/string/strutil.h"
 
 FLAG_int(use_thread_pool, false,
          "Use thread pool for the server.");
