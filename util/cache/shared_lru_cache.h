@@ -119,8 +119,9 @@ class SharedLRUCache {
   }
   void erase(const_iterator it) { erase(it->first); }
 
-  iterator find(const key_type& k) const {
-    data_t key(new value_type(k, V()));
+  // No need to set v unless V does not have a default constructor.
+  iterator find(const key_type& k, const V&& v = V()) const {
+    data_t key(new value_type(k, v));
     lock_t l(mutex_);
     auto it = map_.find(key);
     if (it == map_.end()) return data_t();

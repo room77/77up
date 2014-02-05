@@ -14,3 +14,6 @@ lib(name = "monitor_file_access",
     hdr = [ "monitor_file_access.h" ],
     dep = [ "/public/base/args/args", "/public/base/logging", "/public/util/init/init" ])
 
+bin(name = "monitor_file_access_example",
+    src = [ "monitor_file_access_example.cc" ],
+    dep = [ "monitor_file_access", "/public/util/init/main" ])

@@ -701,12 +701,12 @@ bool SameName(const string& str1, const string& str2) {
 //
 int ReadMoreDataFromSocket(int ear, int bytes_to_read,
                            int result_size_limit, string *result) {
-  char buf[bytes_to_read];
-  int read_count = read(ear, buf, bytes_to_read);
+  vector<char> buf(bytes_to_read);
+  int read_count = read(ear, &buf[0], bytes_to_read);
   if (read_count <= 0)
     return -1;  // no data is available
 
-  return AppendDataToString(buf, read_count, result_size_limit, result);
+  return AppendDataToString(&buf[0], read_count, result_size_limit, result);
 }
 
 

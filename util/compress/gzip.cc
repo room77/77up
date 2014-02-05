@@ -8,6 +8,7 @@
 
 #include <cstring>
 #include <zlib.h>
+#include <vector>
 #include "base/defs.h"
 
 
@@ -99,11 +100,11 @@ int ProcessGzipLines(const string& path, const std::function<int (const string&)
   if (log_file == nullptr) return -1;
   string line;
   int lines_processed = 0;
-  char buffer[gFlag_char_buffer_length];
+  vector<char> buffer(gFlag_char_buffer_length);
   // make sure the last character is a newline so we got the whole line
   // note: gzgets will read at most buffer_length - 1 characters
-  while (gzgets(log_file, buffer, gFlag_char_buffer_length)) {
-    line.append(buffer);
+  while (gzgets(log_file, &buffer[0], gFlag_char_buffer_length)) {
+    line.append(&buffer[0]);
     if (line.rbegin()[0] == '\n') {
       int status = parser_func(line);
       if (status > 0) {  // Optimize for most common case.

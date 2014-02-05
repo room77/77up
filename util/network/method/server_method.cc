@@ -11,7 +11,7 @@
 #include <time.h>
 
 #include "base/common.h"
-#include "base/strutil.h"
+#include "util/string/strutil.h"
 #include "util/geo/geoip.h"
 #include "util/network/netserver.h"
 #include "util/network/util.h"
@@ -39,7 +39,7 @@ void ServerMethod::Cascade(const ServerMethod* caller) {
   set_arg_map(caller->arg_map());
   set_http_header(caller->http_header());
   set_internal_call(caller->internal_call());
-};
+}
 
 void ServerMethod::GetCallerIP(string* s_IPaddr, in_addr_t* l_IPaddr) const {
   if (s_IPaddr && connection_) {
@@ -107,10 +107,15 @@ void ServerMethod::ParseInputCookie(const string& cookie_spec) {
     input_cookie_ = (input_cookie_.empty()) ?
        session_cookie_spec : input_cookie_ + ";" + session_cookie_spec;
 
-    SetCookie(gFlag_session_cookie_name, session_cookie, gFlag_session_cookie_duration,
-              "/", "", false, false);
+    SetSessionCookie(session_cookie);
   }
 }
+
+void ServerMethod::SetSessionCookie(const string& session_id) {
+  SetCookie(gFlag_session_cookie_name, session_id, gFlag_session_cookie_duration,
+            "/", "", false, false);
+}
+
 
 // Function to run the validator for the server method.
 ServerMethodStatus ServerMethod::RunValidate(ostream& out) {

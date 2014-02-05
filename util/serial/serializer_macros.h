@@ -156,12 +156,12 @@ struct ExampleWithSlashAndStar {
 #define SERIALIZATION_BINARY_INTERFACE(varlist___) \
   BINARY_SERIALIZATION_INTERFACE(varlist___);  \
   \
-  BINARY_DESERIALIZATION_INTERFACE(varlist___); \
+  BINARY_DESERIALIZATION_INTERFACE(varlist___) \
 
 #define SERIALIZATION_JSON_INTERFACE(varlist___) \
   JSON_SERIALIZATION_INTERFACE(varlist___);  \
   \
-  JSON_DESERIALIZATION_INTERFACE(varlist___); \
+  JSON_DESERIALIZATION_INTERFACE(varlist___) \
 
 
 // ------------------------------------------------------------
@@ -172,27 +172,27 @@ struct ExampleWithSlashAndStar {
 #define SERIALIZE_BINARY(varlist___) \
   SERIALIZATION_DATA(varlist___);  \
   \
-  SERIALIZATION_BINARY_IMPL(varlist___); \
+  SERIALIZATION_BINARY_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___); \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_BINARY_INTERFACE(varlist___); \
+  SERIALIZATION_BINARY_INTERFACE(varlist___) \
 
 // The macros for raw binary serialization.
 #define SERIALIZE_RAW_BINARY(varlist___) \
-  SERIALIZATION_BINARY_DUMMY_IMPL(varlist___); \
+  SERIALIZATION_BINARY_DUMMY_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___); \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_BINARY_INTERFACE(varlist___); \
+  SERIALIZATION_BINARY_INTERFACE(varlist___) \
 
 // The macros for complete JSON serialization.
 #define SERIALIZE_JSON(varlist___) \
   SERIALIZATION_DATA(varlist___);  \
   \
-  SERIALIZATION_JSON_IMPL(varlist___); \
+  SERIALIZATION_JSON_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_JSON_INTERFACE(varlist___); \
+  SERIALIZATION_JSON_INTERFACE(varlist___) \
 
 // SERIALIZE macro is typically used inside a struct definition to
 // spell out all variables to be serialized.
@@ -213,30 +213,30 @@ struct ExampleWithSlashAndStar {
 #define SERIALIZE(varlist___) \
   SERIALIZATION_DATA(varlist___);  \
   \
-  SERIALIZATION_BINARY_IMPL(varlist___); \
+  SERIALIZATION_BINARY_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___); \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline); \
   \
   SERIALIZATION_BINARY_INTERFACE(varlist___); \
   \
-  SERIALIZATION_JSON_IMPL(varlist___); \
+  SERIALIZATION_JSON_IMPL(varlist___, inline); \
   \
-  SERIALIZATION_JSON_INTERFACE(varlist___); \
+  SERIALIZATION_JSON_INTERFACE(varlist___) \
 
 // SIGNATURE has the same syntax as SERIALIZE, but only supports one-way
 // serialization (no deserialization).
 #define SIGNATURE(varlist___) \
   SERIALIZATION_DATA(varlist___);  \
   \
-  BINARY_SERIALIZATION_IMPL(varlist___); \
+  BINARY_SERIALIZATION_IMPL(varlist___, inline); \
   \
-  RAW_BINARY_SERIALIZATION_IMPL(varlist___); \
+  RAW_BINARY_SERIALIZATION_IMPL(varlist___, inline); \
   \
   BINARY_SERIALIZATION_INTERFACE(varlist___); \
   \
-  JSON_SERIALIZATION_IMPL(varlist___); \
+  JSON_SERIALIZATION_IMPL(varlist___, inline); \
   \
-  JSON_SERIALIZATION_INTERFACE(varlist___); \
+  JSON_SERIALIZATION_INTERFACE(varlist___) \
 
 #define RAW_BINARY_SIGNATURE(varlist___) \
   [&]() -> string { \
@@ -250,54 +250,54 @@ struct ExampleWithSlashAndStar {
 // ------------------------------------------------------------
 // Virtual verions of public macros
 // ------------------------------------------------------------
-#define SERIALIZE_BINARY_VIRTUAL(varlist___)            \
-  SERIALIZATION_DATA(varlist___);                       \
-                                                        \
-  SERIALIZATION_BINARY_IMPL(varlist___, virtual);       \
-                                                        \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___, virtual);   \
-                                                        \
-  SERIALIZATION_BINARY_INTERFACE(varlist___);           \
+#define SERIALIZE_BINARY_VIRTUAL(varlist___)                                   \
+  SERIALIZATION_DATA(varlist___);                                              \
+                                                                               \
+  SERIALIZATION_BINARY_IMPL(varlist___, inline virtual);                       \
+                                                                               \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline virtual);                   \
+                                                                               \
+  SERIALIZATION_BINARY_INTERFACE(varlist___)                                   \
 
-#define SERIALIZE_RAW_BINARY_VIRTUAL(varlist___)        \
-  SERIALIZATION_BINARY_DUMMY_IMPL(varlist___, virtual); \
-                                                        \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___, virtual);   \
-                                                        \
-  SERIALIZATION_BINARY_INTERFACE(varlist___);           \
+#define SERIALIZE_RAW_BINARY_VIRTUAL(varlist___)                               \
+  SERIALIZATION_BINARY_DUMMY_IMPL(varlist___, inline virtual);                 \
+                                                                               \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline virtual);                   \
+                                                                               \
+  SERIALIZATION_BINARY_INTERFACE(varlist___)                                   \
 
-#define SERIALIZE_JSON_VIRTUAL(varlist___)      \
-  SERIALIZATION_DATA(varlist___);               \
-                                                \
-  SERIALIZATION_JSON_IMPL(varlist___, virtual); \
-                                                \
-  SERIALIZATION_JSON_INTERFACE(varlist___);     \
+#define SERIALIZE_JSON_VIRTUAL(varlist___)                                     \
+  SERIALIZATION_DATA(varlist___);                                              \
+                                                                               \
+  SERIALIZATION_JSON_IMPL(varlist___, inline virtual);                         \
+                                                                               \
+  SERIALIZATION_JSON_INTERFACE(varlist___)                                     \
 
-#define SERIALIZE_VIRTUAL(varlist___)                   \
-  SERIALIZATION_DATA(varlist___);                       \
-                                                        \
-  SERIALIZATION_BINARY_IMPL(varlist___, virtual);       \
-                                                        \
-  SERIALIZATION_RAW_BINARY_IMPL(varlist___, virtual);   \
-                                                        \
-  SERIALIZATION_BINARY_INTERFACE(varlist___);           \
-                                                        \
-  SERIALIZATION_JSON_IMPL(varlist___, virtual);         \
-                                                        \
-  SERIALIZATION_JSON_INTERFACE(varlist___);             \
+#define SERIALIZE_VIRTUAL(varlist___)                                          \
+  SERIALIZATION_DATA(varlist___);                                              \
+                                                                               \
+  SERIALIZATION_BINARY_IMPL(varlist___, inline virtual);                       \
+                                                                               \
+  SERIALIZATION_RAW_BINARY_IMPL(varlist___, inline virtual);                   \
+                                                                               \
+  SERIALIZATION_BINARY_INTERFACE(varlist___);                                  \
+                                                                               \
+  SERIALIZATION_JSON_IMPL(varlist___, inline virtual);                         \
+                                                                               \
+  SERIALIZATION_JSON_INTERFACE(varlist___)                                     \
 
-#define SIGNATURE_VIRTUAL(varlist___)                   \
-  SERIALIZATION_DATA(varlist___);                       \
-                                                        \
-  BINARY_SERIALIZATION_IMPL(varlist___, virtual);       \
-                                                        \
-  RAW_BINARY_SERIALIZATION_IMPL(varlist___, virtual);   \
-                                                        \
-  BINARY_SERIALIZATION_INTERFACE(varlist___);           \
-                                                        \
-  JSON_SERIALIZATION_IMPL(varlist_, virtual__);         \
-                                                        \
-  JSON_SERIALIZATION_INTERFACE(varlist___);             \
+#define SIGNATURE_VIRTUAL(varlist___)                                          \
+  SERIALIZATION_DATA(varlist___);                                              \
+                                                                               \
+  BINARY_SERIALIZATION_IMPL(varlist___, inline virtual);                       \
+                                                                               \
+  RAW_BINARY_SERIALIZATION_IMPL(varlist___, inline virtual);                   \
+                                                                               \
+  BINARY_SERIALIZATION_INTERFACE(varlist___);                                  \
+                                                                               \
+  JSON_SERIALIZATION_IMPL(varlist___, inline virtual);                         \
+                                                                               \
+  JSON_SERIALIZATION_INTERFACE(varlist___)                                     \
 
 // Macro for CSV.
 // TODO(pramodg): Fix this.
@@ -320,7 +320,7 @@ struct ExampleWithSlashAndStar {
     return FromCSV(s___.c_str(), delimitor___, \
                    is_header_line___, error_msg___);    \
   } \
-  string ToCSV(char delimitor___ = ',', bool header_line___ = false) const {   \
+  string ToCSV(char delimitor___ = ',', bool header_line___ = false) const { \
     if (header_line___) \
       return SerializeCSV::MakeCSVHeader(#varlist___, delimitor___); \
     else { \

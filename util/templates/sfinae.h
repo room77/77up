@@ -123,7 +123,7 @@ template<typename T>                                                        \
 struct has_member_##member {                                                \
   static const bool value = sfinae::has_member<                             \
       Alias_##member<sfinae::ambiguate<T, AmbiguitySeed_##member>>,         \
-      Alias_##member<AmbiguitySeed_##member>>::value; };                    \
+      Alias_##member<AmbiguitySeed_##member>>::value; }                     \
 
 // Check for member variable with given name.
 #define CREATE_MEMBER_VAR_CHECK(var_name)                                   \
@@ -132,7 +132,7 @@ struct has_member_var_##var_name : std::false_type {};                      \
                                                                             \
 template<typename T>                                                        \
 struct has_member_var_##var_name<T, std::integral_constant<bool,            \
-    !std::is_member_function_pointer<decltype(&T::var_name)>::value>> : std::true_type {}; \
+    !std::is_member_function_pointer<decltype(&T::var_name)>::value>> : std::true_type {} \
 
 // Check for member class with given name.
 #define CREATE_MEMBER_CLASS_CHECK(class_name)                               \
@@ -142,7 +142,7 @@ struct has_member_class_##class_name : std::false_type {};                  \
 template<typename T>                                                        \
 struct has_member_class_##class_name<T, std::integral_constant<bool,        \
     std::is_class<typename sfinae::got_type<                                \
-        typename T::class_name>::type>::value>> : std::true_type {};        \
+        typename T::class_name>::type>::value>> : std::true_type {}         \
 
 // Check for member union with given name.
 #define CREATE_MEMBER_UNION_CHECK(union_name)                               \
@@ -152,7 +152,7 @@ struct has_member_union_##union_name : std::false_type {};                  \
 template<typename T>                                                        \
 struct has_member_union_##union_name<T, std::integral_constant<bool,        \
     std::is_union<typename sfinae::got_type<                                \
-        typename T::union_name>::type>::value>> : std::true_type {};        \
+        typename T::union_name>::type>::value>> : std::true_type {}         \
 
 // Check for member enum with given name.
 #define CREATE_MEMBER_ENUM_CHECK(enum_name)                                 \
@@ -162,7 +162,7 @@ struct has_member_enum_##enum_name : std::false_type {};                    \
 template<typename T>                                                        \
 struct has_member_enum_##enum_name<T, std::integral_constant<bool,          \
     std::is_enum<typename sfinae::got_type<                                 \
-        typename T::enum_name>::type>::value>> : std::true_type {};         \
+        typename T::enum_name>::type>::value>> : std::true_type {}          \
 
 // Check for function with given name, any signature.
 #define CREATE_MEMBER_FUNC_CHECK(func)                                      \
@@ -171,7 +171,7 @@ struct has_member_func_##func : std::false_type {};                         \
                                                                             \
 template<typename T>                                                        \
 struct has_member_func_##func<T, std::integral_constant<bool,               \
-    std::is_member_function_pointer<decltype(&T::func)>::value>> : std::true_type {}; \
+    std::is_member_function_pointer<decltype(&T::func)>::value>> : std::true_type {} \
 
 //Create all the checks for one member.  Does NOT include func sig checks.
 #define CREATE_MEMBER_CHECKS(member)                                       \
@@ -195,7 +195,7 @@ struct has_member_func_sig_##func<T, _Res (_ArgTypes...),                   \
         typename std::remove_cv<                                            \
             decltype(((typename std::remove_reference<T>::type*)0)->func(   \
                 std::declval<_ArgTypes>()...))>::type>::value>>             \
-    : std::true_type {};                                                    \
+    : std::true_type {}                                                     \
 
 // Check for member function with given name AND soft signature
 // (allows implicitly castable types). Note:
@@ -203,14 +203,14 @@ struct has_member_func_sig_##func<T, _Res (_ArgTypes...),                   \
 // This is useful when the argument or return types are elements in the type
 // itself.
 #define CREATE_MEMBER_FUNC_FIXED_SOFT_SIG_CHECK(res, func, ...)             \
-CREATE_MEMBER_FUNC_SOFT_SIG_CHECK(func)                                     \
+CREATE_MEMBER_FUNC_SOFT_SIG_CHECK(func);                                    \
 template<typename T, typename = std::true_type>                             \
 struct has_member_func_fixed_sig_##func : std::false_type {};               \
                                                                             \
 template<typename T>                                                        \
 struct has_member_func_fixed_sig_##func<T, std::integral_constant<bool,     \
     has_member_func_sig_##func<T, res(__VA_ARGS__)>::value>>                \
-    : std::true_type {};                                                    \
+    : std::true_type {}                                                     \
 
 // Check for member function with given name AND signature. Note:
 // This does not work with inherited members.
@@ -230,7 +230,7 @@ struct has_member_func_exact_sig_##func<T, _Res (_ArgTypes...) const,       \
     std::integral_constant<bool,                                            \
         sfinae::sig_check<_Res (T::*)(_ArgTypes...) const,                  \
             static_cast<_Res (T::*)(_ArgTypes...) const>(&T::func)>::value>> \
-    : std::true_type {};                                                    \
+    : std::true_type {}                                                     \
 
 // Checks if the member has a type.
 #define CREATE_MEMBER_TYPE_CHECK(__type)                                    \
@@ -240,6 +240,6 @@ struct has_member_type_##__type : std::false_type {};                       \
 template<typename T>                                                        \
 struct has_member_type_##__type<T, std::integral_constant<bool,             \
     sfinae::got_type<typename T::__type>::value>>                           \
-    : std::true_type {};                                                    \
+    : std::true_type {}                                                     \
 
 #endif  // _PUBLIC_UTIL_TEMPLATES_SFINAE_H_

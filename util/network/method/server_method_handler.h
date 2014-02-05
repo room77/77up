@@ -323,7 +323,7 @@ class ServerMethodHandler : public ServerMethodHandlerBase {
     has_member_func_sig_Run<T,
                             string(const tInput&, shared_ptr<tOutput>&) >::value,
                             string>::type
-  RunHandler(tFunc f, const tInput& input, shared_ptr<tOutput>& output) const {
+  RunHandler(tFunc& f, const tInput& input, shared_ptr<tOutput>& output) const {
     return f.Run(input, output);
   }
 
@@ -332,7 +332,7 @@ class ServerMethodHandler : public ServerMethodHandlerBase {
     !has_member_func_sig_Run<T,
                              string(const tInput&, shared_ptr<tOutput>&) >::value,
                              string>::type
-  RunHandler(tFunc f, const tInput& input, shared_ptr<tOutput>& output) const {
+  RunHandler(tFunc& f, const tInput& input, shared_ptr<tOutput>& output) const {
     return f(input, output.get());
   }
 

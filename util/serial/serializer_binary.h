@@ -173,7 +173,7 @@ class DeSerializeBinary {
 #define SERIALIZATION_BINARY_IMPL(varlist___, ...)                             \
   BINARY_SERIALIZATION_IMPL(varlist___, __VA_ARGS__);                          \
                                                                                \
-  BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__);                        \
+  BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__)                         \
 
 // Dummy Implementation for Binary serialization.
 // This assumes that SERIALIZATION_DATA would be defined in the struct as well.
@@ -192,7 +192,7 @@ class DeSerializeBinary {
 #define SERIALIZATION_BINARY_DUMMY_IMPL(varlist___, ...)                       \
   DUMMY_BINARY_SERIALIZATION_IMPL(varlist___, __VA_ARGS__);                    \
                                                                                \
-  DUMMY_BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__);                  \
+  DUMMY_BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__)                   \
 
 
 #endif  // _PUBLIC_UTIL_SERIAL_SERIALIZER_BINARY_H_

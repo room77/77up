@@ -40,9 +40,10 @@ fi
 # are assumed to be relative to this directory.
 SRC_ROOT=`readlink -f $(dirname $(readlink -f $0))/../`
 
-CC=`which $CC g++ clang++ | head -n 1`  # Pick a compiler (override with CC).
+# Pick a compiler if CC is not set.
+[ -z "$CC" ] && CC=`which g++ clang++ | head -n 1`
 CCLINK="$CCLINK -lpthread"              # Most of our code uses multi-threading.
-CCFLAGS="$CCFLAGS -std=c++11 -I $SRC_ROOT \
+CCFLAGS="$CCFLAGS -std=c++11 -pedantic -I $SRC_ROOT \
 -I $SRC_ROOT/third_party/google/gmock/latest/include \
 -L $SRC_ROOT/third_party/google/gmock/latest/lib/.libs \
 -I $SRC_ROOT/third_party/google/gtest/latest/include \

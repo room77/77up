@@ -1,0 +1,21 @@
+#!/bin/bash
+# Copyright 2013 B. Uygar Oztekin
+#
+# Finds executable files corresdponding to .cc files within sub-directory and
+# runs them. Excludes bin/ and third_party/
+#
+# Do not call it outside of room77 open sourced source tree.
+#
+
+run_binary() {
+  $* &>/dev/null
+  if [ $? -eq 0 ] ; then
+    echo -e "[done] $*"
+  else
+    echo -e "[fail] $*"
+  fi
+}
+
+export -f run_binary
+
+find . -type f | grep -v third_party/ | grep -v bin/ | grep "\.cc$" | sed 's/\.cc$//g' | xargs find 2>/dev/null | xargs -n 1 -P 5 bash -c 'run_binary "$@"' _

@@ -58,21 +58,17 @@
 #ifndef _PUBLIC_UTIL_INIT_INIT_H_
 #define _PUBLIC_UTIL_INIT_INIT_H_
 
-#define INIT_ADD(GROUP, ...) namespace { \
-  auto FILE_UNIQUE_TOKEN = ::init::InitAdd(GROUP, FILE_AND_LINE, __VA_ARGS__); \
-}
+#define INIT_ADD(GROUP, ...) \
+  static auto FILE_UNIQUE_TOKEN = ::init::InitAdd(GROUP, FILE_AND_LINE, __VA_ARGS__)
 
-#define EXIT_ADD(GROUP, ...) namespace { \
-  auto FILE_UNIQUE_TOKEN = ::init::ExitAdd(GROUP, FILE_AND_LINE, __VA_ARGS__); \
-}
+#define EXIT_ADD(GROUP, ...) \
+  static auto FILE_UNIQUE_TOKEN = ::init::ExitAdd(GROUP, FILE_AND_LINE, __VA_ARGS__)
 
-#define INIT_ADD_REQUIRED(GROUP, ...) namespace { \
-  auto FILE_UNIQUE_TOKEN = ::init::InitAdd("!" GROUP, FILE_AND_LINE, __VA_ARGS__); \
-}
+#define INIT_ADD_REQUIRED(GROUP, ...) \
+  static auto FILE_UNIQUE_TOKEN = ::init::InitAdd("!" GROUP, FILE_AND_LINE, __VA_ARGS__)
 
-#define EXIT_ADD_REQUIRED(GROUP, ...) namespace { \
-  auto FILE_UNIQUE_TOKEN = ::init::ExitAdd("!" GROUP, FILE_AND_LINE, __VA_ARGS__); \
-}
+#define EXIT_ADD_REQUIRED(GROUP, ...) \
+  static auto FILE_UNIQUE_TOKEN = ::init::ExitAdd("!" GROUP, FILE_AND_LINE, __VA_ARGS__)
 
 
 // Helper macros to generate a unique token per file. We need 3 macros to

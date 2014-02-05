@@ -1,5 +1,5 @@
+cd `dirname $0`
 # build_and_run does not yet know how to auto-detect outside libraries to link.
 # Let's help it for now.
 export CCLINK="-lz -lssl -lcrypto"
-
 ../../../bin/build_and_run sslclient_test.cc

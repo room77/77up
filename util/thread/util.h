@@ -10,8 +10,8 @@
 #include <vector>
 
 #include "base/common.h"
-#include "base/file.h"
-#include "base/strutil.h"
+#include "util/file/file.h"
+#include "util/string/strutil.h"
 
 namespace util {
 namespace threading {

@@ -7,7 +7,7 @@
 cc_lib(name = "best_n",
        hdr  = [ "best_n.h" ],
        dep  = [ "/base/defs",
-                "/base/logging",
+                "/public/base/logging",
                 "/public/util/templates/comparator",
                 "/public/util/serial/serializer",
                 "ra_heap",
@@ -16,7 +16,7 @@ cc_lib(name = "best_n",
 cc_lib(name = "ra_heap",
        hdr  = [ "ra_heap.h" ],
        dep  = [ "/base/defs",
-                "/base/logging",
+                "/public/base/logging",
               ])
 
 # Binaries

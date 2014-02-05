@@ -186,7 +186,7 @@ class DeSerializeJSON {
 #define SERIALIZATION_JSON_IMPL(varlist___, ...)                               \
   JSON_SERIALIZATION_IMPL(varlist___, __VA_ARGS__);                            \
                                                                                \
-  JSON_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__);                          \
+  JSON_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__)                           \
 
 
 #endif  // _PUBLIC_UTIL_SERIAL_SERIALIZER_JSON_H_

@@ -14,7 +14,7 @@ test(name = "httpclient_test",
 
 test(name = "cached_httpclient_test",
      src  = ["cached_httpclient_test.cc"],
-     dep  = ["/public/util/network/httpclient", "/util/shared_lru_cache"])
+     dep  = ["/public/util/network/httpclient", "/public/util/cache/shared_lru_cache"])
 
 test(name = "ssl_memoryleak_test",
      src  = ["ssl_memoryleak_test.cc"],

@@ -5,6 +5,8 @@
 // transparent init data directory overrides. For now, let's replace fopen64
 // only. Our codebase does not seem to use others yet (fopen, open, open64).
 
+// @flags: -ldl
+
 #include <unistd.h>
 #include "base/args/args.h"
 #include "base/logging.h"
@@ -27,8 +29,12 @@ FILE* fopen64(const char* filename, const char* mode) {
   struct Open {
     FILE* operator()(const char* filename, const char* mode) {
       // Cache the original version at first call (thread safe).
-      static FILE* (*_fopen64) (const char *, const char *) =
-          (FILE * (*)(const char *, const char *))dlsym(RTLD_NEXT, "fopen64");
+      // NOTE: This is not portable code and we are not supposed to cast between
+      // pointer-to-function and pointer-to-ojbect but there does not seems to
+      // be another option in this case. Use reinterpret cast to keep the
+      // compiler quiet (we enable -pedantic).
+      auto ptr = reinterpret_cast<size_t>(dlsym(RTLD_NEXT, "fopen64"));
+      auto _fopen64 = reinterpret_cast<FILE*(*)(const char *, const char *)>(ptr);
       FILE* f = _fopen64(filename, mode);
       // If set, record file accesses.
       if (f && gFlag_record_file_access) {

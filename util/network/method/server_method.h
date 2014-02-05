@@ -113,6 +113,9 @@ class ServerMethod {
     SetCookie(name, value, ttl, "/", "", false, true);
   }
 
+  // sets the session cookie
+  void SetSessionCookie(const string& session_id);
+
   void SetReferrer(const string& referrer) { referrer_ = referrer; }
 
   const string& GetHttpHeader(const string& key) const {

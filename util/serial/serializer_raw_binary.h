@@ -138,6 +138,6 @@ class DeSerializeRawBinary {
 #define SERIALIZATION_RAW_BINARY_IMPL(varlist___, ...)                         \
   RAW_BINARY_SERIALIZATION_IMPL(varlist___, __VA_ARGS__);                      \
                                                                                \
-  RAW_BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__);                    \
+  RAW_BINARY_DESERIALIZATION_IMPL(varlist___, __VA_ARGS__)                     \
 
 #endif  // _PUBLIC_UTIL_SERIAL_SERIALIZER_RAW_BINARY_H_

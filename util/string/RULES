@@ -1,7 +1,7 @@
 lib(name = "strutil",
     src = [ "strutil.cc" ],
     hdr = [ "strutil.h" ],
-    dep = [ "/base/logging" ])
+    dep = [ "/public/base/logging" ])
 
 test(name = "strutil_test",
      src = [ "strutil_test.cc"],

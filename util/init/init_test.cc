@@ -26,7 +26,7 @@ const string& UberComplexStuff() {
   static string data = Init()();
   return data;
 }
-};
+}
 
 string WaitSome() {
   this_thread::sleep_for(chrono::milliseconds(rand()%300));
