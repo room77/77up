@@ -13,7 +13,7 @@
 #include "util/network/method/server_method_handler.h"
 #include "util/network/util.h"
 #include "util/serial/serializer.h"
-#include "util/shared_writer.h"
+#include "util/file/shared_writer.h"
 #include "util/time/utime.h"
 
 // RPCServer/RPCClient supports remote procedure call functionality

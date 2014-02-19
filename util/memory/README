@@ -1,0 +1,6 @@
+Memory and efficient storage related libraries. Some of the libraries are pretty
+generic (e.g. unique) and could be used in various situations to trade off
+runtime vs memory.
+
+Some of the libraries are fairly old and deprecated. They are here due to
+dependencies we did not eliminate (yet).

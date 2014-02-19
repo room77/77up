@@ -1,0 +1,6 @@
+# libraries
+
+lib(name = "md5",
+    src = ["md5.cc"],
+    dep = ["/base/common"])
+

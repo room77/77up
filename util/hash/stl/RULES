@@ -1,0 +1,8 @@
+lib(name = "stl_hasher",
+    src  = [ "stl_hasher.cc" ],
+    dep  = [ "../hasher" ])
+
+test(name = "stl_hasher_test",
+     dep  = [ "stl_hasher",
+              "../test/string_hasher_tester"
+            ])

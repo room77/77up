@@ -1,0 +1,27 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+
+# Generated Files
+
+# Libraries
+lib(name = "counter",
+    src = [ "counter.cc" ],
+    hdr = [ "counter.h" ],
+    dep = [ "/base/defs",
+            "/public/util/counter/metrics/all_metrics",
+            "/public/util/counter/metrics/metric",
+            "/public/util/counter/metrics/metric_datatypes",
+            "/public/util/time/timestamp",
+            "counter_base",
+          ]);
+
+lib(name = "counter_base",
+    hdr = [ "counter_base.h" ],
+    dep = [ "/base/defs",
+            "/public/util/factory/factory",
+            "/public/util/counter/metrics/metric",
+            "/public/util/counter/metrics/metric_datatypes",
+          ]);
+
+# Binaries
+
+# Tests

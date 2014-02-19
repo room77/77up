@@ -15,7 +15,7 @@
 #include "util/geo/geoip.h"
 #include "util/network/netserver.h"
 #include "util/network/util.h"
-#include "util/md5/md5.h"
+#include "third_party/md5/md5.h"
 #include "util/random/random.h"
 
 FLAG_string(session_cookie_name, "r77sessioncookie", "name of the session cookie");

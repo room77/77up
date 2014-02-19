@@ -7,7 +7,7 @@
 
 #include "util/network/util.h"
 
-#include "base/external.h"
+#include "util/process/external.h"
 #include "util/network/dnslookup.h"
 #include "util/time/utime.h"
 

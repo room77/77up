@@ -1,0 +1,32 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+
+lib(name = "all_metrics",
+    dep = ["/public/util/counter/metrics/count/count",
+           "/public/util/counter/metrics/max/max",
+           "/public/util/counter/metrics/mean/mean",
+           "/public/util/counter/metrics/min/min",
+           "/public/util/counter/metrics/squared_sum/squared_sum",
+           "/public/util/counter/metrics/sum/sum",
+          ]);
+
+lib(name = "metric",
+    hdr = ["metric.h"],
+    dep = ["/base/defs",
+           "/public/util/factory/factory",
+           "metric_datatypes",
+          ]);
+
+lib(name = "metric_datatypes",
+    hdr = ["metric_datatypes.h"],
+    dep = ["/base/defs",
+           "/public/util/time/timestamp",
+          ]);
+
+# Binaries
+
+# Tests.

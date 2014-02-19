@@ -81,8 +81,8 @@
 
 // See unique_test.cc for some usage examples.
 
-#ifndef _PUBLIC_UTIL_UNIQUE_UNIQUE_H_
-#define _PUBLIC_UTIL_UNIQUE_UNIQUE_H_
+#ifndef _PUBLIC_UTIL_MEMORY_UNIQUE_H_
+#define _PUBLIC_UTIL_MEMORY_UNIQUE_H_
 
 #include <cassert>
 #include <deque>

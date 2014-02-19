@@ -5,8 +5,8 @@
 // is available with a BSD like license in Debian. Free (this) version does not
 // have city / state / region etc. granularity, only countries.
 
-#ifndef _GEO_LIB_GEOIP_H_
-#define _GEO_LIB_GEOIP_H_
+#ifndef _PUBLIC_UTIL_GEO_GEOIP_H_
+#define _PUBLIC_UTIL_GEO_GEOIP_H_
 
 #include <GeoIP.h>
 #include <memory>
@@ -40,4 +40,4 @@ inline string HostToCountryCode(const string& host) {
 
 }  // namespace geoip
 
-#endif
+#endif  // _PUBLIC_UTIL_GEO_GEOIP_H_

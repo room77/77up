@@ -10,6 +10,7 @@
 #include <condition_variable>
 #include <map>
 #include <mutex>
+#include <set>
 #include <sstream>
 #include <thread>
 

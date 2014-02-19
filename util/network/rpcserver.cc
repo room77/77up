@@ -9,6 +9,7 @@
 
 #include "base/args/args.h"
 #include "base/signal_handler.h"
+#include "util/file/file.h"
 #include "util/network/method/common_methods/params/param_editor.h"
 #include "util/network/method/server_method_forward.h"
 #include "util/network/webserver.h"
@@ -50,6 +51,14 @@ bool& IsRecording() {
 int& RecordingStart() {
   static int recording_start_ts = 0;
   return recording_start_ts;
+}
+
+// return a random integer between 0 and (max - 1)
+inline int RandomInteger(int max) {
+  int r = static_cast<int>(1.0 * rand() / (RAND_MAX + 1.0) * max);
+  if (r < 0 || r >= max)  // this shouldn't happen
+    r = 0;
+  return r;
 }
 
 bool CheckOutgoingNetworkTraffic() {

@@ -493,7 +493,7 @@ class GroupCache : public Factory<GroupCache> {
   }
 
   GroupCache& GroupToShard(const string& group) const {
-    return *shards_[hash<string>()(group) % policy_.num_local_shards];
+    return *shards_[std::hash<string>()(group) % policy_.num_local_shards];
   }
 
   string base_path_;

@@ -28,7 +28,7 @@ class CachedHttpBase : public HttpBase<NetBase> {
     string message;
 
     // Let's use the same struct as the "hash functor" as well.
-    size_t operator()(const CacheKey& k) { return hash<string>()(ToBinary()); }
+    size_t operator()(const CacheKey& k) { return std::hash<string>()(ToBinary()); }
 
     // Operator == for unordered_map.
     bool operator==(const CacheKey& k) const {

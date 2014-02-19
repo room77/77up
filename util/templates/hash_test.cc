@@ -21,17 +21,17 @@ struct Derived : public Base {
 
 TEST(hash_member, Sanity) {
   {
-    size_t expected = hash<int>()(1);
+    size_t expected = std::hash<int>()(1);
     size_t actual = hash_member<Base, int, &Base::first>()(Base());
     EXPECT_EQ(expected, actual);
   }
   {
-    size_t expected = hash<char>()('S');
+    size_t expected = std::hash<char>()('S');
     size_t actual = hash_member<Base, char, &Base::second>()(Base());
     EXPECT_EQ(expected, actual);
   }
   {
-    size_t expected = hash<string>()("third");
+    size_t expected = std::hash<string>()("third");
     size_t actual = hash_member<Base, string, &Base::third>()(Base());
     EXPECT_EQ(expected, actual);
   }
@@ -39,22 +39,22 @@ TEST(hash_member, Sanity) {
 
 TEST(hash_member_in_base, Sanity) {
   {
-    size_t expected = hash<int>()(1);
+    size_t expected = std::hash<int>()(1);
     size_t actual = hash_member<Base, int, &Derived::first>()(Derived());
     EXPECT_EQ(expected, actual);
   }
   {
-    size_t expected = hash<char>()('S');
+    size_t expected = std::hash<char>()('S');
     size_t actual = hash_member<Base, char, &Derived::second>()(Derived());
     EXPECT_EQ(expected, actual);
   }
   {
-    size_t expected = hash<string>()("third");
+    size_t expected = std::hash<string>()("third");
     size_t actual = hash_member<Base, string, &Derived::third>()(Derived());
     EXPECT_EQ(expected, actual);
   }
   {
-    size_t expected = hash<string>()("fourth");
+    size_t expected = std::hash<string>()("fourth");
     size_t actual = hash_member<Derived, string, &Derived::fourth>()(Derived());
     EXPECT_EQ(expected, actual);
   }

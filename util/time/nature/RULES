@@ -1,0 +1,12 @@
+# libraries
+
+lib(name = "sun",
+    src = ["sun.cc"],
+    dep = ["/public/util/time/utime"])
+
+# binaries
+
+test(name = "sun_unittest",
+     src  = ["sun_unittest.cc"],
+     dep  = ["sun"])
+

@@ -1,0 +1,3 @@
+lib(name = "hasher",
+    hdr = [ "hasher.h"],
+    dep = [ "/public/util/factory/factory" ])

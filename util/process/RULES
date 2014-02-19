@@ -1,0 +1,4 @@
+lib(name = "external",
+    src = [ "external.cc" ],
+    hdr = [ "external.h" ],
+    dep = [ "/public/util/file/file" ])

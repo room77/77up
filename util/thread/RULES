@@ -55,7 +55,7 @@ lib(name = "thread_stack",
     src  = [ "thread_stack.cc" ],
     hdr  = [ "thread_stack.h" ],
     dep  = [ "/base/common",
-             "/util/time/simple_timer",
+             "/public/util/time/simple_timer",
              "counters",
              "util",
            ])

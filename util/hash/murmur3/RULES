@@ -1,0 +1,8 @@
+lib(name = "murmur3_hasher",
+    src  = [ "murmur3_hasher.cc", "murmur3_hash.cc" ],
+    dep  = [ "../hasher" ])
+
+test(name = "murmur3_hasher_test",
+     dep  = [ "murmur3_hasher",
+              "../test/string_hasher_tester"
+            ])

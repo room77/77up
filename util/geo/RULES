@@ -2,3 +2,7 @@ lib(name = "geoip",
     src = ["geoip.cc"],
     dep = ["/base/common"],
     link = ["-lGeoIP"])
+
+lib(name = "latlong",
+    src = ["latlong.cc"],
+    dep = ["/public/util/serial/serializer" ])

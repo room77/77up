@@ -1,0 +1,23 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "max",
+    src = ["max.cc"],
+    hdr = ["max.h"],
+    dep = ["/base/defs",
+           "/public/util/counter/metrics/metric",
+           "/public/util/counter/metrics/metric_datatypes",
+          ]);
+
+# Binaries
+
+# Tests.
+test(name = "max_test",
+     src  = [ "max_test.cc" ],
+     dep  = [ "/base/lite",
+              "/public/test/cc/test_main",
+              "/public/util/counter/counter",
+            ])

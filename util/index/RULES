@@ -1,0 +1,9 @@
+lib(name = "index",
+    hdr = [ "index.h" ],
+    dep = [ "/public/util/serial/serializer" ])
+
+test(name = "index_test",
+     src = [ "index_test.cc" ],
+     dep = [ "/public/test/cc/test_main",
+             "/public/util/serial/serializer",
+           ])

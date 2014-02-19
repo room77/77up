@@ -1,0 +1,9 @@
+lib(name = "string_hasher_tester",
+    src = [ "string_hasher_tester.cc"],
+    dep = [ "/public/util/hash/hasher" ])
+
+test(name = "string_hashers_test",
+     dep = [ "string_hasher_tester",
+             "../stl/stl_hasher",
+             "../murmur3/murmur3_hasher",
+           ])

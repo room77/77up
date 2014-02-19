@@ -6,14 +6,14 @@
 //
 
 #include "base/common.h"
+#include "util/hash/hash_util.h"
 #include "util/string/strutil.h"
-#include "util/hash/hashutil.h"
 
 namespace HttpUtil {
 
 // case-insensitive
-typedef unordered_map<string, string, hashutil::string_casefold_hash,
-    hashutil::string_casefold_eq> tHeaderType;
+typedef unordered_map<string, string, ::hash::string_casefold_hash,
+    ::hash::string_casefold_eq> tHeaderType;
 
 // parse HTTP response and obtain header and content
 bool ParseHttpResponse(const string& response,

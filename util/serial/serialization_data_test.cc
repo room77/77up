@@ -13,7 +13,7 @@
 #include <vector>
 
 #include "test/cc/test_main.h"
-#include "util/unique/unique.h"
+#include "util/memory/unique.h"
 
 namespace serial {
 namespace test {

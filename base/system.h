@@ -10,8 +10,8 @@
 const std::string& GetExecutableName();
 
 // Returns the status of the command and fills the stdout after running the
-// Returns '-1' if popen fails.
 // command. Note: If you also want stderr append '2>&1' at the end.
+// Returns '-1' if popen fails.
 inline int RunPipedCommand(const std::string& cmd, std::string* stdout) {
 
   int res = -1;
@@ -39,10 +39,9 @@ inline int RunPipedCommand(const std::string& cmd, std::string* stdout) {
 }
 
 // Returns the status of the command and fills the stdout after running the
-// Returns '-1' if popen fails.
 // command. Note: If you also want stderr append '2>&1' at the end.
-int RunNonBlockingPipedCommand(const std::string& cmd, std::string* stdout,
-                                      int timeout_sec = 10);
+// Returns '-1' if popen fails.
+int RunNonBlockingPipedCommand(const std::string& cmd, std::string* stdout, int timeout_sec = 10);
 
 // Get stack trace addresses.
 std::string GetStackTrace(int ignore_n_frames=0);

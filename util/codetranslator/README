@@ -1,0 +1,3 @@
+This is an old library which probably is not so useful externally. We still have
+some dependencies to it within the open sourced code. We may remove it in the
+future.

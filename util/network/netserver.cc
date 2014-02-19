@@ -11,6 +11,12 @@
 
 #include "util/string/strutil.h"
 
+// Definitions of these functions are hijacked by macros in opt mode, which
+// causes compiler errors with gcc 4.9. Undefine them for now to avoid issues.
+// TODO(oztekin,pramodg,everyone): Remove these undefs when glibc is fixed.
+#undef ntohs
+#undef htons
+
 FLAG_int(use_thread_pool, false,
          "Use thread pool for the server.");
 

@@ -1,0 +1,23 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "min",
+    src = ["min.cc"],
+    hdr = ["min.h"],
+    dep = ["/base/defs",
+           "/public/util/counter/metrics/metric",
+           "/public/util/counter/metrics/metric_datatypes",
+          ]);
+
+# Binaries
+
+# Tests.
+test(name = "min_test",
+     src  = [ "min_test.cc" ],
+     dep  = [ "/base/lite",
+              "/public/test/cc/test_main",
+              "/public/util/counter/counter",
+            ])

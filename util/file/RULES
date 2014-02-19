@@ -17,3 +17,7 @@ lib(name = "monitor_file_access",
 bin(name = "monitor_file_access_example",
     src = [ "monitor_file_access_example.cc" ],
     dep = [ "monitor_file_access", "/public/util/init/main" ])
+
+lib(name = "shared_writer",
+    src  = ["shared_writer.cc"],
+    dep  = ["/base/common"])

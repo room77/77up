@@ -15,7 +15,7 @@ lib(name = "get_counters_method",
     src  = [ "get_counters_method.cc" ],
     dep  = [ "/public/base/args/args",
              "/public/util/network/method/server_method",
-             "/util/counter/counter_base",
+             "/public/util/counter/counter_base",
            ])
 
 lib(name = "ping_method",

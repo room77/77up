@@ -36,7 +36,7 @@ lib(name = "rpcclient",
     dep = [ "/public/util/serial/serializer",
             "/public/util/serial/encoding/encoding",
             "/util/codetranslator/common",
-            "/util/time/simple_timer",
+            "/public/util/time/simple_timer",
             "netclient",
             "rpc_datatypes",
           ])
@@ -50,8 +50,8 @@ lib(name = "rpcserver",
             "/public/util/network/method/common_methods/params/param_editor",
             "/public/util/serial/serializer",
             "/public/util/serial/encoding/encoding",
-            "/util/shared_writer",
-            "/util/time/utime",
+            "/public/util/file/shared_writer",
+            "/public/util/time/utime",
             "/public/util/thread/thread_stack",
             "rpc_datatypes",
             "server",
@@ -75,7 +75,7 @@ lib(name = "util",
           ],
     dep = [ "/base/common",
             "/public/util/serial/serializer",
-            "/util/time/utime"
+            "/public/util/time/utime"
           ])
 
 lib(name = "webserver",

@@ -1,0 +1,4 @@
+lib(name = "server_config",
+    src = ["server_config.cc"],
+    hdr = ["server_config.h"],
+    dep = ["/base/common"])

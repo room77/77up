@@ -7,7 +7,6 @@
 #include "util/thread/thread_stack.h"
 
 #include "base/signal_handler.h"
-#include "base/small_util.h"
 #include "util/thread/util.h"
 #include "util/time/simple_timer.h"
 

@@ -16,6 +16,7 @@
 #include "util/network/method/server_method.h"
 #include "util/network/method/server_method_handler.h"
 #include "util/factory/factory.h"
+#include "util/hash/hash_util.h"
 
 namespace network {
 
@@ -53,7 +54,7 @@ class ServerMethodForwardCollection :
   };
 
   typedef unordered_map<string, Data,
-      Hasher::string_casefold_hash, Hasher::string_casefold_eq> ForwardMap;
+      ::hash::string_casefold_hash, ::hash::string_casefold_eq> ForwardMap;
 
   ServerMethodForwardCollection() {}
 

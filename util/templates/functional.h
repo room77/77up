@@ -12,7 +12,7 @@ namespace tl {
 template<class T>
 struct binary_hash {
   size_t operator()(const T& v) const {
-    return hash<string>()(::serial::Serializer::ToRawBinary(v));
+    return std::hash<string>()(::serial::Serializer::ToRawBinary(v));
   }
 
   size_t operator()(const T* v) const {

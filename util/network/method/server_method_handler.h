@@ -18,6 +18,7 @@
 #include "util/network/netserver.h"
 #include "util/network/rpcclient.h"
 #include "util/factory/factory.h"
+#include "util/hash/hash_util.h"
 #include "util/serial/serializer.h"
 #include "util/templates/sfinae.h"
 
@@ -507,7 +508,7 @@ class ServerMethodHandlerCollection :
     public Factory<ServerMethodHandlerCollection> {
  public:
   typedef unordered_map<string, shared_ptr<ServerMethodHandlerBase>,
-      Hasher::string_casefold_hash, Hasher::string_casefold_eq> HandlerMap;
+      ::hash::string_casefold_hash, ::hash::string_casefold_eq> HandlerMap;
 
   ServerMethodHandlerCollection() {}
 
