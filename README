@@ -1,39 +1,42 @@
 Various core libraries and utilities open sourced by Room77.
 
-This directory contains open sourced code. Some of the code is copyrighted by
-Optrip Inc., some by Room77 Inc., and some by individual authors.
-Some of the code are copyrighted by a mixture of the above as well.
+This directory, except third_party, contains open sourced code under a
+permissive MIT license. Some of the code is copyrighted by Optrip Inc, some by
+Room77 Inc, and some by individual authors. Irrespective of the copyright owner,
+the intention (except third_party) is to publish the code under a permissive MIT
+or BSD like open source license.
 
-Irrespective of the copyright owner, if the code is published within this
-directory, the intention is to publish it under a permissive MIT or BSD like
-open source license.
+The third_party directory contains open source code used by some of the Room77
+codebase. They may have their own licenses which may be more restrictive than
+the MIT license (e.g. GPL). The rest of the documentation, unless explicitly
+stated otherwise, refers to code open sourced by Room77 excluding anything under
+the third_party directory.
 
-You can use, modify, redistribute the software here as you see fit. The software
-is made available as is without any guarantees or warranties. Room77 or authors
-are not responsible for any damages you may incur as a result of using this code
-or a subset of it. It is your responsibility to check the code for correctness
-before use.
+You can use, modify, redistribute the software as you see fit. The software is
+made available as is without any guarantees or warranties. Optrip, Room77 or
+individual authors are not responsible for any damages you may incur as a result
+of using this code or a subset of it. It is your responsibility to check the
+code for correctness and suitability before use.
 
 The software is shared with the hopes that it will be useful to others. If you
-find any bugs or made improvements or if you just want to let us know that it
-was useful to you, we would love to hear from you.
+find any bugs or made improvements or if you just want to let us know your
+experience with it, we would love to hear from you.
 
-You would need a recent compiler with decent C++11 support (e.g. gcc 4.8,
-clang 3.5). Most code should work with gcc. Some are tested with clang as well.
+You would need a recent compiler with decent C++11 support (e.g. gcc 4.8+,
+clang 3.5+). Most code should work with gcc. Some are tested with clang as well.
 
 Some of the libraries / components are fairly independent and can easily be
 compiled or added to other codebases. Some of the components have more
-dependencies that are not trivial to decouple. We tried to streamline the
+dependencies that are not as trivial to decouple. We tried to streamline the
 dependencies for most useful components when practical.
 
-Some of the code depend on external libraries (e.g. icu, leveldb, gunit etc.).
+Some of the code depend on external libraries (e.g. icu, zlib, leveldb, etc.).
 In order to compile and use them, you would need to install the appropriate
-libraries yourself. We tried to minimize dependency on such libraries when
-practical.
+libraries. In most Linux distributions, you may already have packages for them.
 
 A good portion of the tests use googletest / googlemock which are not included
 as part of this package. We added convenience scripts under third_party/google/*
-you can use to fetch and install them if you desire. Some of the tests and a
+you can use to fetch and incorporate them if you desire. Some of the tests and a
 small subset of libraries will not compile without them.
 
 Internally we use our own flash build system to build packages. We intent to
@@ -41,18 +44,20 @@ open source this tool as well, but it will take time to remove internal
 dependencies and generalize it. RULES files you may see in various directories
 are used within flash and they are fairly intuitive. It should be relatively
 straightforward to see the dependencies and translate the RULES entries manually
-to your own favorite build systems for the libraries you care about. RULES files
-are provided as examples for now.
+to your favorite build systems for the libraries you care about. RULES files are
+provided as examples for now.
 
-We included a simple script (bin/build_and_run) to compile and run example
-targets. You may see test scripts throughout the codebase that symlink to or
-call this script. (e.g. util/factory/factory_test).
+We provided a subset of Uygar's ruleless build system (that he plans to open
+source in the future when more mature). All the code, provided that you have the
+necessary libraries, compiler versions and tools installed, should compile with
+that. It is known to work with g++ 4.8 and gnu make. Just call make at the root
+directory to build everything that can be built with the available libraries.
 
 The quality of the code from our perspective varies from fine to good to great.
-Some of the code is using brand new C++11 features with arguably better APIs.
-Some of the code is fairly old with older style and practices. If we were to
-write them from scratch today with enough time in our hands, end results may
-probably look quite different for some. For some, we are fairly happy with.
+Some of the code is using new C++11 features with arguably better APIs and
+practices. Some of the code is fairly old. If we were to write them from scratch
+today with enough time in our hands, end results may probably look quite
+different for some. For some, we are fairly happy with.
 
 While choosing what to include in this package, we generally asked ourselves the
 following questions:
@@ -63,10 +68,8 @@ following questions:
 - Is the component fairly independent?
 - Do we have enough time / man power to clean it up and make it available?
 
-This is a work in progress. If you have any comments or feedback, please let
-us know. We are open to receiving improvements and patches as well but we need
-to weigh general usefulness and complexity of integration as most of the
-components are heavily used withinf our own codebase. This is not a fork.
+If you have any comments or feedback, please let us know. We are open to
+receiving improvements and patches but we need to weigh general usefulness and
+complexity of integration.
 
-
--- Uygar Oztekin (oztekin@room77.com), and Room77 engineering team.
+-- Uygar Oztekin (oztekin@room77.com), and Room77 engineering team. Dec 2013.

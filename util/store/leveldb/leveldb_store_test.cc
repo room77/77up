@@ -3,6 +3,12 @@
 #include <cstdlib>
 #include "leveldb_store.h"
 #include "../test/test_macros.h"
+#include "../test/basic.h"
+#include "../test/stress.h"
+#include "../test/mutation.h"
+#include "../test/forward_iteration.h"
+#include "../test/sorted_forward_iteration.h"
+#include "../test/lower_upper_bound.h"
 
 using namespace std;
 

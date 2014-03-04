@@ -3,7 +3,7 @@
 #ifndef _PUBLIC_UTIL_STORE_LEVELDB_LEVELDB_STORE_H_
 #define _PUBLIC_UTIL_STORE_LEVELDB_LEVELDB_STORE_H_
 
-#include "leveldb/db.h"
+#include <leveldb/db.h>
 #include "../store.h"
 
 ///////////////////////////////////////////////////////////////////////////////

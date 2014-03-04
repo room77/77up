@@ -4,15 +4,13 @@
 // Author: Calvin Yang
 //
 
-// @flags: -lssl -lcrypto
-
 #include <mutex>
 #include <netdb.h>
 
 // openssl headers
-#include "openssl/bio.h"
-#include "openssl/ssl.h"
-#include "openssl/err.h"
+#include <openssl/bio.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 
 #include "util/network/sslclient.h"
 #include "util/network/dnslookup.h"

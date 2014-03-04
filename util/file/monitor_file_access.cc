@@ -5,8 +5,6 @@
 // transparent init data directory overrides. For now, let's replace fopen64
 // only. Our codebase does not seem to use others yet (fopen, open, open64).
 
-// @flags: -ldl
-
 #include <unistd.h>
 #include "base/args/args.h"
 #include "base/logging.h"

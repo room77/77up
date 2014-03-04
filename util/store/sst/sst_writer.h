@@ -6,9 +6,9 @@
 #include <map>
 #include <string>
 #include <iostream>
-#include "leveldb/db.h"
-#include "leveldb/env.h"
-#include "leveldb/table_builder.h"
+#include <leveldb/db.h>
+#include <leveldb/env.h>
+#include <leveldb/table_builder.h>
 #include "../store.h"
 
 ///////////////////////////////////////////////////////////////////////////////

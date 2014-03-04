@@ -2,8 +2,6 @@
 // Copied and modified from Uygar's personal library.
 // Additions made by karepker@room77.com (Kar Epker)
 
-// @flags: -lz
-
 #include "gzip.h"
 
 #include <cstring>

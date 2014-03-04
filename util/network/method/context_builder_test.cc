@@ -4,6 +4,7 @@
 #include <iostream>
 #include "base/common.h"
 #include "util/network/method/context_builder.h"
+#include "util/init/main.h"
 
 int init_main() {
   // Note that example context builder is not know by this class, it is not even

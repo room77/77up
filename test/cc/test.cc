@@ -1,8 +1,6 @@
 // Copyright 2012 Room77 Inc. All Rights Reserved.
 // Author: pramodg@room77.com (Pramod Gupta)
 
-// @flags: -lgtest -lgmock
-
 #include "test/cc/test_main.h"
 
 #include "util/file/file.h"

@@ -24,8 +24,8 @@
 #define __linux__
 #endif
 
-#include "gmock/gmock.h"
-#include "gtest/gtest.h"
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 // The test dir that can be used to create temporary files.
 // The directory is deleted at the end.

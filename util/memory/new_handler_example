@@ -1,2 +1,0 @@
-cd `dirname $0`
-../../bin/build_and_run new_handler_example.cc new_handler.cc

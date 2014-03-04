@@ -1,0 +1,40 @@
+#!/bin/bash -e
+# Copyright 2013 Uygar Oztekin
+
+# Convenience tool to one way sync a directory to a target git repository.
+# Handles additions, deletions, modifications and type changes.
+# Prepares a commit you can review and push.
+
+# One use case is, you have a master git repository that contains a subdirectory
+# you want to keep synced to another git repository (e.g. for open sourcing).
+# All changes are done on the master, and you use this tool to push the changes
+# to the open source git repository.
+
+[ -z $1 ] || [ -z $1 ] && echo "Usage: $0 source_dir target_dir
+  - rsync the contents of source_dir to target_dir
+  - git rm files on target_dir that does not exist on source_dir" && exit 0
+
+set `readlink -f $1` `readlink -f $2`
+
+diff -rq $1/ $2/ | awk '/^Files/{print "! "$2} /Only in/{print}' | sed "s#Only in $1#+ $1#g" | sed 's#Only in #- #g; s#: #/#' | sed "s#//#/#g" | sed "s#$1/##g; s#$2/##" | grep -v "\.git" || echo no change
+
+echo
+echo "The above operations will be carried out (+: add, -: remove, !: modify)"
+read -p "Continue? (y/N)" yn
+[ "$yn" != "y" ] && exit 0
+
+echo "Proceeding..."
+rsync -av --delete --exclude ".git" $1/ $2/
+
+cd $2
+
+git status --short
+
+echo
+read -p "The above files / directories will be affected. Prepare for commit? (y/N)" yn
+if [ "$yn" == "y" ] ; then
+  git status --short | grep '^ M\|^??\|^ T' | awk '{print $2}' | xargs git add
+  git status --short | grep '^ D' | awk '{print $2}' | xargs git rm
+fi
+
+echo DONE

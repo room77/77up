@@ -1,0 +1,7 @@
+This directory contains libraries and utilities used in Room77 from Bilgehan
+Uygar Oztekin's personal libraries. The reason they are here is because the
+intended license for these components may not necessarily be as permissive as
+the MIT license used in other Room77 open sourced code.
+
+Uygar retains the option to open source the components here with a more
+restrictive license (e.g. GPLv3).

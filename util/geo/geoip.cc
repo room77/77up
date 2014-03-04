@@ -1,8 +1,6 @@
 // Copyright 2012 Room77, Inc.
 // Author: B. Uygar Oztekin
 
-// @flags: -lGeoIP
-
 #include "base/common.h"
 #include "util/init/init.h"
 #include "geoip.h"

@@ -1,0 +1,2 @@
+Header files for specific tests are empty. They are just there to help auto
+build tool to add linker dependency to corresponding .cc (.o) files.

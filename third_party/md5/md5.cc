@@ -33,7 +33,7 @@ documentation and/or software.
 /* interface header */
 #include "md5.h"
 
-
+#include <cstring>
 #include "base/common.h"
 
 // Constants for MD5Transform routine.
