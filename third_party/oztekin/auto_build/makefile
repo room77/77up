@@ -48,7 +48,7 @@ $(OUT_ROOT)/%.o $(OUT_ROOT)/%.d : %.cc
 
 # Recursive dependency generation rule used to generate a .dep and .l file out
 # of a binary target's .cc file.
-$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE)
+$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE) $(OUT_ROOT)/%.o
 	@echo [depn] $*
 	@$(ANALYZE) $(OUT_ROOT) $*.cc
 
@@ -61,7 +61,7 @@ $(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE)
 # an arbitrary directory. Let's be careful about nuking the contents. If we
 # notice any files we don't recognise, abort and let the user cleanup manually.
 clean :
-	@if (find /tmp/g++-4.8_-O0/ -type f ! -name "*.o" ! -name "*.d" ! -name "*.l" ! -name "*.dep" ! -executable | grep .) ; then echo "Unexpected files found! Refusing to clean." ; exit 1 ; fi
+	@if (find $(OUT_ROOT) -type f ! -name "*.o" ! -name "*.d" ! -name "*.l" ! -name "*.dep" ! -executable | grep .) ; then echo "Unexpected files found! Refusing to clean." ; exit 1 ; fi
 	rm -rf $(OUT_ROOT)
 
 # This step is important in letting the build system know of changes that would

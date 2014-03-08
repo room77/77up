@@ -1,14 +1,11 @@
-
 #include <limits>
 #include "util/memory/stringstorage.h"
+#include "util/memory/stringstorage_unlock.h"
 
 #include "util/string/strutil.h"
 #include "test/cc/test_main.h"
 #include "util/thread/thread_pool.h"
 #include "util/init/init.h"
-
-extern bool gFlag_stringstorage_lock;
-INIT_ADD_REQUIRED("test", 90, []{ gFlag_stringstorage_lock = false; });
 
 namespace test {
 

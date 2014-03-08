@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "util/index/index.h"
+#include "util/memory/stringstorage_unlock.h"
 #include "util/string/strutil.h"
 
 #include "test/cc/test_main.h"

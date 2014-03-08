@@ -53,6 +53,8 @@ necessary libraries, compiler versions and tools installed, should compile with
 that. It is known to work with g++ 4.8 and gnu make. Just call make at the root
 directory to build everything that can be built with the available libraries.
 
+See ./auto_build --help for example usage and options.
+
 The quality of the code from our perspective varies from fine to good to great.
 Some of the code is using new C++11 features with arguably better APIs and
 practices. Some of the code is fairly old. If we were to write them from scratch

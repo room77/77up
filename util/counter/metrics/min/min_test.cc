@@ -4,6 +4,8 @@
 #include <memory>
 #include <utility>
 
+#include "min.h"
+
 #include "base/common.h"
 #include "test/cc/test_main.h"
 #include "util/counter/counter.h"

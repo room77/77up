@@ -15,10 +15,10 @@ namespace r77 {
 
 // Register handler for SIGSEV.
 bool reg_sigsev = base::SignalHandler::Instance().Register(
-    SIGSEGV, []() { PrintStackTrace(3); }, SA_RESETHAND | SA_ONSTACK);
+    SIGSEGV, []() { PrintStackTrace(7); }, SA_RESETHAND | SA_ONSTACK);
 
 bool reg_sigabrt = base::SignalHandler::Instance().Register(
-    SIGABRT, []() { PrintStackTrace(3); }, SA_RESETHAND | SA_ONSTACK);
+    SIGABRT, []() { PrintStackTrace(7); }, SA_RESETHAND | SA_ONSTACK);
 
 void R77Shutdown();
 

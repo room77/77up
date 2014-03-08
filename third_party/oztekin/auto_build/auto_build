@@ -1,0 +1,107 @@
+#!/bin/bash
+# Copyright 2013 B. Uygar Oztekin
+
+function print_usage {
+echo "Usage: `basename $0` [OPTIONS] [TARGETS]
+
+  Builds and optionally runs TARGETS.
+
+  where OPTIONS are:
+  -h, --help                Print this message.
+  -o, --opt                 Use optimized flags.
+  -d, --deb                 Use debug flags.
+  -c, --compiler COMPILER   Use the specified compiler.
+  -f, --flags EXTRA_FLAGS   Extra flags to pass to compiler.
+  -r, --run                 Run the targets. Targets are assumed to be binaries.
+  -q, --quiet               Do not output too much information.
+  -j                        Number of concurrent jobs to be passed to make.
+  -k                        Do not stop on first error.
+
+  If no --deb or --opt is specified, debug mode is assumed.
+  If no compiler is specified, `basename $0` tries to locate g++ or clang++ in
+  that order and picks the first one found.
+
+  You may want to alias the command for convenient usage:
+
+  alias ab=`readlink -f $(dirname $0)`/`basename $0`
+
+Examples:
+  # Cleanup the build state.
+  ab clean
+
+  # Compile all tests under base/ in opt mode
+  ab -o base/*_test.cc
+
+  # Compile and quietly run all tests excluding third_party
+  "'ab -r -q `find . | grep _test.cc | grep -v third_party`'"
+
+  # Enter a subdirectory and run `basename $0` with relative paths.
+  cd util/cache
+  ab group_cache_test.cc   # or ab group_cache_test
+"
+}
+
+OPT_FLAGS='-O2'
+DBG_FLAGS='-g'
+JOBS=$[`cat /proc/cpuinfo | grep processor | wc -l` * 4]
+COMPILER=$(basename $(readlink -f `which g++ clang++ | head -n 1`))
+
+export VARIANT_FLAGS=$DBG_FLAGS
+
+STDOUT=/dev/stdout
+STDERR=/dev/stderr
+
+while true ; do
+case "$1" in
+  -h|--help) print_usage && exit 0;;
+  -o|--opt) VARIANT_FLAGS=$OPT_FLAGS;;
+  -d|--deb) VARIANT_FLAGS=$DBG_FLAGS;;
+  -c|--compiler) shift && COMPILER=$1;;
+  -f|--flags) shift && FLAGS=$1;;
+  -r|--run) RUN=1;;
+  -q) QUIET=1 && STDOUT=/dev/null && STDERR=/dev/null;;
+  -j) shift && JOBS="$1";;
+  -k) MAKE_FLAGS="$MAKE_FLAGS -k";;
+  --) shift && break ;;
+  ""|*) break ;;
+esac
+shift
+done
+
+export COMPILER
+export VARIANT_FLAGS
+export INVARIANT_FLAGS="-std=c++11 $FLAGS"
+export SRC_ROOT=$(readlink -f `dirname $0`)
+export OUT_ROOT=$(echo $( [ -d "$TMPDIR" ] && echo "$TMPDIR" || echo /tmp)/$USER $COMPILER $VARIANT_FLAGS/$SRC_ROOT | sed 's#//#/#g; s# #_#g')
+
+while true ; do
+case "$1" in
+  clean) TARGETS="clean" && break;;
+  "") break ;;
+  *) TARGET=`readlink -f $1 | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET";;
+esac
+shift
+done
+
+cd $SRC_ROOT
+
+make -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS # | grep -v '^make: .* is up to date.$'
+
+if [ -n "$RUN" ] ; then
+  for i in $TARGETS ; do
+    [ "$QUIET" == 1 ] || echo -e "\n[exec] $i"
+    LD_LIBRARY_PATH="$SRC_ROOT/third_party/google/gmock/latest/lib/.libs:$SRC_ROOT/third_party/google/gtest/latest/lib/.libs" $i 2>$STDERR 1>$STDOUT && echo "[ ok ] $i" && SUCCESS="$SUCCESS $i" && continue
+    echo "[FAIL] $i"
+    FAIL="$FAIL $i"
+  done
+fi
+
+if [ -n "$FAIL" ] ; then
+  echo
+  echo "Successful targets:"
+  echo $SUCCESS | sed "s#$OUT_ROOT/##g;"
+  echo
+  echo "Failed targets:"
+  echo $FAIL | sed "s#$OUT_ROOT/##g;"
+  echo
+fi

@@ -8,6 +8,7 @@
 #include "test/cc/test_main.h"
 #include "util/counter/counter.h"
 #include "util/counter/counter_base.h"
+#include "util/counter/metrics/all_metrics.h"
 
 namespace counter {
 namespace test {

@@ -1,5 +1,6 @@
 #include "base/common.h"
 #include "util/memory/stringstorage.h"
+#include "util/memory/stringstorage_unlock.h"
 #include "test/cc/test_main.h"
 #include "util/index/index.h"
 
