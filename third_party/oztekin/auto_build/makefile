@@ -48,7 +48,7 @@ $(OUT_ROOT)/%.o $(OUT_ROOT)/%.d : %.cc
 
 # Recursive dependency generation rule used to generate a .dep and .l file out
 # of a binary target's .cc file.
-$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE) $(OUT_ROOT)/%.o
+$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE)
 	@echo [depn] $*
 	@$(ANALYZE) $(OUT_ROOT) $*.cc
 
@@ -68,5 +68,5 @@ clean :
 # require rebuilding a subset of targets after the first build.
 ifneq ($(MAKECMDGOALS),clean)
 -include $(BINS:=.dep)
--include $(OBJS:=.d)
+-include $(OBJS:%.o=%.d)
 endif
