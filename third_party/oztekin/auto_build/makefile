@@ -10,7 +10,7 @@ INCLUDES ?= -I. $(shell find . -name include | sed 's/^/-I/' | tr '\n' ' ')
 LIBRARIES ?= $(shell find . -name .libs | sed 's/^/-L/' | tr '\n' ' ')
 SRC_ROOT ?= "."
 OUT_ROOT ?= $(shell echo $(shell [ -d "$TMPDIR" ] && echo "$TMPDIR" || echo /tmp)/$(COMPILER) $(VARIANT_FLAGS) | sed 's/ /_/g')
-OBJS ?= $(shell find -name "*.cc" | grep -v third_party | sed 's!^./!!; s!^!$(OUT_ROOT)/!; s!\.cc$$!.o!')
+# OBJS ?= $(shell find -name "*.cc" | grep -v third_party | sed 's!^./!!; s!^!$(OUT_ROOT)/!; s!\.cc$$!.o!')
 BINS ?= $(shell find -name "*_test.cc" -o -name "_example.cc" | grep -v third_party | sed 's!^./!!; s!^!$(OUT_ROOT)/!; s!\.cc$$!!')
 ANALYZE = $(OUT_ROOT)/analyze_source
 # end config
@@ -22,7 +22,7 @@ CXXFLAGS = $(VARIANT_FLAGS) $(INVARIANT_FLAGS)
 .DELETE_ON_ERROR:
 .SECONDEXPANSION:
 .PHONY: all clean
-.SECONDARY $(OUT_ROOT)/%.o $(OUT_ROOT)/%.d $(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l:
+# .SECONDARY $(OUT_ROOT)/%.o $(OUT_ROOT)/%.d $(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l:
 
 all: $(BINS) $(ANALYZE)
 
@@ -48,12 +48,12 @@ $(OUT_ROOT)/%.o $(OUT_ROOT)/%.d : %.cc
 
 # Recursive dependency generation rule used to generate a .dep and .l file out
 # of a binary target's .cc file.
-$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE)
+$(OUT_ROOT)/%.dep $(OUT_ROOT)/%.l : $(ANALYZE) $(OUT_ROOT)/%.o
 	@echo [depn] $*
 	@$(ANALYZE) $(OUT_ROOT) $*.cc
 
 # Linker rule.
-% : %.dep %.l %.o %.d
+% : %.dep %.l %.d %.o
 	@echo [link] $@ | sed 's!$(OUT_ROOT)/!!'
 	@$(CXX) $(CXXFLAGS) $(LIBRARIES) $(shell cat $*.dep | sed 's/.*://g') $(shell cat $*.l) -o $@
 
@@ -68,5 +68,6 @@ clean :
 # require rebuilding a subset of targets after the first build.
 ifneq ($(MAKECMDGOALS),clean)
 -include $(BINS:=.dep)
--include $(OBJS:%.o=%.d)
+-include $(shell find $(OUT_ROOT) -name "*.d")
+# -include $(OBJS:%.o=%.d)
 endif

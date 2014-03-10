@@ -7,6 +7,7 @@
 #include <chrono>
 
 #include "base/common.h"
+#include "util/init/main.h"
 #include "util/network/rpcserver.h"
 #include "util/thread/task_server.h"
 

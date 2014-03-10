@@ -6,38 +6,41 @@ echo "Usage: `basename $0` [OPTIONS] [TARGETS]
 
   Builds and optionally runs TARGETS.
 
-  where OPTIONS are:
+  OPTIONS are:
   -h, --help                Print this message.
   -o, --opt                 Use optimized flags.
-  -d, --deb                 Use debug flags.
+  -d, --deb                 Use debug flags (default).
   -c, --compiler COMPILER   Use the specified compiler.
-  -f, --flags EXTRA_FLAGS   Extra flags to pass to compiler.
-  -r, --run                 Run the targets. Targets are assumed to be binaries.
-  -q, --quiet               Do not output too much information.
-  -j                        Number of concurrent jobs to be passed to make.
+  -f, --flags EXTRA_FLAGS   Extra flags to pass to the compiler.
+  -r, --run                 Run the targets.
+  -q, --quiet               In conjunction with -r, run the targets quietly.
+  -j                        Number of concurrent jobs to use with make.
   -k                        Do not stop on first error.
 
   If no --deb or --opt is specified, debug mode is assumed.
   If no compiler is specified, `basename $0` tries to locate g++ or clang++ in
   that order and picks the first one found.
 
+  TARGETS are assumed to be binaries. You can refer to binaries using relative
+  paths with or without the .cc extension. Special target ... can be used to
+  refer to all binaries matching a naming convention under a subdirectory tree.
+  (e.g. all *_test.cc and *_example.cc).
+
   You may want to alias the command for convenient usage:
 
   alias ab=`readlink -f $(dirname $0)`/`basename $0`
 
 Examples:
-  # Cleanup the build state.
-  ab clean
-
-  # Compile all tests under base/ in opt mode
-  ab -o base/*_test.cc
+  ab clean                 # Cleanup the build state.
+  ab -o base/*_test.cc     # Compile all tests under base/ in opt mode
+  ab ...                   # Compile all binaries within current directory tree.
+  ab util/...              # Compile all binaries under util/
 
   # Compile and quietly run all tests excluding third_party
   "'ab -r -q `find . | grep _test.cc | grep -v third_party`'"
 
   # Enter a subdirectory and run `basename $0` with relative paths.
-  cd util/cache
-  ab group_cache_test.cc   # or ab group_cache_test
+  cd util/cache && ab group_cache_test.cc   # or ab group_cache_test
 "
 }
 
@@ -74,10 +77,17 @@ export INVARIANT_FLAGS="-std=c++11 $FLAGS"
 export SRC_ROOT=$(readlink -f `dirname $0`)
 export OUT_ROOT=$(echo $( [ -d "$TMPDIR" ] && echo "$TMPDIR" || echo /tmp)/$USER $COMPILER $VARIANT_FLAGS/$SRC_ROOT | sed 's#//#/#g; s# #_#g')
 
+[ -z "$1" ] && set '...'
+
 while true ; do
 case "$1" in
   clean) TARGETS="clean" && break;;
   "") break ;;
+  *...)
+  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\_\(test\|example\).cc' | grep -v third_party) ; do
+    TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET"
+  done
+  ;;
   *) TARGET=`readlink -f $1 | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET";;
 esac
 shift
@@ -85,7 +95,9 @@ done
 
 cd $SRC_ROOT
 
-make -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS # | grep -v '^make: .* is up to date.$'
+export BINS=$TARGETS
+
+make -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS | grep -v '^make: .* is up to date.$'
 
 if [ -n "$RUN" ] ; then
   for i in $TARGETS ; do
