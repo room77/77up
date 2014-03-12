@@ -1,0 +1,1 @@
+`dirname $0`/run_cron bin/cron/example

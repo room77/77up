@@ -1,0 +1,42 @@
+#!/bin/bash
+# Copyright 2012 Uygar Oztekin
+
+[ -z "$1" ] && echo "Usage: `basename $0` TIMEOUT COMMAND [ARGUMENTS]
+
+Runs COMMAND with ARGUMENTS with specified TIMEOUT value.
+If timeout is reached, command and its children are killed.
+
+Following timeout suffixes can be specified for convenience.
+    s     seconds. Same as no suffix.
+    m     minutes. (e.g. 6m = 6 * 60 seconds).
+    h     hours (e.g. 3h for 3 hours).
+    d     days
+
+Note that the timeout field is not validated and assumes that only one suffix
+is supplied. So please verify the timeout values you supply.
+
+This script will automatically be used by run_cron.
+
+" && exit 0
+
+# Some sane values. We may want to make those commandline flags in the future.
+POLL_INTERVAL=1
+
+# Parse the timeout value.
+TIMEOUT="`echo $1 | sed 's/d/*24h/g;s/h/*60m/g;s/m/*60s/g;s/s//g' | bc`"
+shift
+
+# Monitor the process in the background
+(
+  ((t = TIMEOUT))
+  while ((t > 0)); do
+    sleep $POLL_INTERVAL
+    kill -0 $$ || exit 0
+    ((t -= POLL_INTERVAL))
+  done
+  echo "About to terminate '$@' ($$) due to timeout ($TIMEOUT"s")"
+  pkill -P $$
+) 2> /dev/null &
+
+echo "About to run '$@' with timeout of $TIMEOUT"s
+exec "$@"

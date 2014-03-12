@@ -7,3 +7,15 @@ test(name = "index_test",
      dep = [ "/public/test/cc/test_main",
              "/public/util/serial/serializer",
            ])
+
+lib(name = "search_index",
+    src = ["search_index.cc"],
+    dep = ["/data/hotel_util",
+           "/public/util/string/porter_stemmer",
+           "/public/util/cache/shared_lru_cache",
+           "/public/util/string/unicode"],
+    flag = ["-O2"])
+
+test(name = "search_index_test",
+     src = ["search_index_test.cc"],
+     dep = ["search_index"])

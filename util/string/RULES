@@ -1,3 +1,7 @@
+lib(name = "porter_stemmer",
+    src  = ["porter_stemmer.cc"],
+    dep  = ["/public/util/serial/serializer"])
+
 lib(name = "strutil",
     src = [ "strutil.cc" ],
     hdr = [ "strutil.h" ],

@@ -1,0 +1,9 @@
+This is a simple cron setup written in bash. It may be a good start if you don't
+want too much dependencies.
+
+It can be used to run individual binaries or directories. For directories, all
+executables within the directory tree is executed. Timeouts are supported.
+See run_cron comments for more information. Run example.run for an example.
+
+If you have more sophisticated needs, you may want to have a look at Zeus which
+has heavier dependencies (uses Room77 python libraries etc.).

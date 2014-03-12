@@ -1,0 +1,8 @@
+lib(name = "astar",
+    src = [],
+    dep = ["/public/util/memory/collection"])
+
+test(name = "astar_test",
+     src  = ["astar_test.cc"],
+     dep  = ["astar"])
+

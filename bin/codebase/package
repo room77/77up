@@ -1,0 +1,94 @@
+#!/bin/bash -e
+# Copyright 2011 Uygar Oztekin
+
+# Packages shared libraries needed for an executable for transportation to a
+# system that may not necessarily have the libraries or the right version of the
+# libraries.
+
+# This is similar to a chroot, but is a lot lighter.
+# The script creates a (executable_name).run file which is a self extracting,
+# executable that automatically uncompresses the payload (executable and shared
+# libs) to a temp dir, sets up paths and runs the executable.
+# All you need to do is to run the .run executable to run the packaged
+# executable.
+
+# Example:
+# You compiled search_server on the latest and greatest machine with a
+# bunch of new libraries. Amazon images do not contain these libraries.
+
+# On latest and greatest source system do:
+# package e/meta_search_server
+# scp e/search_server.run to destination system.
+
+# On destination system simply run the packaged executable:
+# e/search_server.run
+
+# It will automatically uncompress libraries and binary to an appropriate tmp
+# directory, run it, and clean up the tmp dir on exit.
+
+BIN=$1
+shift
+
+[ -z $BIN ] && echo Usage: $0 executable && exit 0
+
+#echo -n "Locating binary: "
+ls $BIN &>/dev/null
+
+# Clean up existing package, if present
+rm -rf $BIN.??? || true
+
+# Create new package
+mkdir $BIN.lib || true
+
+# echo the libraries
+ldd $BIN
+
+cp `ldd $BIN | awk '{print $3}'` $BIN.lib &>/dev/null || true
+#cp `ldd $BIN | grep 'ld-linux' | awk '{print $BIN}'` $BIN.lib &>/dev/null || true
+
+EXTRA_ARGS=""
+[ -z "$2" ] || EXTRA_ARGS='--init_data_dir=$TMP_DIR'
+
+# Create the magic script
+echo '#!/bin/bash -e
+EXE_NAME=$(basename $0)
+TMP_DIR="/tmp/${EXE_NAME}.$$.tmp"
+mkdir $TMP_DIR
+pushd `dirname $0`
+ABS="`pwd`/${EXE_NAME}"
+popd
+echo $ABS
+CORE_DUMP_DIR="/data/output/${EXE_NAME}"
+mkdir -p ${CORE_DUMP_DIR}
+CORE_DUMP_CMD="(if [ -f core.${EXE_NAME} ];then \
+                  mv core.${EXE_NAME} ${CORE_DUMP_DIR};\
+                  mv ${TMP_DIR}/${EXE_NAME} ${CORE_DUMP_DIR};\
+                  echo \"Packager: Core dumped to ${CORE_DUMP_DIR}\"; \
+                fi)"
+TRAP_CMD="${CORE_DUMP_CMD} && \
+          echo \"Packager: Cleaning up $TMP_DIR\" && rm -rf $TMP_DIR"
+trap "$TRAP_CMD" EXIT
+START=`awk "/^## PAYLOAD ##/ {print NR + 1; exit 0; }" $0`
+echo Packager: Payload found. Uncompressing to $TMP_DIR
+pushd $TMP_DIR &>/dev/null
+tail -n +$START $ABS | tar -xf -
+popd &>/dev/null
+BIN=$(basename `echo $0 | sed "s/\.run$//"`)
+LD_LIBRARY_PATH=/lib:/lib/x86_64-linux-gnu:$TMP_DIR/$BIN.lib
+export LD_LIBRARY_PATH
+echo Packager: Launching binary with commandline arguments:
+echo "$@"
+$TMP_DIR/$BIN '"$EXTRA_ARGS"' "$@"
+exit $?
+## PAYLOAD ##' > $BIN.run
+
+# Append payload
+chmod +x $BIN.run
+pushd `dirname $BIN` >/dev/null
+tar --ignore-failed-read -c -f - `basename $BIN` `basename $BIN`.lib "$@" >> `basename $BIN`.run
+popd >/dev/null
+
+#echo "Replacing original binary"
+ cp $BIN $BIN.bak
+mv $BIN.run $BIN
+#echo "Package created $BIN"

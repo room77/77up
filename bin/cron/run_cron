@@ -1,0 +1,92 @@
+#!/bin/bash -e
+# Copyright 2012 Uygar Oztekin
+
+# Cron helper script to run one or more executables. Parameters could be either
+# files or directories (mixture is fine). For files, we run the files. For
+# directories, we recursively find every executable under the directory and run
+# them.
+
+# Executables are run in serial in the order specified. There is no guaranteed
+# order for files specified as directory subtree.
+
+# If jobs are launched from a terminal (via a user etc.), stdout will list the
+# jobs that are launched. If run under cron, however, and everything succeeds,
+# stdout is suppressed. So no need to redirect stdout in crontab.
+
+# Writes job output to stderr only for the jobs that fail.
+
+# Per directory as well as per binary timeouts are supported. By default 1m is
+# used per job. See the example.
+
+# This is the quick and dirty script we used to run cron jobs with. We recently
+# moved to zeus (with python dependencies). If you prefer a simpler solution,
+# this script may be a good start for you to modify. If you need a more
+# sophisticated solution with more dependencies you may want to check out zeus.
+
+TIMEOUT_BIN=$(dirname `readlink -f $0`)/timeout
+export TIMEOUT_BIN
+
+cd `dirname $0`
+cd ../../                               # Find the path relative to this binary.
+#cd `git rev-parse --show-toplevel`     # Or find the git root. Pick one.
+
+if [ -z "$1" ] ; then
+  echo "Usage: $0 [FILE|DIRECTORY]...
+
+  Runs one or more executables specified as files or directories.
+
+  For files         run the executable
+  For directories   run all executables under the directory (recursive)
+
+  * Files and directories are processed in the order they are specified.
+  * All executables are run serially.
+  * Executables must not hang or get stuck indefinitely.
+  * Execution order within directories is unspecified.
+  * No need to redirect stdout to /dev/null within crontabs.
+  * For successful jobs, stdout is suppressed.
+  * If a job fails, stdout and stderr is output.
+  * You can use relative paths from root of the git repository.
+"
+  exit 1
+fi
+
+# Source some common configuration if you want.
+#source /path/to/common/config/
+
+CRON=0
+tty | grep -q '/dev/pts/' || CRON=1
+export CRON
+
+function RunBin {
+  TIMEOUT=$((echo 1m && cat `dirname $1`/timeout $1.timeout 2>/dev/null) | tail -n 1)
+  [ "$CRON" == 0 ] && echo -n Running $1 ...
+  # LOG_FILE="/tmp/run_cron.$$.log"
+  # LOG_FILE="/tmp/run_cron_log/`readlink -f $1`"
+  LOG_FILE="/tmp/run_cron`readlink -f $1 | sed 's#/#_#g'`.log"
+  # mkdir -p `dirname $LOG_FILE` &>/dev/null || true
+  $TIMEOUT_BIN $TIMEOUT "$1" &> "$LOG_FILE"
+  STATUS="$?"
+  if [ $STATUS -eq "0" ] ; then
+    [ "$CRON" == 0 ] && echo " Done"
+  else
+    [ "$CRON" == 0 ] && echo " Failed!"
+    echo "
+Job '$1' failed. Here is the log content:
+<<<
+`cat $LOG_FILE`
+>>>
+" 1>&2
+  fi
+  # rm $LOG_FILE
+}
+
+function BuildAndRun {
+  BINARY=$1
+  shift
+  ./auto_build --opt --run $BINARY "$@"   # Compile and run in opt mode.
+}
+
+export -f RunBin
+export -f BuildAndRun
+
+find "$@" -follow -type f -executable | sort | xargs -I {} bash -c 'RunBin "{}"' \;

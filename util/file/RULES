@@ -21,3 +21,13 @@ bin(name = "monitor_file_access_example",
 lib(name = "shared_writer",
     src  = ["shared_writer.cc"],
     dep  = ["/base/common"])
+
+lib(name = "field_reader",
+    hdr = [ "field_reader.h" ],
+    dep = [ "/base/common",
+            "/public/util/serial/serializer",
+            "/public/util/memory/unique" ])
+
+test(name = "field_reader_test",
+     src = [ "field_reader_test.cc" ],
+     dep = [ "field_reader", "/public/test/cc/test_main" ])

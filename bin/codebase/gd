@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+# Convenience script to diff stuff in git. if you specify a hash, it diffs the
+# hash, otherwise, diffs the current changes.
+
+case $# in
+  0) git difftool -y HEAD ;;
+  1) git difftool -y $1^..$1 ;;
+esac
+
