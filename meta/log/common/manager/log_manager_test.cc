@@ -17,7 +17,8 @@ TEST(ValidateElementData, Sanity) {
   EXPECT_EQ(element_valid, LogManager::Instance().ValidateElementData(element));
 }
 
-TEST(ValidateElementData, NonAlphaNumeric) {
+// TODO(otasevic): re-enable these two tests once the id alphanumeric 6-character check is enabled
+/*TEST(ValidateElementData, NonAlphaNumeric) {
   shared_ptr<tLogElement> element(new tLogElement);
   element->id = "1@2222";
   EXPECT_EQ(0, LogManager::Instance().ValidateElementData(element));
@@ -27,7 +28,7 @@ TEST(ValidateElementData, NonExpectedSize) {
   shared_ptr<tLogElement> element(new tLogElement);
   element->id = "sadsadsadsa";
   EXPECT_EQ(0, LogManager::Instance().ValidateElementData(element));
-}
+}*/
 
 }  // namespace test
 }  // namespace logging

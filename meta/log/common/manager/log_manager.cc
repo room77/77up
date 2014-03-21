@@ -184,8 +184,9 @@ uint8_t LogManager::ValidateHeaderData(shared_ptr<tLogRequestInterface> log_requ
 
 uint8_t LogManager::ValidateElementData(shared_ptr<tLogElement> element) const {
   // TODO(otasevic): add more checks to this function
+  // TODO(otasevic): re-enable code below once all the ids are in this format
+/*  constexpr int id_size = 6;  // specifies the expected length of the id
 
-  constexpr int id_size = 6;  // specifies the expected length of the id
 
   // Check if the id string is alphanumeric and either empty or id_size long
   auto IdValid = [] (const string& id) {
@@ -193,8 +194,7 @@ uint8_t LogManager::ValidateElementData(shared_ptr<tLogElement> element) const {
         (id.empty() || id.size() == id_size));
   };
   // Check if id, pid and nid are all alphanumeric, empty or id_size-character strings
-  // TODO(otasevic): re-enable 3 lines below once all the ids are in this format
-/*  if (!IdValid(element->id)) return 0;
+  if (!IdValid(element->id)) return 0;
   if (!IdValid(element->pid)) return 0;
   if (!IdValid(element->nid)) return 0;*/
 
