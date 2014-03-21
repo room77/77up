@@ -1,0 +1,15 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_parser_hotel_profile",
+    src  = [ "event_parser_hotel_profile.cc" ],
+    dep  = [ "../../datatypes/event_hotel_profile",
+             "../event_parser",
+           ])
+
+# Binaries
+
+# Tests

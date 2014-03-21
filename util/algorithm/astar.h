@@ -1,5 +1,5 @@
-#ifndef _UTIL_ASTAR_H_
-#define _UTIL_ASTAR_H_
+#ifndef _PUBLIC_UTIL_ALGORITHM_ASTAR_H_
+#define _PUBLIC_UTIL_ALGORITHM_ASTAR_H_
 
 #include "nodelist.h"
 #include "util/memory/collection.h"
@@ -597,4 +597,4 @@ void AStar<tNode, tEdge, tCost>::TracePlanFromNode
   astar_util::ReverseVector(*result);
 }
 
-#endif
+#endif  // _PUBLIC_UTIL_ALGORITHM_ASTAR_H_

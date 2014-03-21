@@ -1,0 +1,19 @@
+
+# Libraries
+
+# Tests
+lib(name = "entity_mock",
+    src = [ "entity_mock.cc"],
+    hdr = [ "entity_mock.h"],
+    dep = [  "/public/test/cc/mock",
+             "../entity",
+          ],
+    test_only = 1)
+
+lib(name = "entity_manager_mock",
+    src = [ "entity_manager_mock.cc"],
+    hdr = [ "entity_manager_mock.h"],
+    dep = [ "/public/test/cc/mock",
+            "../entity_manager",
+          ],
+    test_only = 1)

@@ -1,0 +1,15 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_parser_monetized_click",
+    src  = [ "event_parser_monetized_click.cc" ],
+    dep  = [ "../../datatypes/event_monetized_click",
+             "../event_parser",
+           ])
+
+# Binaries
+
+# Tests

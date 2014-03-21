@@ -9,6 +9,14 @@ test(name = "file_test",
              "file",
            ])
 
+lib(name = "filereader",
+    hdr = [ "filereader.h" ],
+    dep = [ "/public/util/serial/serializer" ])
+
+test(name = "filereader_test",
+     src = [ "filereader_test.cc" ],
+     dep = [ "filereader", "/public/test/cc/test_main" ])
+
 lib(name = "monitor_file_access",
     src = [ "monitor_file_access.cc" ],
     hdr = [ "monitor_file_access.h" ],

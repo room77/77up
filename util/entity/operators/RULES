@@ -1,0 +1,25 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "entity_operators",
+       src = [ "entity_operators.cc"],
+       hdr = [ "entity_operators.h"],
+       dep = [ "/base/lite",
+               "/public/util/entity/entity_id",
+               "/public/util/entity/entity_manager",
+               "/public/util/factory/factory_extra",
+             ])
+
+# Binaries
+
+# Tests
+cc_test(name = "entity_operators_test",
+        src = [ "entity_operators_test.cc"],
+        dep = [ "/base/lite",
+                "/public/test/cc/test_main",
+                "/public/util/entity/entity_manager",
+                "entity_operators",
+              ])

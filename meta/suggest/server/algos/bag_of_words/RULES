@@ -1,0 +1,24 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_bag_of_words",
+    src = [ "suggest_bag_of_words.cc"],
+    hdr = [ "suggest_bag_of_words.h"],
+    dep = [ "/base/common",
+            "/public/meta/suggest/common/rankers/suggest_comparator",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/meta/suggest/server/algos/suggest_algo",
+            "/public/meta/suggest/server/algos/keyvalue/suggest_keyvalue",
+            "/public/meta/suggest/server/algos/util/suggest_algo_utils",
+            "/public/meta/suggest/server/falcon/csmap/suggest_falcon_primary",
+            "/public/util/serial/serializer",
+            "/public/util/templates/comparator",
+          ])
+
+# Binaries
+
+
+# Tests

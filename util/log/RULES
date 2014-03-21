@@ -1,0 +1,6 @@
+lib(name = "remote_log",
+    src  = ["remote_log.cc"],
+    dep  = ["/base/common",
+            "/public/util/network/util",
+            "/public/util/serial/serializer",
+            "/public/util/time/timestamp"])

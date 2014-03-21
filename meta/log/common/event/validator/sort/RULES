@@ -1,0 +1,17 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_validator_sort_click",
+    src  = [ "event_validator_sort_click.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_sort",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+# Binaries
+
+# Tests

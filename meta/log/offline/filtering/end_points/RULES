@@ -1,0 +1,29 @@
+# Copyright 2014 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "all_end_points",
+    dep  = [ "end_point_group1",
+             "end_point_user_logs",
+           ])
+
+lib(name = "end_point_group1",
+    src  = [ "end_point_group1.cc" ],
+    dep  = [ "/public/meta/log/offline/filtering/end_point_interface"
+           ])
+
+lib(name = "end_point_sharding",
+    src  = [ "end_point_sharding.cc" ],
+    dep  = [ "/public/meta/log/offline/filtering/end_point_interface"
+           ])
+
+lib(name = "end_point_user_logs",
+    src  = [ "end_point_user_logs.cc" ],
+    dep  = [ "/public/meta/log/offline/filtering/end_point_interface"
+           ])
+
+# Binaries
+
+# Tests

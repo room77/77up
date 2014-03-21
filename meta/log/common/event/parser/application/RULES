@@ -1,0 +1,15 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_parser_application",
+    src  = [ "event_parser_application.cc" ],
+    dep  = [ "../../datatypes/event_application",
+             "../event_parser",
+           ])
+
+# Binaries
+
+# Tests

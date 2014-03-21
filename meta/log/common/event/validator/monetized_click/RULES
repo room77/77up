@@ -1,0 +1,57 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_validator_mclick_expanded_card",
+    src  = [ "event_validator_mclick_expanded_card.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_mclick_hotel_profile_featured",
+    src  = [ "event_validator_mclick_hotel_profile_featured.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_mclick_hotel_profile_rates_table",
+    src  = [ "event_validator_mclick_hotel_profile_rates_table.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_mclick_serp",
+    src  = [ "event_validator_mclick_serp.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_mclick_similar_hotel",
+    src  = [ "event_validator_mclick_similar_hotel.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_mclick_sponsored",
+    src  = [ "event_validator_mclick_sponsored.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_monetized_click",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+# Binaries
+
+# Tests

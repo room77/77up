@@ -8,11 +8,13 @@ echo "Usage: `basename $0` [OPTIONS] [TARGETS]
 
   OPTIONS are:
   -h, --help                Print this message.
+  -a, --all                 Compile everying including all matching objects.
   -o, --opt                 Use optimized flags.
   -d, --deb                 Use debug flags (default).
   -c, --compiler COMPILER   Use the specified compiler.
   -f, --flags EXTRA_FLAGS   Extra flags to pass to the compiler.
   -r, --run                 Run the targets.
+  -t, --test                Run test targets only.
   -q, --quiet               In conjunction with -r, run the targets quietly.
   -j                        Number of concurrent jobs to use with make.
   -k                        Do not stop on first error.
@@ -57,11 +59,13 @@ STDERR=/dev/stderr
 while true ; do
 case "$1" in
   -h|--help) print_usage && exit 0;;
+  -a|--all) ALL=1;;
   -o|--opt) VARIANT_FLAGS=$OPT_FLAGS;;
   -d|--deb) VARIANT_FLAGS=$DBG_FLAGS;;
   -c|--compiler) shift && COMPILER=$1;;
   -f|--flags) shift && FLAGS=$1;;
   -r|--run) RUN=1;;
+  -t|--test) RUN=1 && TEST=1;;
   -q) QUIET=1 && STDOUT=/dev/null && STDERR=/dev/null;;
   -j) shift && JOBS="$1";;
   -k) MAKE_FLAGS="$MAKE_FLAGS -k";;
@@ -84,9 +88,14 @@ case "$1" in
   clean) TARGETS="clean" && break;;
   "") break ;;
   *...)
-  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\_\(test\|example\).cc' | grep -v third_party) ; do
+  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\_\(test\|example\|server\).cc' | grep -v third_party) ; do
     TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET"
   done
+  if [ "$ALL" == 1 ]; then
+  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\.cc' | grep -v third_party) ; do
+    TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$#.o#g'` TARGETS="$TARGETS $TARGET"
+  done
+  fi
   ;;
   *) TARGET=`readlink -f $1 | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET";;
 esac
@@ -97,10 +106,11 @@ cd $SRC_ROOT
 
 export BINS=$TARGETS
 
-make -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS | grep -v '^make: .* is up to date.$'
+make -s -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS | grep -v '^make: .* is up to date.$'
 
 if [ -n "$RUN" ] ; then
   for i in $TARGETS ; do
+    [ "$TEST" == 1 ] && echo $i | grep -q -v '_test$' && continue
     [ "$QUIET" == 1 ] || echo -e "\n[exec] $i"
     LD_LIBRARY_PATH="$SRC_ROOT/third_party/google/gmock/latest/lib/.libs:$SRC_ROOT/third_party/google/gtest/latest/lib/.libs" $i 2>$STDERR 1>$STDOUT && echo "[ ok ] $i" && SUCCESS="$SUCCESS $i" && continue
     echo "[FAIL] $i"

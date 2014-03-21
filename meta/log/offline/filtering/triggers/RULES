@@ -1,0 +1,29 @@
+# Copyright 2014 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "all_triggers",
+    dep  = [ "filter_trigger_office_ip" ])
+
+lib(name = "filter_trigger_office_ip",
+    src  = [ "filter_trigger_office_ip.cc" ],
+    dep  = [ "/public/meta/log/common/event/trigger/event_trigger",
+             "/public/meta/log/common/event/trigger/event_trigger_collection",
+             "/public/meta/log/offline/filtering/end_point_interface",
+             "/public/meta/log/offline/filtering/log_writer_manager",
+             "/public/util/init/init",
+           ])
+
+lib(name = "sharding_filtering_trigger",
+    src  = [ "sharding_filtering_trigger.cc" ],
+    dep  = [ "/public/meta/log/common/event/trigger/event_trigger",
+             "/public/meta/log/common/event/trigger/event_trigger_collection",
+             "/public/meta/log/offline/filtering/end_point_interface",
+             "/public/meta/log/offline/filtering/log_writer_manager",
+             "/public/util/init/init",
+           ])
+# Binaries
+
+# Tests

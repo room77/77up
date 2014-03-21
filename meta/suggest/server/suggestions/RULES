@@ -1,0 +1,50 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+
+lib(name = "suggestions",
+    src  = [ "suggestions.cc" ],
+    hdr  = [ "suggestions.h" ],
+    dep  = [ "/public/meta/suggest/common/suggest_datatypes",
+             "/public/meta/suggest/common/dedup/suggest_dedup",
+             "/public/meta/suggest/common/twiddler/suggest_twiddler",
+             "/public/meta/suggest/common/twiddler/util/suggest_twiddler_utils",
+             "/public/meta/suggest/server/algos/suggest_algo",
+             "/public/meta/suggest/util/suggest_utils",
+             "/public/util/region_data/utils",
+             "/public/util/templates/container_util",
+             "/public/util/thread/thread_pool",
+             "/public/util/time/simple_timer",
+             "suggestion_manager",
+           ])
+
+lib(name = "suggestion_manager",
+    src  = [ "suggestion_manager.cc" ],
+    hdr  = [ "suggestion_manager.h" ],
+    dep  = [ "/public/meta/suggest/common/suggest_datatypes",
+             "/public/meta/suggest/common/dedup/suggest_dedup",
+             "/public/meta/suggest/common/twiddler/suggest_twiddler",
+             "/public/meta/suggest/server/algos/suggest_algo",
+             "/public/util/thread/thread_pool",
+           ])
+
+# This rule defines the dependencies to link in all the proxy dependencies.
+lib(name = "suggestion_manager_proxy_deps",
+    dep  = [ "/public/meta/suggest/common/dedup/duplicate/suggest_dedup_duplicate",
+             "/public/meta/suggest/common/twiddler/suggest_twiddler_groups",
+             "/public/meta/suggest/server/algos/fallback/suggest_fallback",
+             "/public/meta/suggest/server/algos/suggest_algo_groups",
+           ])
+
+lib(name = "suggestion_manager_with_proxy_deps",
+    dep  = [ "suggestion_manager",
+             "suggestion_manager_proxy_deps",
+           ])
+
+
+# Binaries
+
+# Tests

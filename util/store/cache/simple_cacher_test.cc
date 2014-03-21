@@ -1,11 +1,12 @@
 // Copyright 2013 B. Uygar Oztekin
 
+// @include "../test/basic.cc"
+// @include "../test/stress.cc"
+
 #include <map>
 #include "simple_cacher.h"
 #include "../stl/stl_store.h"
 #include "../test/test.h"
-#include "../test/basic.h"
-#include "../test/stress.h"
 
 using namespace store;
 using namespace store::test;

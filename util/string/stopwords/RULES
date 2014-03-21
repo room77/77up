@@ -1,0 +1,29 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "stopwords",
+    hdr  = [ "stopwords.h" ],
+    dep  = [ "/public/base/logging",
+             "/public/util/factory/factory"
+           ])
+
+lib(name = "stopwords_from_file",
+    src  = [ "stopwords_from_file.cc" ],
+    dep  = [ "/public/base/args/args",
+             "/public/util/factory/factory_extra",
+             "/public/util/file/filereader",
+           ])
+
+# Binaries
+
+# Tests
+lib(name = "stopwords_mock",
+    hdr = [ "stopwords_mock.h"],
+    dep = [ "/public/test/cc/mock",
+            "/public/util/factory/factory_extra",
+            "stopwords",
+          ],
+    test_only = 1)

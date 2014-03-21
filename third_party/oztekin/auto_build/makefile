@@ -68,6 +68,6 @@ clean :
 # require rebuilding a subset of targets after the first build.
 ifneq ($(MAKECMDGOALS),clean)
 -include $(BINS:=.dep)
--include $(shell find $(OUT_ROOT) -name "*.d")
+-include $(shell find $(OUT_ROOT) -name "*.d" 2>/dev/null)
 # -include $(OBJS:%.o=%.d)
 endif

@@ -1,0 +1,18 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+
+# Binaries
+
+# Tests
+lib(name = "entity_parser_mock",
+    src = [ "entity_parser_mock.cc"],
+    hdr = [ "entity_parser_mock.h"],
+    dep = [ "/public/test/cc/test",
+            "/public/util/factory/factory_extra",
+            "../entity_parser",
+          ],
+    test_only = 1)

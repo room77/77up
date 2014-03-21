@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "base/logging.h"
 #include "unique.h"
 
 // Let's not depend on R77 test infrastructure for open source code.

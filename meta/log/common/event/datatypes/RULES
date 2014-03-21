@@ -1,0 +1,70 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "canonical_objects",
+       hdr  = [ "canonical_objects.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "/public/util/serial/types/arbit_blob",
+                "/public/util/time/localtime",
+              ])
+
+cc_lib(name = "event_application",
+       hdr  = [ "event_application.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+              ])
+
+cc_lib(name = "event_booking",
+       hdr  = [ "event_booking.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "canonical_objects",
+              ])
+
+cc_lib(name = "event_filter",
+       hdr  = [ "event_filter.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+              ])
+
+cc_lib(name = "event_hotel_profile",
+       hdr  = [ "event_hotel_profile.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "canonical_objects",
+              ])
+
+cc_lib(name = "event_hotel_search",
+       hdr  = [ "event_hotel_search.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "canonical_objects",
+              ])
+
+cc_lib(name = "event_miscellaneous",
+       hdr  = [ "event_miscellaneous.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+              ])
+
+cc_lib(name = "event_monetized_click",
+       hdr  = [ "event_monetized_click.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "canonical_objects",
+              ])
+
+cc_lib(name = "event_sort",
+       hdr  = [ "event_sort.h" ],
+       dep  = [ "/base/defs",
+                "/public/util/serial/serializer",
+                "canonical_objects",
+              ])
+
+# Binaries
+
+# Tests

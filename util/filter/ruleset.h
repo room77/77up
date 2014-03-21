@@ -4,8 +4,8 @@
 // Generic framework to define chained rule sets (similar to typical firewalls).
 // It can be used in various domains. See the unit test for example usage.
 
-#ifndef _UTIL_RULESET_H_
-#define _UTIL_RULESET_H_
+#ifndef _PUBLIC_UTIL_FILTER_RULESET_H_
+#define _PUBLIC_UTIL_FILTER_RULESET_H_
 
 #include <iostream>
 #include <functional>
@@ -96,4 +96,4 @@ class FirstMatch : public Rule<typename RuleType::input_type, typename RuleType:
 
 }
 
-#endif
+#endif  // _PUBLIC_UTIL_FILTER_RULESET_H_

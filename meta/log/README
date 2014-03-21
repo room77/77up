@@ -1,0 +1,5 @@
+This directory contains the basic log processing server and related libraries.
+Example log related data structures and derived classes are also provided.
+They probably won't be relevant for your case but they could be good examples
+for understanding how the class hierarchies are supposed to interact with each
+other.

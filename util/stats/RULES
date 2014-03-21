@@ -1,0 +1,80 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "stats",
+       hdr = [ "stats.h" ],
+       dep = [ "/base/defs",
+               "/public/util/factory/factory",
+               "/public/util/serial/utils/serializer_util",
+             ])
+
+cc_lib(name = "stats_file",
+       hdr = [ "stats_file.h" ],
+       dep = [ "/base/defs",
+               "/public/util/file/file",
+               "/public/base/logging",
+               "/public/util/time/localtime",
+               "/public/util/serial/serializer",
+               "stats",
+             ])
+
+cc_lib(name = "stats_metadata",
+       hdr = [ "stats_metadata.h"],
+       dep = [ "/base/defs",
+               "/public/util/serial/serializer",
+             ])
+
+
+cc_lib(name = "stats_with_time_decay",
+       hdr = [ "stats_with_time_decay.h"],
+       dep = [ "/base/defs",
+               "/public/util/time/decay/time_decay",
+               "stats",
+             ])
+
+cc_lib(name = "simple_stats",
+       src = [ "simple_stats.cc"],
+       hdr = [ "simple_stats.h"],
+       dep = [ "/base/lite",
+               "/public/util/serial/serializer",
+               "/public/util/templates/container_util",
+               "stats_metadata",
+               "stats_with_time_decay",
+             ])
+
+cc_lib(name = "signal_stats",
+       src = [ "signal_stats.cc"],
+       hdr = [ "signal_stats.h"],
+       dep = [ "/base/lite",
+               "/public/util/serial/serializer",
+               "/public/util/templates/container_util",
+               "stats_metadata",
+               "stats_with_time_decay",
+             ])
+
+# Binaries
+
+# Tests
+cc_lib(name = "stats_mock",
+       hdr  = [ "stats_mock.h"],
+       dep  = [ "/public/test/cc/test",
+                "stats",
+              ],
+       test_only = 1)
+
+cc_test(name = "simple_stats_test",
+        src = [ "simple_stats_test.cc"],
+        dep = [ "/base/lite",
+                "/public/test/cc/test_main",
+                "simple_stats",
+              ])
+
+cc_test(name = "signal_stats_test",
+        src = [ "signal_stats_test.cc"],
+        dep = [ "/base/lite",
+                "/public/test/cc/test_main",
+                "signal_stats",
+              ])

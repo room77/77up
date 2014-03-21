@@ -3,7 +3,7 @@ lib(name = "unique",
 
 test(name = "unique_test",
      src = [ "unique_test.cc" ],
-     dep = [ "unique"])
+     dep = [ "unique", "/public/util/serial/serializer"])
 
 lib(name = "new_handler",
      src = ["new_handler.cc"],

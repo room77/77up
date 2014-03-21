@@ -1,19 +1,31 @@
 lib(name = "group_cache",
     hdr = [ "group_cache.h" ],
-    dep = [ "/base/common",
-            "/public/util/file/file",
-            "/public/util/serial/serializer",
-          ])
+    dep = [ "/public/util/file/file", "/public/util/serial/serializer" ])
 
 lib(name = "shared_lru_cache",
     hdr = [ "shared_lru_cache.h" ])
 
 test(name = "group_cache_test",
-     src  = [ "group_cache_test.cc"],
-     dep  = [ "group_cache",
-              "/public/util/serial/serializer",
-            ])
+     src = [ "group_cache_test.cc"],
+     dep = [ "group_cache", "/public/util/serial/serializer" ])
 
 test(name = "shared_lru_cache_test",
      src = [ "shared_lru_cache_test.cc" ],
      dep = [ "shared_lru_cache" ])
+
+lib(name = "auto_proxy_cache",
+    hdr = [ "auto_proxy_cache.h" ],
+    dep = [ "proxy_cache", "/public/util/thread/thread_pool" ])
+
+test(name = "auto_proxy_cache_test",
+     src = [ "auto_proxy_cache_test.cc" ],
+     dep = [ "auto_proxy_cache", "/public/test/cc/test_main" ])
+
+lib(name = "proxy_cache",
+    hdr = [ "proxy_cache.h" ],
+    dep = [ "shared_lru_cache" ])
+
+test(name = "proxy_cache_test",
+     src = [ "proxy_cache_test.cc" ],
+     dep = [ "proxy_cache", "/public/test/cc/test_main" ])
+

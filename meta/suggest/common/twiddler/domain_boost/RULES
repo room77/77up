@@ -1,0 +1,21 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+
+lib(name = "domain_boost",
+    hdr  = [ "domain_boost.h" ],
+    dep  = [ "/base/common",
+           ])
+
+lib(name = "suggest_domain_boost",
+    src = [ "suggest_domain_boost.cc"],
+    dep = [ "domain_boost",
+            "/public/meta/suggest/common/twiddler/suggest_twiddler",
+          ])
+
+# Binaries
+
+# Tests

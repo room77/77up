@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: pygooglevoice
+Version: 0.5
+Summary: Python 2/3 Interface for Google Voice
+Home-page: http://code.google.com/p/pygooglevoice
+Author: Justin Quick and Joe McCall
+Author-email: justquick@gmail.com, joe@mcc4ll.us
+License: UNKNOWN
+Description: Python Google Voice
+        ====================
+        
+        Joe McCall & Justin Quick
+        
+        Exposing the Google Voice "API" to the Python language
+        -------------------------------------------------------
+        
+        Google Voice for Python Allows you to place calls, send sms, download voicemail, and check the various folders of your Google Voice Accounts.
+        You can use the Python API or command line script to schedule calls, check for new recieved calls/sms, or even sync your recorded voicemails/calls.
+        Works for Python 2 and Python 3
+        
+        Full documentation is available up at http://sphinxdoc.github.com/pygooglevoice/
+        
+Platform: UNKNOWN

@@ -1,0 +1,19 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_datatypes",
+    hdr  = [ "suggest_datatypes.h" ],
+    dep  = [ "/public/util/log/channel/channel",
+             "/public/util/entity/entity_type",
+             "/public/util/serial/serializer",
+             "/public/util/thread/counters",
+             "/public/util/thread/thread_pool",
+             "/public/util/memory/unique",
+           ])
+
+# Binaries
+
+# Tests

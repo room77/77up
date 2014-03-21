@@ -20,6 +20,7 @@ set<string> src_extensions = { "c", "cc", "cpp", "C" };
 // If the system header on the left is included, assume we need to link in the
 // library on the right.
 map<string, vector<string>> header_to_lib = {
+  { "aspell.h", {"aspell"}},
   { "future", {"pthread"} },
   { "mutex", {"pthread"} },
   { "thread",{"pthread"} },
@@ -126,6 +127,7 @@ bool ProcessFile(string path, map<string, int>& srcs, map<string, int>& libs) {
 
     // If we have a user header, expand and recursively process it.
     pos = line.find("#include \"");
+    if (pos == string::npos) pos = line.find("@include \"");
     if (pos != string::npos) {
       int begin = pos + 10;
       int end = line.find("\"", begin);

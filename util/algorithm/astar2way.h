@@ -1,5 +1,5 @@
-#ifndef _UTIL_ASTAR2WAY_H_
-#define _UTIL_ASTAR2WAY_H_
+#ifndef _PUBLIC_UTIL_ALGORITHM_ASTAR2WAY_H_
+#define _PUBLIC_UTIL_ALGORITHM_ASTAR2WAY_H_
 
 #include "astar.h"
 
@@ -340,4 +340,4 @@ void AStarTwoWay<AStarBase>::ReversePlanSteps(vector<tPlanStep>& plan) const {
   // done!
 }
 
-#endif
+#endif  // _PUBLIC_UTIL_ALGORITHM_ASTAR2WAY_H_

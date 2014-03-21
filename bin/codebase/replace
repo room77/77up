@@ -33,7 +33,7 @@ echo -n "Above files will be affected. Continue? [y/N]:"
 read INPUT
 
 if [ "$INPUT" == "y" ] || [ "$INPUT" == "Y" ] ; then
-  find . \( -name "RULES" -o -name "*.cc" -o -name "*.h" \) -exec sed -i "s@$1@$2@g" {} \;
+  find . \( -name "RULES" -o -name "*.cc" -o -name "*.h" \) | xargs -n 1 -I% bash -c 'grep -q '"'$1'"' % && sed -i --follow-symlinks '"s@$1@$2@g"' %'
   echo Done
 else
   echo Aborting ...

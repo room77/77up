@@ -20,6 +20,9 @@ cd `git rev-parse --show-toplevel`
 BASE="`pwd`/"
 FILE=`echo $FILE | sed "s#$BASE##"`
 
+# Ignore files that has less than 2 lines.
+[ `cat $FILE | wc -l` -lt 2 ] && exit 0
+
 PATTERN="_`echo ${FILE^^} | tr '.' '_' | tr '/' '_'`_"
 
 if [ `grep -c "#ifndef " $FILE` != 1 ] || [ `grep -c "#define " $FILE` != 1 ] || [ `grep -c "#endif" $FILE` -lt 1 ] ;then

@@ -1,0 +1,29 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "log_manager",
+    src  = [ "log_manager.cc" ],
+    hdr  = [ "log_manager.h" ],
+    dep  = [ "/base/lite",
+             "/public/meta/log/common/event/event",
+             "/public/meta/log/common/event/parser/event_parser",
+             "/public/meta/log/common/event/trigger/event_trigger",
+             "/public/meta/log/common/event/trigger/event_trigger_collection",
+             "/public/meta/log/common/event/validator/event_validator",
+             "/public/meta/log/common/log_datatypes",
+             "/public/util/serial/serializer",
+             "/public/util/serial/types/arbit_blob",
+             "/public/util/thread/thread_pool",
+            ])
+
+# Binaries
+
+# Tests
+test(name = "log_manager_test",
+     src  = ["log_manager_test.cc"],
+     dep  = ["/public/test/cc/test_main",
+             "log_manager"
+            ])

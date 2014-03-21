@@ -1,0 +1,35 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "all_parsers",
+    dep  = [ "application/event_parser_application",
+             "booking/event_parser_booking",
+             "hotel_profile/event_parser_hotel_profile",
+             "hotel_search/event_parser_hotel_search",
+             "misc/event_parser_miscellaneous",
+             "monetized_click/event_parser_monetized_click",
+             "sort/event_parser_sort",
+           ])
+
+cc_lib(name = "event_parser",
+       hdr  = [ "event_parser.h" ],
+       dep  = [ "/public/base/logging",
+                "/public/meta/log/common/log_datatypes",
+                "/public/util/factory/factory",
+                "/public/util/serial/serializer",
+                "../event",
+              ])
+
+# Binaries
+
+# Tests
+cc_lib(name = "event_parser_test_util",
+       hdr  = [ "event_parser_test_util.h" ],
+       dep  = [ "/public/base/logging",
+                "/public/test/cc/test",
+                "event_parser",
+              ],
+       test_only = 1)

@@ -1,14 +1,15 @@
 // Copyright 2013 B. Uygar Oztekin
 
+// @include "../test/basic.cc"
+// @include "../test/stress.cc"
+// @include "../test/forward_iteration.cc"
+// @include "../test/sorted_forward_iteration.cc"
+// @include "../test/lower_upper_bound.cc"
+
 #include <cstdlib>
 #include "sst_reader.h"
 #include "sst_writer.h"
 #include "../test/test_macros.h"
-#include "../test/basic.h"
-#include "../test/stress.h"
-#include "../test/forward_iteration.h"
-#include "../test/sorted_forward_iteration.h"
-#include "../test/lower_upper_bound.h"
 
 using namespace std;
 

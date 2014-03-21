@@ -1,10 +1,11 @@
 // Copyright 2013 Room77, Inc.
 // Author: B. Uygar Oztekin
 
+// @include "context_builders.cc"
+
 #include <iostream>
 #include "base/common.h"
 #include "util/network/method/context_builder.h"
-#include "util/network/method/context_builders.h"
 #include "util/init/main.h"
 
 int init_main() {

@@ -9,8 +9,8 @@
 //
 // See search_index_test.cc for sample usage.
 
-#ifndef _META_INDEX_SEARCH_INDEX_H_
-#define _META_INDEX_SEARCH_INDEX_H_
+#ifndef _PUBLIC_UTIL_INDEX_SEARCH_INDEX_H_
+#define _PUBLIC_UTIL_INDEX_SEARCH_INDEX_H_
 
 #include "base/common.h"
 #include "util/string/unicode.h"
@@ -737,4 +737,4 @@ class SearchIndex {
 
 }
 
-#endif
+#endif  // _PUBLIC_UTIL_INDEX_SEARCH_INDEX_H_

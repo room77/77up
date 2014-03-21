@@ -1,0 +1,22 @@
+# Libs.
+lib(name = "abbreviations",
+    hdr  = [ "abbreviations.h" ],
+    src  = [ "abbreviations.cc" ],
+    dep  = [ "/base/common",
+             "/public/util/region_data/utils",
+           ]
+)
+
+
+lib(name = "abbreviation_name_map",
+    src  = [ "abbreviation_name_map.cc" ],
+    dep  = [ "/base/common",
+             "/public/util/serial/serializer",
+             "abbreviations",
+           ])
+
+lib(name = "abbreviations_lib",
+    dep  = [ "abbreviations",
+             "abbreviation_name_map",
+           ])
+

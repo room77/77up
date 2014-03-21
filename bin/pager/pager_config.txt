@@ -1,0 +1,7 @@
+# Pager rotation candidates. Lines that start with # are ignored.
+# entries are TAB-delimited and are of the form:
+# Phone_number  email_address
+# Examples:
+555-111-1111	user1@example.nonexisting.domain.com
+555-222-2222	user2@example.nonexisting.domain.com
+555-333-3333	user3@example.nonexisting.domain.com

@@ -1,5 +1,5 @@
-#ifndef _UTIL_NODELIST_H_
-#define _UTIL_NODELIST_H_
+#ifndef _PUBLIC_UTIL_ALGORITHM_NODELIST_H_
+#define _PUBLIC_UTIL_ALGORITHM_NODELIST_H_
 
 #include "base/common.h"
 
@@ -235,4 +235,4 @@ class NodeList {
   std::vector<T *> heap_;
 };
 
-#endif
+#endif  // _PUBLIC_UTIL_ALGORITHM_NODELIST_H_

@@ -1,0 +1,22 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "entity_utils",
+       hdr = [ "entity_utils.h"],
+       dep = [ "/base/defs",
+               "/public/util/templates/container_util",
+               "../entity_type",
+             ])
+
+# Binaries
+
+# Tests
+# cc_test(name = "my_test",
+#         src = [ "my_test.cc"],
+#         dep = [ "/base/lite",
+#                 "/public/test/cc/test_main",
+#                 "my",
+#               ])

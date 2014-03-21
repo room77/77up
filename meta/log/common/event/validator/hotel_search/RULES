@@ -1,0 +1,33 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "event_validator_hotel_search",
+    src  = [ "event_validator_hotel_search.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_hotel_search",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_search_hotel_profile_click",
+    src  = [ "event_validator_search_hotel_profile_click.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_hotel_search",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+lib(name = "event_validator_search_impressions",
+    src  = [ "event_validator_search_impressions.cc" ],
+    dep  = [ "/public/util/init/init",
+             "/public/meta/log/common/event/datatypes/event_hotel_search",
+             "/public/meta/log/common/event/validator/canonical_objects/canonical_objects_validator",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+# Binaries
+
+# Tests
