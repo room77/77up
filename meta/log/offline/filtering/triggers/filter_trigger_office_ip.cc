@@ -7,9 +7,7 @@
 #include "meta/log/offline/filtering/end_point_interface.h"
 #include "meta/log/offline/filtering/log_writer_manager.h"
 #include "util/init/init.h"
-
-FLAG_string(office_ip, "50.76.63.141",
-            "Office ip");
+#include "util/network/office.h"
 
 namespace logging {
 namespace event {
@@ -19,7 +17,7 @@ class OfficeIpFilterTrigger : public EventsTriggerWithoutData {
  protected:
   virtual void HandleTrigger(const tLogElement& element) const {
     // write all the logs that are not coming from the office ip
-    if (element.user_ip != gFlag_office_ip) {
+    if (::util::Office::IsOfficeIP(element.user_ip)) {
       // write if ip is not office ip
       // TODO(otasevic): move this id to INIT_ADD
       EndPointInterface::shared_proxy end_point =

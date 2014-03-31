@@ -23,6 +23,7 @@ lib(name = "event_trigger_write_to_syslog",
              "/public/meta/log/common/event/trigger/event_trigger",
              "/public/meta/log/common/event/trigger/event_trigger_collection",
              "/public/util/log/remote_log",
+             "/public/util/network/office"
            ])
 
 # Binaries

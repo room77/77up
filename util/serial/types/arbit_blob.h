@@ -6,6 +6,7 @@
 #ifndef _PUBLIC_UTIL_SERIAL_TYPES_ARBIT_BLOB_H_
 #define _PUBLIC_UTIL_SERIAL_TYPES_ARBIT_BLOB_H_
 
+#include <cctype>
 #include <istream>
 #include <ostream>
 #include <sstream>
@@ -85,6 +86,45 @@ struct ArbitBlob {
   }
 
   void clear() { str.clear(); }
+
+  // compare as JSON, ignoring whitespace differences between fields
+  bool operator==(const ArbitBlob& other) const {
+    // a field is a key or a value. whitespace outside of fields is ignored
+    bool in_field = false;
+    // is the current character escaped?
+    bool is_escaped = false;
+    auto it = str.begin();
+    auto other_it = other.str.begin();
+    while (it != str.end() && other_it != other.str.end()) {
+      if (in_field) {
+        if (*it != *other_it) return false;
+        switch (*it) {
+          case '\\':
+            is_escaped = !is_escaped;
+            break;
+          case '"':
+            if (!is_escaped) in_field = false;
+            break;
+        }
+        ++it;
+        ++other_it;
+      } else { // not in field
+        // skip whitespace
+        for ( ; std::isspace(*it) ; ++it) {}
+        for ( ; std::isspace(*other_it) ; ++other_it) {}
+
+        if (*it != *other_it) return false;
+        if (*it == '"') in_field = true;
+        ++it;
+        ++other_it;
+      }
+    }
+    return true;
+  }
+
+  bool operator!=(const ArbitBlob& other) const {
+    return !(*this == other);
+  }
 
   // Utility operator to cast the blob as string.
   operator string() const {

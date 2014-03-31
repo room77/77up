@@ -27,6 +27,10 @@ lib(name = "httputil",
             "/public/util/compress/gzip"
           ])
 
+lib(name = "office",
+    src = ["office.cc"],
+    dep = ["/base/lite"])
+
 lib(name = "rpc_datatypes",
     hdr = [ "rpc_datatypes.h" ],
     dep = [ "/public/util/serial/serializer" ])

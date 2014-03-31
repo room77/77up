@@ -4,76 +4,92 @@
 function print_usage {
 echo "Usage: `basename $0` [OPTIONS] [TARGETS]
 
-  Builds and optionally runs TARGETS.
+Builds and optionally runs TARGETS.
 
-  OPTIONS are:
-  -h, --help                Print this message.
-  -a, --all                 Compile everying including all matching objects.
-  -o, --opt                 Use optimized flags.
-  -d, --deb                 Use debug flags (default).
-  -c, --compiler COMPILER   Use the specified compiler.
-  -f, --flags EXTRA_FLAGS   Extra flags to pass to the compiler.
-  -r, --run                 Run the targets.
-  -t, --test                Run test targets only.
-  -q, --quiet               In conjunction with -r, run the targets quietly.
-  -j                        Number of concurrent jobs to use with make.
-  -k                        Do not stop on first error.
+General options:
+  -h, --help              Print this message.
+  -a, --all               Include all binaries and objects (default).
+  -b, --bin               Include binary targets only.
+  -t, --test              Include test targets only.
+  -c, --clear, --clean    Clean the current temporary directory.
+  -C, --compiler BINARY   Use the specified compiler.
+  -r, --run               Run the target(s).
+  -v, --verbose LEVEL     Set verbosity level.
 
-  If no --deb or --opt is specified, debug mode is assumed.
-  If no compiler is specified, `basename $0` tries to locate g++ or clang++ in
-  that order and picks the first one found.
+Options for ... expansion
+  -i, --include PATTERN   Include files matching the pattern.
+  -e, --exclude PATTERN   Exclude files matching the pattern.
+  -R, --replace PATTERN   Use this target transformation pattern.
 
-  TARGETS are assumed to be binaries. You can refer to binaries using relative
-  paths with or without the .cc extension. Special target ... can be used to
-  refer to all binaries matching a naming convention under a subdirectory tree.
-  (e.g. all *_test.cc and *_example.cc).
+Make options
+  -j, --jobs JOBS         Max concurrency level (default: number of cores * 2).
+  -k, --keep-going        Continue as much as possible in case of errors.
 
-  You may want to alias the command for convenient usage:
+Compiler options
+  -O LEVEL                Set the optimization level.
+  -g                      Add debug information.
 
-  alias ab=`readlink -f $(dirname $0)`/`basename $0`
+Special target ... can be used to refer to all targets matching the criteria
+under the specified subdirectory tree (see -a, -b, -t).
+
+You may want to alias the command for convenient usage:
+
+alias ab=`readlink -f $(dirname $0)`/`basename $0`
 
 Examples:
-  ab clean                 # Cleanup the build state.
-  ab -o base/*_test.cc     # Compile all tests under base/ in opt mode
-  ab ...                   # Compile all binaries within current directory tree.
-  ab util/...              # Compile all binaries under util/
-
-  # Compile and quietly run all tests excluding third_party
-  "'ab -r -q `find . | grep _test.cc | grep -v third_party`'"
+  ab -c                   # Cleanup the build state.
+  ab -O2 base/*_test.cc   # Compile all tests under base/ with O2 optimization.
+  ab -b ...               # Compile all binaries within current directory tree.
+  ab -tr util/...         # Compile and run all tests under util/
 
   # Enter a subdirectory and run `basename $0` with relative paths.
   cd util/cache && ab group_cache_test.cc   # or ab group_cache_test
 "
 }
 
-OPT_FLAGS='-O2'
-DBG_FLAGS='-g'
-JOBS=$[`cat /proc/cpuinfo | grep processor | wc -l` * 4]
+JOBS=$[`cat /proc/cpuinfo | grep processor | wc -l` * 2]
 COMPILER=$(basename $(readlink -f `which g++ clang++ | head -n 1`))
-
-export VARIANT_FLAGS=$DBG_FLAGS
+OPT_LEVEL="0"
 
 STDOUT=/dev/stdout
 STDERR=/dev/stderr
 
+# If we have getopt, use it.
+which getopt >/dev/null && eval set -- "$(getopt -o "htbacC:rj:kvqO:g" -l "help,test,bin,all,clear,clean,compiler:,run,jobs::,keep-going,verbose,quiet" -n `basename $0` -- "$@")"
+
+INC_PATTERN='\.cc$'
+EXC_PATTERN='third_party'
+REPLACE='s/_\(test\|server\|example\)\.cc$/_\1/g;s/\.cc$/.o/g'
+V=1
+
 while true ; do
 case "$1" in
-  -h|--help) print_usage && exit 0;;
-  -a|--all) ALL=1;;
-  -o|--opt) VARIANT_FLAGS=$OPT_FLAGS;;
-  -d|--deb) VARIANT_FLAGS=$DBG_FLAGS;;
-  -c|--compiler) shift && COMPILER=$1;;
-  -f|--flags) shift && FLAGS=$1;;
-  -r|--run) RUN=1;;
-  -t|--test) RUN=1 && TEST=1;;
-  -q) QUIET=1 && STDOUT=/dev/null && STDERR=/dev/null;;
-  -j) shift && JOBS="$1";;
-  -k) MAKE_FLAGS="$MAKE_FLAGS -k";;
-  --) shift && break ;;
-  ""|*) break ;;
+  -h|--help)          print_usage && exit 0;;
+  -a|--all)           INC_PATTERN='\.cc$';;
+  -b|--bin)           INC_PATTERN='\(_test\|_example\|_server\)\.cc$';;
+  -t|--test)          INC_PATTERN='\(_test\)\.cc$';;
+  -c|--clear|--clean) CLEAN=1;;
+  -C|--compiler)      shift && COMPILER=$1;;
+  -f|--flags)         shift && FLAGS=$1;;
+  -r|--run)           RUN=1;;
+  -i|--include)       shift && INC_PATTERN="$1";;
+  -e|--exclude)       shift && EXC_PATTERN="$1";;
+  -R|--replace)       shift && REPLACE="$1";;
+  -v|--verbose)       ((V++));;
+  -q|--quiet)         V=0 && STDOUT=/dev/null && STDERR=/dev/null;;
+  -j|--jobs)          shift && JOBS="$1";;
+  -k|--keep-going)    MAKE_FLAGS="$MAKE_FLAGS -k";;
+  -O)                 shift && OPT_LEVEL=$1;;
+  -g)                 VARIANT_FLAGS="-g";;
+  --)                 shift && break ;;
+  ""|*)               break ;;
 esac
 shift
 done
+
+[ -z $V ] && V=1
+VARIANT_FLAGS="-O$OPT_LEVEL $VARIANT_FLAGS"
+VARIANT_FLAGS=`echo $VARIANT_FLAGS`
 
 export COMPILER
 export VARIANT_FLAGS
@@ -88,33 +104,36 @@ case "$1" in
   clean) TARGETS="clean" && break;;
   "") break ;;
   *...)
-  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\_\(test\|example\|server\).cc' | grep -v third_party) ; do
-    TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET"
+  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep "$INC_PATTERN" | grep -v "$EXC_PATTERN") ; do
+    TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed "$REPLACE"` TARGETS="$TARGETS $TARGET"
   done
-  if [ "$ALL" == 1 ]; then
-  for i in $(find `echo $1 | sed 's/\.\.\.//g'` -type f | grep '\.cc' | grep -v third_party) ; do
-    TARGET=`readlink -f $i | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$#.o#g'` TARGETS="$TARGETS $TARGET"
-  done
-  fi
   ;;
-  *) TARGET=`readlink -f $1 | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed 's#\.cc$##g'` TARGETS="$TARGETS $TARGET";;
+  *) TARGET=`readlink -f $1 | sed "s#$SRC_ROOT/#$OUT_ROOT/#g" | sed "$REPLACE"` TARGETS="$TARGETS $TARGET";;
 esac
 shift
 done
 
 cd $SRC_ROOT
 
+[ -n "$CLEAN" ] && TARGETS=clean && RUN=''
+
 export BINS=$TARGETS
+
+[ $V -gt 1 ] && echo "Output: $OUT_ROOT"
+[ $V -gt 2 ] && echo "Targets:" && echo $TARGETS | sed "s#$OUT_ROOT/##g; s/ /\n/g" | sort | uniq
 
 make -s -f third_party/oztekin/auto_build/makefile -j $JOBS $MAKE_FLAGS $TARGETS | grep -v '^make: .* is up to date.$'
 
 if [ -n "$RUN" ] ; then
+  echo $TARGETS | grep -q ' .* ' && MULTIPLE_TARGETS=1
+  [ $V -gt 1 ] && VERBOSE_RUN=1
+  [ $V -eq 1 ] && [ -n "MULTIPLE_TARGETS" ] && VERBOSE_RUN=0 && STDOUT=/dev/null && STDERR=/dev/null
   for i in $TARGETS ; do
-    [ "$TEST" == 1 ] && echo $i | grep -q -v '_test$' && continue
-    [ "$QUIET" == 1 ] || echo -e "\n[exec] $i"
-    LD_LIBRARY_PATH="$SRC_ROOT/third_party/google/gmock/latest/lib/.libs:$SRC_ROOT/third_party/google/gtest/latest/lib/.libs" $i 2>$STDERR 1>$STDOUT && echo "[ ok ] $i" && SUCCESS="$SUCCESS $i" && continue
-    echo "[FAIL] $i"
-    FAIL="$FAIL $i"
+    NAME=`echo $i | sed "s#$OUT_ROOT/##g"`
+    [ -n $VERBOSE_RUN ] || echo -e "\n[exec] $i"
+    LD_LIBRARY_PATH="$SRC_ROOT/third_party/google/gmock/latest/lib/.libs:$SRC_ROOT/third_party/google/gtest/latest/lib/.libs" $i 2>$STDERR 1>$STDOUT && echo "[ ok ] $NAME" && SUCCESS="$SUCCESS $NAME" && continue
+    echo "[FAIL] $NAME"
+    FAIL="$FAIL $NAME"
   done
 fi
 

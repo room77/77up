@@ -60,11 +60,6 @@ class ServerMethod {
     return ip;
   }
 
-  bool IsOfficeIP(const string& ip) const {
-    return (ip == "50.76.63.141" || ip == "127.0.0.1" || ip == "127.0.1.1" ||
-            ip.find("192.168") == 0);
-  }
-
   // Returns the user country based on the geo ip.
   // NOTE: This will return gFlag_server_method_default_country (= "US") by
   // default when geoip service fails. This will happen, for example, when

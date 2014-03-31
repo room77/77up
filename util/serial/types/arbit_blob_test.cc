@@ -399,6 +399,50 @@ TEST(ArbitBlobTest, TestConstructor) {
   EXPECT_EQ("some_string", blob.str);
 }
 
+TEST(ArbitBlobTest, TestComparator) {
+  ArbitBlob blob1;
+  ArbitBlob blob2;
+
+  blob1 = R"({"field1": "value1"})";
+  blob2 = R"({"field1": "value1"})";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = R"({"": "value1"})";
+  blob2 = R"({"": "value1"})";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = R"({"field1": ""})";
+  blob2 = R"({"field1": ""})";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = "{ \"field1\": \n  \"value1\"}";
+  blob2 = "{\"field1\" :\t\"value1\"  }";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = R"({"field1": {"field2": "value2"})";
+  blob2 = R"({"field1": {"field2": "value2"})";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = R"({"field1": "value1 "})";
+  blob2 = R"({"field1": "value1"})";
+  EXPECT_NE(blob1, blob2);
+
+  blob1 = "{\"field1\": \"value1 with \\\"quotes\\\"\"}";
+  blob2 = "{\"field1\": \"value1 with \\\"quotes\\\"\"}";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = "{\"field1\": \"value1 with \\\"quotes \\\"\"}";
+  blob2 = "{\"field1\": \"value1 with \\\"quotes\\\"\"}";
+  EXPECT_NE(blob1, blob2);
+
+  blob1 = "{\"field1\": \"value1 with \\\\backslashes\\\\\"}";
+  blob2 = "{\"field1\": \"value1 with \\\\backslashes\\\\\"}";
+  EXPECT_EQ(blob1, blob2);
+
+  blob1 = "{\"field1\": \"value1 with \\\\backslashes \\\\\"}";
+  blob2 = "{\"field1\": \"value1 with \\\\backslashes\\\\\"}";
+  EXPECT_NE(blob1, blob2);
+}
 }  // namespace test
 }  // namespace types
 }  // namespace serial

@@ -6,6 +6,7 @@
 #include "util/init/init.h"
 #include "meta/log/common/event/trigger/event_trigger_collection.h"
 #include "util/log/remote_log.h"
+#include "util/network/office.h"
 
 
 namespace logging {
@@ -17,7 +18,7 @@ class WriteToSysLogTrigger : public EventsTriggerWithoutData {
   virtual void HandleTrigger(const tLogElement& element) const {
     // write the element into syslog
     // office ips should go into devweb
-    if (element.user_ip == "50.76.63.141") {
+    if (::util::Office::IsOfficeIP(element.user_ip)) {
       util::RemoteLog::Instance().Log(serial::Serializer::ToJSON(element),
                                       util::RemoteLog::MsgType::DEVWEB);
     } else {
