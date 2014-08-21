@@ -5,7 +5,8 @@
 #include <cassert>
 #include "tuple_util.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 void TestFunction(int i, double d) {
   cout << "Params I got: " << i << ", " << d << endl;

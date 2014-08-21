@@ -8,13 +8,14 @@
 #include <deque>
 #include "factory.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
 
 struct Base {
   virtual ~Base() {}
-  virtual string Who() const { return "Base"; }
-  virtual string Params() const { return params_.str(); }
-  stringstream params_;
+  virtual std::string Who() const { return "Base"; }
+  virtual std::string Params() const { return params_.str(); }
+  std::stringstream params_;
 };
 
 struct Derived1 : public Base {
@@ -22,23 +23,23 @@ struct Derived1 : public Base {
     params_ << n;
     cout << "Creating Derived1 with params " << Params() << endl;
   }
-  virtual string Who() const  { return "Derived1"; }
+  virtual std::string Who() const  { return "Derived1"; }
 };
 
 struct Derived2 : public Base {
-  Derived2(const string& p1, const string& p2) {
+  Derived2(const std::string& p1, const std::string& p2) {
     params_  << p1 << " " << p2;
     cout << "Creating Derived2 with params " << Params() << endl;
   }
-  virtual string Who() const { return "Derived2"; }
+  virtual std::string Who() const { return "Derived2"; }
 };
 
 struct Derived3 : public Base {
-  Derived3(const string& p1, int p2, char p3) {
+  Derived3(const std::string& p1, int p2, char p3) {
     params_ << p1 << " " << p2 << " " << p3;
     cout << "Creating Derived3 with params " << Params() << endl;
   }
-  virtual string Who() const { return "Derived3"; }
+  virtual std::string Who() const { return "Derived3"; }
 };
 
 int d1_flag = -1;
@@ -51,8 +52,8 @@ auto reg_d1_alias = Factory<Base>::alias("d1_alias", "d1");
 // In this case, params are not mutable, so it may be fine not to use refs.
 auto reg_d2 = Factory<Base>::bind("d2", [](){ return new Derived2("hello", "world"); });
 
-// Register a parameterized version with 3 parameters (string, int and char).
-auto reg_p1 = Factory<Base, string, string, int, char>::bind("p1", "default", 10, 't', [](const string& str, int i, char c){ return new Derived3(str, i, c); });
+// Register a parameterized version with 3 parameters (std::string, int and char).
+auto reg_p1 = Factory<Base, std::string, std::string, int, char>::bind("p1", "default", 10, 't', [](const std::string& str, int i, char c){ return new Derived3(str, i, c); });
 }
 
 void TestBasicFunctionality() {
@@ -111,25 +112,25 @@ void TestParameterizedFunctionality() {
   cout << "\nTesting parameterized functionality\n" << endl;
   // Create one using default parameters.
   {
-    auto p1 = Factory<Base, string, string, int, char>::make_unique("p1");
+    auto p1 = Factory<Base, std::string, std::string, int, char>::make_unique("p1");
     assert(p1.get());
     assert(p1->Who() == "Derived3");
     assert(p1->Params() == "default 10 t");
   }
   // Create one with fully specified on-the-fly parameters.
   {
-    auto p1 = Factory<Base, string, string, int, char>::make_unique("p1", "unique1", 1, 'a');
+    auto p1 = Factory<Base, std::string, std::string, int, char>::make_unique("p1", "unique1", 1, 'a');
     assert(p1.get());
     assert(p1->Who() == "Derived3");
     assert(p1->Params() == "unique1 1 a");
   }
   // Override a subset of the parameters.
   {
-    auto p1 = Factory<Base, string, string, int, char>::make_updated("p1", "test1", 1);
-    auto p2 = Factory<Base, string, string, int, char>::make_shared("p1", "test2", 2);
-    auto p3 = Factory<Base, string, string, int, char>::make_shared("p1", "test2", 2);
-    auto p4 = Factory<Base, string, string, int, char>::make_shared("p1");
-    auto p5 = Factory<Base, string, string, int, char>::make_shared("p1", "test5");
+    auto p1 = Factory<Base, std::string, std::string, int, char>::make_updated("p1", "test1", 1);
+    auto p2 = Factory<Base, std::string, std::string, int, char>::make_shared("p1", "test2", 2);
+    auto p3 = Factory<Base, std::string, std::string, int, char>::make_shared("p1", "test2", 2);
+    auto p4 = Factory<Base, std::string, std::string, int, char>::make_shared("p1");
+    auto p5 = Factory<Base, std::string, std::string, int, char>::make_shared("p1", "test5");
     assert(p1.get() && p1->Who() == "Derived3");
     assert(p2.get() && p2->Who() == "Derived3");
     assert(p3.get() && p3->Who() == "Derived3");
@@ -149,25 +150,25 @@ void TestParameterizedFunctionality() {
 void TestKeyEnumerationFunctionality() {
   cout << "\nTesting key enumeration functionality\n" << endl;
   {
-    auto keys = Factory<Base>::keys<vector>();
+    auto keys = Factory<Base>::keys<std::vector>();
     cout << "Registered keys for Factory<Base>:\n";
     for (const auto& k : keys) cout << k << endl;
     cout << endl;
     assert(keys.size() == 3);
   }
   {
-    auto keys = Factory<Base, string, string, int, char>::keys<deque>();
-    cout << "Registered keys for Factory<Base, string, string, int, char>:\n";
+    auto keys = Factory<Base, std::string, std::string, int, char>::keys<std::deque>();
+    cout << "Registered keys for Factory<Base, std::string, std::string, int, char>:\n";
     for (const auto& k : keys) cout << k << endl;
     cout << endl;
     assert(keys.size() == 1);
   }
   {
-    auto key_values = Factory<Base, string, string, int, char>::key_values<map>();
-    cout << "Registered keys and values for Factory<Base, string, string, int, char>:\n";
+    auto key_values = Factory<Base, std::string, std::string, int, char>::key_values<std::map>();
+    cout << "Registered keys and values for Factory<Base, std::string, std::string, int, char>:\n";
     for (const auto& k : key_values)
-      cout << k.first << " " << get<0>(k.second) << " " << get<1>(k.second)
-           << " " << get<2>(k.second) << endl;
+      cout << k.first << " " << std::get<0>(k.second) << " " << std::get<1>(k.second)
+           << " " << std::get<2>(k.second) << endl;
     assert(key_values.size() == 1);
   }
 }

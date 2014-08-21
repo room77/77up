@@ -184,6 +184,7 @@ auto p3 = Factory<Base, string, string, int, char>::make_shared("derived", "test
 template<class T, class Key = std::string, class... Params>
 class Factory {
   struct allocator_base {
+    virtual ~allocator_base(){}
     virtual T* operator()(Params... p) const = 0;
   };
 
