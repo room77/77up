@@ -93,7 +93,7 @@ VARIANT_FLAGS=`echo $VARIANT_FLAGS`
 
 export COMPILER
 export VARIANT_FLAGS
-export INVARIANT_FLAGS="-std=c++11 $FLAGS"
+export INVARIANT_FLAGS="-std=c++1y -pthread $FLAGS"
 export SRC_ROOT=$(readlink -f `dirname $0`)
 export OUT_ROOT=$(echo $( [ -d "$TMPDIR" ] && echo "$TMPDIR" || echo /tmp)/$USER $COMPILER $VARIANT_FLAGS/$SRC_ROOT | sed 's#//#/#g; s# #_#g')
 
