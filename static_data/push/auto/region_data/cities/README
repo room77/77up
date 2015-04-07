@@ -1,0 +1,8 @@
+DO NOT MODIFY the file
+'/home/share/data/region_data/cities/current/cities.csv' manually.
+
+It is generated after merging source files in
+'static_data/dev_only/region_data/cities'.
+
+To update this file, make necessary changes in the source files and run:
+'cd pipeline/manual/region_data && ./zeus_city_data.sh'
