@@ -1,0 +1,4 @@
+"eid","name","city_eid","city","state_iso_code_short","country_iso_code_2char","alternate_names","lat","lon"
+# NOTE Only the columns "eid" and "city_eid" are actually used
+"n/85108","The Strip","c/las vegas,NV,US","Las Vegas","NV","US","",36.1201,-115.165
+
