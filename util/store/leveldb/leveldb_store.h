@@ -68,27 +68,27 @@ class LeveldbStore : public Store<std::string, std::string> {
 
   iterator find(const key_type& k) const {
     std::lock_guard<std::recursive_mutex> l(mutex_);
-    leveldb::Iterator* iter = db_->NewIterator(leveldb::ReadOptions());
+    std::unique_ptr<leveldb::Iterator> iter(db_->NewIterator(leveldb::ReadOptions()));
     iter->Seek(k);
     return iter->status().ok() && iter->Valid() && iter->key() == k ?
-        Store<>::iterator(new LeveldbStoreIterator(iter)) : end();
+        Store<>::iterator(new LeveldbStoreIterator(iter.release())) : end();
   }
 
   iterator lower_bound(const key_type& k) const {
     std::lock_guard<std::recursive_mutex> l(mutex_);
-    leveldb::Iterator* iter = db_->NewIterator(leveldb::ReadOptions());
+    std::unique_ptr<leveldb::Iterator> iter(db_->NewIterator(leveldb::ReadOptions()));
     iter->Seek(k);
     return iter->status().ok() ?
-        Store<>::iterator(new LeveldbStoreIterator(iter)) : end();
+        Store<>::iterator(new LeveldbStoreIterator(iter.release())) : end();
   }
 
   iterator upper_bound(const key_type& k) const {
     std::lock_guard<std::recursive_mutex> l(mutex_);
-    leveldb::Iterator* iter = db_->NewIterator(leveldb::ReadOptions());
+    std::unique_ptr<leveldb::Iterator> iter(db_->NewIterator(leveldb::ReadOptions()));
     iter->Seek(k);
     while (iter->Valid() && iter->key() == k) iter->Next();
     return iter->status().ok() ?
-        Store<>::iterator(new LeveldbStoreIterator(iter)) : end();
+        Store<>::iterator(new LeveldbStoreIterator(iter.release())) : end();
   }
 
   iterator begin() const {
