@@ -17,9 +17,20 @@ bool WebServer::HttpRequestIsComplete(const string& r,
   // after two consecutive newlines.
   const char *start = r.c_str();
 
-  const char *s = strstr(start, "\n\n");
-  if (s == NULL)
-    s = strstr(start, "\r\n\r\n");
+  const char *s;
+
+  const char *nn_newlines = strstr(start, "\n\n");
+  const char *rnrn_newlines = strstr(start, "\r\n\r\n");
+
+  if (nn_newlines == NULL) {
+    s = rnrn_newlines;
+  } else if (rnrn_newlines == NULL) {
+    s = nn_newlines;
+  } else {
+    // if both newline types are found, choose the one that occurs first
+    // to represent the end of the header
+    s = (nn_newlines < rnrn_newlines) ? nn_newlines : rnrn_newlines;
+  }
 
   if (s == NULL)
     return false;

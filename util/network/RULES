@@ -104,3 +104,8 @@ test(name = "util_test",
      src  = [ "util_test.cc" ],
      dep  = [ "util",
               "/public/test/cc/test_main" ])
+
+test(name = "webserver_test",
+     src  = [ "webserver_test.cc" ],
+     dep  = [ "webserver",
+              "/public/test/cc/test_main" ])
