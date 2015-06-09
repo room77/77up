@@ -1,0 +1,6 @@
+"eid"|"modifier"|"before"
+"r/cheap"|" hotels"|"false"
+"m/region"|"hotels near "|"true"
+"m/neighborhood"|"hotels in "|"true"
+"*"|"hotels with "|"true"
+

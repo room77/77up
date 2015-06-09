@@ -1,0 +1,4 @@
+"eid","name","city_eid","city","state_iso_code_short","country_iso_code_2char","alternate_names","lat","lon"
+# only the first column "eid" is used
+"n/2222","Union Square","c/san francisco,CA,US","San Francisco","CA","US","",37.7879,-122.408
+

@@ -1,0 +1,255 @@
+﻿"iso_code_2char","iso_code_3char","iso_code_numeric","fips_code","iata_code","name","iso_currency_code","alternate_names","lat","lon"
+"US","USA",840,"US","885","United States","USD","America|United State of America|estados unidos|tats unis|united states of america|vereinigte staaten von amerika",38,-97
+"CA","CAN",124,"CA","145","Canada","CAD","canad|kanada",60,-95
+"AF","AFG",4,"AF","010","Afghanistan","AFN","afganistan",33,65
+"AL","ALB",8,"AL","015","Albania","ALL","albanie|albanien",41,20
+"DZ","DZA",12,"AG","020","Algeria","DZD","algerie|algerien|argelia",28,3
+"AS","ASM",16,"AQ","710","American Samoa","USD","amerikanisch samoa|samoa americaines|samoa americana",-14.3333,-170
+"AD","AND",20,"AN","000","Andorra","EUR","andorre",42.5,1.5
+"AO","AGO",24,"AO","025","Angola","AOA","",-12.5,18.5
+"AI","AIA",660,"AV","000","Anguilla","XCD","",18.25,-63.1667
+"AQ","ATA",10,"AY","000","Antarctica","USD","antarctique|antarktis|antartida",-90,0
+"AG","ATG",28,"AC","000","Antigua and Barbuda","XCD","Antigua|antigua et barbuda|antigua und barbuda|antigua y barbuda",17.05,-61.8
+"AR","ARG",32,"AR","030","Argentina","ARS","argentine|argentinien",-34,-64
+"AM","ARM",51,"AM","000","Armenia","AMD","armenie|armenien",40,45
+"AW","ABW",533,"AA","570","Aruba","AWG","",12.5,-69.9667
+"AU","AUS",36,"AS","040","Australia","AUD","australie|australien",-27,133
+"AT","AUT",40,"AU","045","Austria","EUR","autriche|sterreich",47.3333,13.3333
+"AZ","AZE",31,"AJ","000","Azerbaijan","AZN","aserbaidschan|azerbaidjan|azerbaiyan",40.5,47.5
+"BS","BHS",44,"BF","055","Bahamas","BSD","",24.25,-76
+"BH","BHR",48,"BA","060","Bahrain","BHD","bahrein",26,50.55
+"BD","BGD",50,"BG","070","Bangladesh","BDT","bangladesch",24,90
+"BB","BRB",52,"BB","105","Barbados","BBD","barbade",13.1667,-59.5333
+"BY","BLR",112,"BO","000","Belarus","BYR","bielorrusia|bielorussie|weißrussland",53,28
+"BE","BEL",56,"BE","075","Belgium","EUR","belgica|belgien|belgique",50.8333,4
+"BZ","BLZ",84,"BH","100","Belize","BZD","belice",17.25,-88.75
+"BJ","BEN",204,"BN","245","Benin","XOF","",9.5,2.25
+"BM","BMU",60,"BD","080","Bermuda","BMD","bermudas|bermudes",32.3333,-64.75
+"BT","BTN",64,"BT","000","Bhutan","BTN","bhoutan|butan",27.5,90.5
+"VE","VEN",862,"VE","905","Bolivarian Republic of Venezuela","VEF","venezuela",8,-66
+"BA","BIH",70,"BK","000","Bosnia and Herzegovina","BAM","bosnia y herzegovina|bosnie et herzegovine|bosnien und herzegowina",44,18
+"BW","BWA",72,"BC","087","Botswana","BWP","",-22,24
+"BV","BVT",74,"BV","000","Bouvet Island","NOK","bouvet is",-54.4333,3.4
+"BR","BRA",76,"BR","090","Brazil","BRL","brasil|brasilien|bresil",-10,-55
+"IO","IOT",86,"IO","000","British Indian Ocean Territory","USD","",-6,71.5
+"VG","VGB",92,"VI","105","British Virgin Islands","USD","britische jungferninseln|islas virgenes del reino unido|les vierges britanniques",18.5,-64.5
+"BN","BRN",96,"BX","115","Brunei Darussalam","BND","brunei",4.5,114.667
+"BG","BGR",100,"BU","120","Bulgaria","BGN","bulgarie|bulgarien",43,25
+"BF","BFA",854,"UV","890","Burkina Faso","XOF","",13,-2
+"BI","BDI",108,"BY","130","Burundi","BIF","",-3.5,30
+"KH","KHM",116,"CB","135","Cambodia","KHR","cambodge|camboya|kambodscha",13,105
+"CM","CMR",120,"CM","140","Cameroon","XAF","cameroun|camerun|kamerun",6,12
+"CV","CPV",132,"CV","165","Cape Verde","CVE","cabo verde|cap vert|kap verde",16,-24
+"KY","CYM",136,"CJ","996","Cayman Islands","KYD","Caman Islands|Cayman is|cayman inseln|islas caiman|les caimans",19.5,-80.5
+"CF","CAF",140,"CT","170","Central African Republic","XAF","republica centroafricana|republique centrafricaine|zentralafrikanische republik",7,21
+"TD","TCD",148,"CD","180","Chad","XAF","tchad|tschad",15,19
+"CL","CHL",152,"CI","185","Chile","CLF","",-30,-71
+"CN","CHN",156,"CH","190","China","CNY","chine|people s republic of china",35,105
+"CX","CXR",162,"KT","000","Christmas Island","AUD","christmas is",-10.5,105.667
+"CC","CCK",166,"CK","000","Cocos (Keeling) Islands","AUD","cocos islands",-12.5,96.8333
+"CO","COL",170,"CO","115","Colombia","COP","colombie|kolumbien",4,-72
+"KM","COM",174,"CN","200","Comoros","KMF","comores|komoren",-12.1667,44.25
+"CG","COG",178,"CF","205","Congo","XAF","kongo|republic of the congo",-1,15
+"CK","COK",184,"CW","215","Cook Islands","NZD","cookinseln|islas cook|les cook",-21.2333,-159.767
+"CR","CRI",188,"CS","220","Costa Rica","CRC","",10,-84
+"HR","HRV",191,"HR","191","Croatia","HRK","croacia|croatie|kroatien",45.1667,15.5
+"CU","CUB",192,"CU","225","Cuba","CUC","kuba",21.5,-80
+"CW","CUW",531,"","","Curaçao","ANG","curacao curacao korsou",12.1696,-68.99
+"CY","CYP",196,"CY","235","Cyprus","EUR","chipre|chypre|zypern",35,33
+"CZ","CZE",203,"EZ","240","Czech Republic","CZK","republica checa|republique tcheque|tschechische republik",49.75,15.5
+"CI","CIV",384,"IV","425","Côte D'Ivoire","XOF","",8,-5
+"KP","PRK",408,"KN","000","Democratic People's Republic Of Korea","KPW","corea del norte|coree du nord|korea north|nordkorea|north korea",40,127
+"DK","DNK",208,"DA","250","Denmark","DKK","danemark|dinamarca",56,10
+"DJ","DJI",262,"DJ","750","Djibouti","DJF","",11.5,43
+"DM","DMA",212,"DO","105","Dominica","XCD","",15.4167,-61.3333
+"DO","DOM",214,"DR","255","Dominican Republic","DOP","dominikanische republik|republica dominicana|republique dominicaine",19,-70.6667
+"EC","ECU",218,"EC","260","Ecuador","USD","quateur",-2,-77.5
+"EG","EGY",818,"EG","375","Egypt","EGP","egipto|gypte|gypten",27,30
+"SV","SLV",222,"ES","262","El Salvador","USD","salvador",13.8333,-88.9167
+"GQ","GNQ",226,"EK","264","Equatorial Guinea","XAF","guinea ecuatorial|guinee equatoriale|quatorial guinea",2,10
+"ER","ERI",232,"ER","000","Eritrea","ERN","rythree",15,39
+"EE","EST",233,"EN","000","Estonia","EUR","estland|estonie",59,26
+"ET","ETH",231,"ET","265","Ethiopia","ETB","etiopia|thiopie|thiopien",8,38
+"EU","",0,"","","European Union","EUR","",47,8
+"FK","FLK",238,"FK","000","Falkland Islands (Malvinas)","FKP","falkland islands|falkland islands islas malvinas|falklandinseln|islas malvinas|les malouines",-51.75,-59
+"FO","FRO",234,"FO","000","Faroe Islands","DKK","faroer inseln|islas faroe|les fero",62,-7
+"FM","FSM",583,"FM","000","Federated States Of Micronesia","USD","Micronesia|micronesia|micronesie|mikronesien",6.9167,158.25
+"FJ","FJI",242,"FJ","743","Fiji","FJD","fidji|fidschi",-18,175
+"FI","FIN",246,"FI","285","Finland","EUR","finlande|finlandia|finnland",64,26
+"FR","FRA",250,"FR","295","France","EUR","francia|frankreich|the french republic",46,2
+"GF","GUF",254,"FG","300","French Guiana","EUR","franzosisch guyana|guayana francesa|guyane francaise",4,-53
+"PF","PYF",258,"FP","305","French Polynesia","XPF","franzosisch polynesien|polinesia francesa|polynesie francaise",-15,-140
+"TF","ATF",260,"FS","000","French Southern Territories","EUR","franzosische sudgebiete|terres australes francaises|territorios franceses del sur",-43,67
+"GA","GAB",266,"GB","310","Gabon","XAF","gabun",-1,11.75
+"GM","GMB",270,"GA","315","Gambia","GMD","the gambia",13.4667,-16.5667
+"GE","GEO",268,"GG","000","Georgia","GEL","georgie|georgien",42,43.5
+"DE","DEU",276,"GM","320","Germany","EUR","alemania|allemagne|deutschland",51,9
+"GH","GHA",288,"GH","325","Ghana","GHS","",8,-2
+"GI","GIB",292,"GI","330","Gibraltar","GIP","",36.1833,-5.3667
+"GR","GRC",300,"GR","335","Greece","EUR","grece|grecia|griechenland",39,22
+"GL","GRL",304,"GL","340","Greenland","DKK","groenland|groenlandia|gronland",72,-40
+"GD","GRD",308,"GJ","000","Grenada","XCD","",12.1167,-61.6667
+"GP","GLP",312,"GP","345","Guadeloupe","EUR","guadalupe",16.25,-61.5833
+"GU","GUM",316,"GQ","885","Guam","USD","",13.4667,144.783
+"GT","GTM",320,"GT","355","Guatemala","GTQ","",15.5,-90.25
+"GG","GGY",831,"GK","000","Guernsey","GBP","guernsey and alderney|guernsey et alderney|guernsey und alderney|guernsey y alderney",49.4657,-2.58528
+"GN","GIN",324,"GV","360","Guinea","GNF","guinee",11,-10
+"GW","GNB",624,"PU","670","Guinea-Bissau","XOF","guinee bissau",12,-15
+"GY","GUY",328,"GY","095","Guyana","GYD","",5,-59
+"HT","HTI",332,"HA","365","Haiti","HTG","",19,-72.4167
+"HM","HMD",334,"HM","334","Heard Island and McDonald Islands","AUD","heard is and mcdonald islands",-53.1,72.5167
+"VA","VAT",336,"VT","000","Holy See (Vatican City State)","EUR","cite du vatican|ciudad del vaticano|holy see|vatican city|vatikan",41.9,12.45
+"HN","HND",340,"HO","370","Honduras","HNL","",15,-86.5
+"HK","HKG",344,"HK","375","Hong Kong","HKD","",22.25,114.167
+"HU","HUN",348,"HU","380","Hungary","HUF","hongrie|hungria|ungarn",47,20
+"IS","ISL",352,"IC","385","Iceland","ISK","is|islande|islandia",65,-18
+"IN","IND",356,"IN","390","India","INR","inde|indien",20,77
+"ID","IDN",360,"ID","395","Indonesia","IDR","indonesie|indonesien",-5,120
+"IQ","IRQ",368,"IZ","405","Iraq","IQD","irak",33,44
+"IE","IRL",372,"EI","410","Ireland","EUR","irland|irlanda|irlande|republic of ireland",53,-8
+"IR","IRN",364,"IR","400","Islamic Republic Of Iran","IRR","iran",32,53
+"IM","IMN",833,"IM","000","Isle of Man","GBP","isla de man|le de man|man",54.2361,-4.54806
+"IL","ISR",376,"IS","415","Israel","ILS","",31.5,34.75
+"IT","ITA",380,"IT","420","Italy","EUR","italia|italie|italien",42.8333,12.8333
+"JM","JAM",388,"JM","430","Jamaica","JMD","jamaika|jamaique",18.25,-77.5
+"JP","JPN",392,"JA","435","Japan","JPY","japon",36,138
+"JE","JEY",832,"JE","000","Jersey","GBP","",49.2138,-2.13577
+"JO","JOR",400,"JO","440","Jordan","JOD","jordania|jordanie|jordanien",31,36
+"KZ","KAZ",398,"KZ","000","Kazakhstan","KZT","kasachstan|kazajistan",48,68
+"KE","KEN",404,"KE","450","Kenya","KES","kenia",1,38
+"KI","KIR",296,"KR","743","Kiribati","AUD","",1.4167,173
+"KW","KWT",414,"KU","455","Kuwait","KWD","koweit",29.3375,47.6581
+"KG","KGZ",417,"KG","417","Kyrgyzstan","KGS","kirghizistan|kirgisistan|kirguizistan",41,75
+"LA","LAO",418,"LA","460","Lao People's Democratic Republic","LAK","laos",18,105
+"LV","LVA",428,"LG","000","Latvia","LVL","letonia|lettland|lettonie",57,25
+"LB","LBN",422,"LE","465","Lebanon","LBP","liban|libano|libanon",33.8333,35.8333
+"LS","LSO",426,"LT","468","Lesotho","LSL","",-29.5,28.5
+"LR","LBR",430,"LI","470","Liberia","LRD","",6.5,-9.5
+"LY","LBY",434,"LY","475","Libya","LYD","libia|libye|libyen",25,17
+"LI","LIE",438,"LS","000","Liechtenstein","CHF","",47.1667,9.5333
+"LT","LTU",440,"LH","000","Lithuania","LTL","litauen|lituania|lituanie",56,24
+"LU","LUX",442,"LU","480","Luxembourg","EUR","luxemburg|luxemburgo",49.75,6.1667
+"MO","MAC",446,"MC","000","Macao","MOP","macau",22.1667,113.55
+"MG","MDG",450,"MA","495","Madagascar","MGA","madagaskar|the republic of madagascar",-20,47
+"MW","MWI",454,"MI","500","Malawi","MWK","",-13.5,34
+"MY","MYS",458,"MY","505","Malaysia","MYR","malaisie|malasia",2.5,112.5
+"MV","MDV",462,"MV","507","Maldives","MVR","maldivas|malediven",3.25,73
+"ML","MLI",466,"ML","510","Mali","XOF","",17,-4
+"MT","MLT",470,"MT","515","Malta","EUR","malte",35.8333,14.5833
+"MH","MHL",584,"RM","520","Marshall Islands","USD","islas marshall|les marshall|marshall inseln",9,168
+"MQ","MTQ",474,"MB","345","Martinique","EUR","martinica",14.6667,-61
+"MR","MRT",478,"MR","525","Mauritania","MRO","mauretanien|mauritanie",20,-12
+"MU","MUS",480,"MP","530","Mauritius","MUR","le maurice|mauricio",-20.2833,57.55
+"YT","MYT",175,"MF","000","Mayotte","EUR","",-12.8333,45.1667
+"MX","MEX",484,"MX","535","Mexico","MXN","mexiko|mexique",23,-102
+"MC","MCO",492,"MN","540","Monaco","EUR","",43.7333,7.4
+"MN","MNG",496,"MG","545","Mongolia","MNT","mongolei|mongolie",46,105
+"ME","MNE",499,"MJ","978","Montenegro","EUR","crna gora",42,19
+"MS","MSR",500,"MH","000","Montserrat","XCD","",16.75,-62.2
+"MA","MAR",504,"MO","550","Morocco","MAD","maroc|marokko|marruecos",32,-5
+"MZ","MOZ",508,"MZ","555","Mozambique","MZN","mosambik",-18.25,35
+"MM","MMR",104,"BM","000","Myanmar","MMK","",22,98
+"NA","NAM",516,"WA","770","Namibia","NAD","namibie",-22,17
+"NR","NRU",520,"NR","743","Nauru","AUD","",-0.5333,166.917
+"NP","NPL",524,"NP","560","Nepal","NPR","the federal democratic republic of nepal",28,84
+"AN","",0,"","000","Netherland Antilles","ANG","",0,0
+"NL","NLD",528,"NL","505","Netherlands","EUR","niederlande|paises bajos|pays bas",52.5,5.75
+"NC","NCL",540,"NC","575","New Caledonia","XPF","neukaledonien|nouvelle caledonie|nueva caledonia",-21.5,165.5
+"NZ","NZL",554,"NZ","670","New Zealand","NZD","neuseeland|nouvelle za©lande|nueva zelanda",-41,174
+"NI","NIC",558,"NU","595","Nicaragua","NIO","",13,-85
+"NE","NER",562,"NG","600","Niger","XOF","",16,8
+"NG","NGA",566,"NI","605","Nigeria","NGN","the federal republic of nigeria",10,8
+"NU","NIU",570,"NE","215","Niue","NZD","",-19.0333,-169.867
+"NF","NFK",574,"NF","000","Norfolk Island","AUD","isla de norfolk|le de norfolk|norfolk is",-29.0333,167.95
+"MP","MNP",580,"CQ","000","Northern Mariana Islands","USD","islas marianas del norte|mariannes du nord|nordliche marianen",15.2,145.75
+"NO","NOR",578,"NO","275","Norway","NOK","noruega|norvege|norwegen",62,10
+"PS","PSE",275,"WE/GZ","997","Occupied Palestinian Territory","PSZ","Gaza|Gaza Strip|West Bank|West Bank and Gaza|palastina|palestina|palestine|the occupied palestinian territory|west bank and gaza strip",32,35.25
+"OM","OMN",512,"MU","630","Oman","OMR","",21,57
+"PK","PAK",586,"PK","635","Pakistan","PKR","paquistan",30,70
+"PW","PLW",585,"PS","000","Palau","USD","",7.5,134.5
+"PA","PAN",591,"PM","640","Panama","PAB","panam",9,-80
+"PG","PNG",598,"PP","642","Papua New Guinea","PGK","papouasie nouvelle guinee|papua neuguinea|papua nueva guinea",-6,147
+"PY","PRY",600,"PA","645","Paraguay","PYG","",-23,-58
+"PE","PER",604,"PE","650","Peru","PEN","per|perou",-10,-76
+"PH","PHL",608,"RP","655","Philippines","PHP","filipinas|philippinen",13,122
+"PN","PCN",612,"PC","000","Pitcairn","NZD","pitcairn islands",-24.7036,-127.439
+"BO","BOL",68,"BL","035","Plurinational State Of Bolivia","BOB","bolivia|bolivie|bolivien",-17,-65
+"PL","POL",616,"PL","660","Poland","PLN","polen|pologne|polonia",52,20
+"PT","PRT",620,"PO","665","Portugal","EUR","",39.5,-8
+"PR","PRI",630,"RQ","","Puerto Rico","USD","",18.25,-66.5
+"QA","QAT",634,"QA","680","Qatar","QAR","katar",25.5,51.25
+"KR","KOR",410,"KS","760","Republic of Korea","KRW","corea del sur|coree du sud|korea south|south korea|sudkorea",37,127.5
+"XK","XKX",0,"","","Republic of Kosovo","EUR","kosovo",42.5,21
+"MD","MDA",498,"MD","000","Republic of Moldova","MDL","moldavia|moldavie|moldawien|moldova|the republic of moldova",47,29
+"RO","ROU",642,"RO","690","Romania","RON","roumanie|rumania|rumanien",46,25
+"RU","RUS",643,"RS","000","Russian Federation","RUB","Soviet Union|USSR|rusia|russia|russie|russland",60,100
+"RW","RWA",646,"RW","695","Rwanda","RWF","ruanda",-2,30
+"RE","REU",638,"RE","685","Réunion","EUR","",-21.1,55.6
+"BL","BLM",652,"TB","","Saint Barthélemy","EUR","st barthelemy",17.9,-62.8333
+"SH","SHN",654,"SH","000","Saint Helena - Ascension and Tristan Da Cunha","SHP","sainte helene|sankt helena|santa helena|st helena|st helena ascension and tristan da cunha",-15.9333,-5.7
+"KN","KNA",659,"SC","105","Saint Kitts And Nevis","XCD","st kitts and nevis|st kitts et nevis|st kitts y nevis",17.3333,-62.75
+"LC","LCA",662,"ST","105","Saint Lucia","XCD","santa lucia|st lucia|st lucie",13.8833,-61.1333
+"MF","MAF",663,"RN","","Saint Martin (French Part)","EUR","st martin|st martin french part",18.0525,-63.0737
+"PM","SPM",666,"SB","000","Saint Pierre And Miquelon","EUR","san pedro y miquelon|st pierre and miquelon|st pierre et miquelon",46.8333,-56.3333
+"VC","VCT",670,"VC","105","Saint Vincent And The Grenadines","XCD","san vicente y granadinas|st vincent and the grenadines|st vincent et les grenadines|st vincent und die grenadinen",13.25,-61.2
+"WS","WSM",882,"WS","920","Samoa","WST","",-13.5833,-172.333
+"SM","SMR",674,"SM","000","San Marino","EUR","st marin",43.9333,12.4667
+"ST","STP",678,"TP","715","Sao Tome and Principe","STD","santo tome y principe|sao tome et principe|sao tome und principe",1,7
+"SA","SAU",682,"SA","720","Saudi Arabia","SAR","arabia saud|arabie saoudite|saudi arabien",25,45
+"SN","SEN",686,"SG","725","Senegal","XOF","",14,-14
+"RS","SRB",688,"RI","941","Serbia","RSD","serbie|serbien",44,21
+"CS","",0,"","891","Serbia And Montenegro","CSD","",0,0
+"SC","SYC",690,"SE","730","Seychelles","SCR","",-4.5833,55.6667
+"SL","SLE",694,"SL","735","Sierra Leone","SLL","",8.5,-11.5
+"SG","SGP",702,"SN","740","Singapore","SGD","singapour|singapur",1.3667,103.8
+"BQ","BES",535,"","","Sint Eustatius and Saba Bonaire","USD","bonaire|sint eustatius and saba|sint eustatius en saba",12.1784,-68.2385
+"SX","SXM",534,"","","Sint Maarten (Dutch part)","ANG","sint maarten",18.0273,-63.0501
+"SK","SVK",703,"LO","000","Slovakia","EUR","republica eslovaca|slovaquie|slowakei",48.6667,19.5
+"SI","SVN",705,"SI","000","Slovenia","EUR","eslovenia|slovenie|slowenien",46,15
+"SB","SLB",90,"BP","743","Solomon Islands","SBD","islas salomon|les salomon|salomonen",-8,159
+"SO","SOM",706,"SO","745","Somalia","SOS","",10,49
+"ZA","ZAF",710,"SF","775","South Africa","ZAR","afrique du sud|republica de sudafrica|republik sudafrika",-29,24
+"GS","SGS",239,"SX","000","South Georgia and the South Sandwich Islands","GBP","",-54.5,-37
+"SS","SSD",728,"OD","","South Sudan","SSP","",7.96309,30.1589
+"ES","ESP",724,"SP","780","Spain","EUR","espagne|espana|spanien",40,-4
+"LK","LKA",144,"CE","175","Sri Lanka","LKR","",7,81
+"SD","SDN",729,"SU","800","Sudan","SDG","soudan",15,30
+"SR","SUR",740,"NS","805","Suriname","SRD","surinam",4,-56
+"SJ","SJM",744,"SV","000","Svalbard And Jan Mayen","NOK","islas svalbard y jan mayen|les svalbard et jan mayen|svalbard|svalbard und jan mayen",78,20
+"SZ","SWZ",748,"WZ","810","Swaziland","SZL","suazilandia|swasiland",-26.5,31.5
+"SE","SWE",752,"SW","815","Sweden","SEK","schweden|suecia|suede",62,15
+"CH","CHE",756,"SZ","820","Switzerland","CHE","schweiz|suisse|suiza",47,8
+"SY","SYR",760,"SY","825","Syrian Arab Republic","SYP","siria|syria|syrie|syrien",35,38
+"TW","TWN",158,"TW","290","Taiwan","TWD","",23.5,121
+"TJ","TJK",762,"TI","000","Tajikistan","TJS","tadschikistan|tayikistan",39,71
+"TH","THA",764,"TH","835","Thailand","THB","tailandia|thailande",15,100
+"CD","COD",180,"CG","000","The Democratic Republic Of The Congo","CDF","congo dem rep|congo rep dem|democratic republic of the congo|kongo dem rep",0,25
+"TL","TLS",626,"TT","000","Timor-Leste","USD","east timor|ost timor|timor oriental",-8.87422,125.728
+"TG","TGO",768,"TO","845","Togo","XOF","",8,1.1667
+"TK","TKL",772,"TL","000","Tokelau","NZD","islas tokelau|les tokelau",-9,-172
+"TO","TON",776,"TN","743","Tonga","TOP","",-20,-175
+"TT","TTO",780,"TD","853","Trinidad and Tobago","TTD","trinidad und tobago|trinidad y tobago|trinite et tobago",11,-61
+"TN","TUN",788,"TS","860","Tunisia","TND","tunesien|tunez|tunisie",34,9
+"TR","TUR",792,"TU","865","Turkey","TRY","turkei|turquia|turquie",39,35
+"TM","TKM",795,"TX","000","Turkmenistan","TMT","",40,60
+"TC","TCA",796,"TK","997","Turks and Caicos Islands","USD","Turks and Caicos|islas turks y caicos|les turks et caicos|turks und caicosinseln",21.75,-71.5833
+"TV","TUV",798,"TV","743","Tuvalu","AUD","",-8,178
+"VI","VIR",850,"VQ","","U.S. Virgin Islands","USD","Virgin Islands|amerikanische jungferninseln|islas virgenes de los estados unidos|les vierges americaines|virgin islands of the united states",18.3333,-64.8333
+"UG","UGA",800,"UG","870","Uganda","UGX","republic of uganda",1,32
+"UA","UKR",804,"UP","000","Ukraine","UAH","ucrania",49,32
+"AE","ARE",784,"AE","855","United Arab Emirates","AED","emiratos arabes unidos|mirats arabes unis|vereinigte arabische emirate",24,54
+"GB","GBR",826,"UK","880","United Kingdom","GBP","England|Northern Ireland|Scotland|Wales|groaabritannien|reino unido|royaume uni",54,-2
+"TZ","TZA",834,"TZ","883","United Republic of Tanzania","TZS","tansania|tanzania|tanzanie",-6,35
+"UM","UMI",581,"","000","United States Minor Outlying Islands","USD","dependances americaines|islas menores de estados unidos|us amerikanische hoheitsgebiete",19.2833,166.6
+"UY","URY",858,"UY","895","Uruguay","UYI","",-33,-56
+"UZ","UZB",860,"UZ","000","Uzbekistan","UZS","ouzbekistan|usbekistan",41,64
+"VU","VUT",548,"NH","585","Vanuatu","VUV","",-16,167
+"VN","VNM",704,"VM","765","Viet Nam","VND","vietnam",16,106
+"WF","WLF",876,"WF","000","Wallis and Futuna","XPF","wallis et futuna|wallis und futuna|wallis y futuna",-13.3,-176.2
+"EH","ESH",732,"WI","000","Western Sahara","MAD","sahara occidental|westsahara",24.5,-13
+"YE","YEM",887,"YM","730","Yemen","YER","jemen",15,48
+"YU","",0,"","935","Yugoslavia","YUG","",0,0
+"ZM","ZMB",894,"ZA","938","Zambia","ZMK","sambia|zambie",-15,30
+"ZW","ZWE",716,"ZI","775","Zimbabwe","ZWL","simbabwe|zimbabue",-20,30
+"MK","MKD",807,"MK","000","the Former Yugoslav Republic Of Macedonia","MKD","F.Y.R.O. Macedonia|macedoine|macedonia|mazedonien|republic of macedonia",41.8333,22
+"AX","ALA",248,"","248","Åland Islands","EUR","",60.177,19.915

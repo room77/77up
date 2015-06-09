@@ -1,0 +1,8 @@
+DO NOT MODIFY the file
+'static_data/push/auto/region_data/countries/countries.csv' manually.
+
+It is generated after merging source files in
+'static_data/dev_only/region_data/countries'.
+
+To update this file, make necessary changes in the source files and run:
+'flash run pipeline/manual/region_data/generate_country_data.cc'
