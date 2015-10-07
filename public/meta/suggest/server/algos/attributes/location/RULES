@@ -1,0 +1,62 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_attribute_location",
+    src = [ "suggest_attribute_location.cc"],
+    hdr = [ "suggest_attribute_location.h"],
+    dep = [ "/public/base/lite",
+            "/public/util/string/strutil",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/entity/entity_id",
+            "../suggest_attribute",
+          ])
+
+lib(name = "suggest_attribute_attractions",
+    src = [ "suggest_attribute_attractions.cc"],
+    dep = [ "/public/base/lite",
+            "/public/util/init/init",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/meta/suggest/server/algos/suggest_algo",
+            "/public/meta/suggest/server/falcon/csmap/suggest_falcon_csmap",
+            "/public/meta/suggest/util/suggest_utils",
+            "suggest_attribute_location"
+          ])
+
+lib(name = "suggest_attribute_neighborhoods",
+    src = [ "suggest_attribute_neighborhoods.cc"],
+    dep = [ "/public/base/lite",
+            "/public/util/init/init",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/meta/suggest/server/algos/suggest_algo",
+            "/public/meta/suggest/server/falcon/csmap/suggest_falcon_csmap",
+            "/public/meta/suggest/util/suggest_utils",
+            "suggest_attribute_location"
+          ])
+
+# Binaries
+bin(name = "dummy_attractions",
+    src = [ "dummy_attractions.cc"],
+    dep = [ "/public/base/lite",
+            "/public/util/file/file",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/region_data/attractions",
+            "/public/util/region_data/scored_cities",
+            "/public/util/region_data/utils",
+            "/public/util/serial/serializer",
+          ])
+
+bin(name = "dummy_neighborhoods",
+    src = [ "dummy_neighborhoods.cc"],
+    dep = [ "/public/base/lite",
+            "/public/util/file/file",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/region_data/neighborhood/neighborhoods",
+            "/public/util/region_data/scored_cities",
+            "/public/util/region_data/utils",
+            "/public/util/serial/serializer",
+          ])
+
+# Tests

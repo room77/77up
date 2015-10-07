@@ -1,0 +1,66 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "entity_parser_group",
+    src  = [ "entity_parser_group.cc" ],
+    dep  = [ "/public/base/defs",
+             "/public/base/logging",
+             "/public/util/entity/entity_id",
+             "/public/util/entity/parser/entity_parser",
+             "/public/util/serial/serializer",
+             "/public/util/serial/types/arbit_blob",
+           ])
+
+# TODO(pramodg): Add dependencies for various entity managers.
+lib(name = "entity_parser_groups",
+    src  = [ "entity_parser_groups.cc" ],
+    dep  = [ "/public/base/args/args",
+             "/public/util/entity/parser/entity_parser",
+             "/public/util/entity/parser/em/entity_parser_em",
+             "entity_parser_group",
+           ])
+
+# This rule defines the dependencies to link in all proxy dependencies.
+lib(name = "entity_parser_groups_proxy_deps",
+    dep  = [ "/data/hotel/attributes/amenity/amenity_manager",
+             "/geo/lib/hotelmanager",
+             "/public/meta/util/attributes/filter/filter_manager",
+             "/public/meta/util/attributes/sort/sort_manager",
+             "/public/util/entity/operators/entity_operators",
+             "/public/util/region_data/attractions",
+             "/public/util/region_data/airports",
+             "/public/util/region_data/cities",
+             "/public/util/region_data/citycenters",
+             "/public/util/region_data/countries",
+             "/public/util/region_data/neighborhood/neighborhoods",
+             "/public/util/region_data/states",
+           ])
+
+# This is the rule every client should link against to get the complete list of dependencies.
+lib(name = "entity_parser_groups_with_proxy_deps",
+    dep  = [ "entity_parser_groups_proxy_deps",
+             "entity_parser_groups",
+           ])
+
+lib(name = "entity_parser_groups_util",
+    src  = [ "entity_parser_groups_util.cc" ],
+    dep  = [ "entity_parser_groups",
+             "entity_parser_groups_with_proxy_deps"
+           ])
+
+# Binaries
+
+# Tests
+test(name = "entity_parser_group_test",
+     src = [ "entity_parser_group_test.cc"],
+     dep = [ "/public/test/cc/test_main",
+             "/public/util/entity/entity_id",
+             "/public/util/entity/mock/entity_mock",
+             "/public/util/entity/parser/mock/entity_parser_mock",
+             "/public/util/factory/factory_extra",
+             "entity_parser_group",
+           ])
+

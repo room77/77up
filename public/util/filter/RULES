@@ -1,0 +1,3 @@
+test(name = "ruleset_test",
+     src  = [ "ruleset_test.cc" ],
+     dep  = [ "/public/base/common", "/public/util/serial/serializer" ])

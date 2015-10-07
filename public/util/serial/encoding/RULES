@@ -1,0 +1,32 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "encoding",
+     src  = [ "encoding.cc" ],
+     hdr  = [ "encoding.h" ],
+     dep  = [ "/public/base/common",
+              "/public/util/serial/utils/stream_util",
+              "/public/util/templates/container_util",
+            ])
+
+lib(name = "endian",
+     hdr  = [ "endian.h" ],
+     dep  = [ "/public/base/common" ])
+
+# Binaries
+
+# Tests
+test(name = "encoding_test",
+     src  = [ "encoding_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "encoding",
+            ])
+
+test(name = "endian_test",
+     src  = [ "endian_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "endian",
+            ])

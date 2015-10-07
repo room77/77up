@@ -1,0 +1,73 @@
+# Libraries.
+lib(name = "algorithm",
+    hdr = [ "algorithm.h" ])
+
+lib(name = "comparator",
+    hdr = [ "comparator.h" ])
+
+lib(name = "container_util",
+    hdr = [ "container_util.h" ],
+    dep = [ "/public/base/common"])
+
+lib(name = "container_manip",
+    hdr = [ "container_manip.h" ],
+    dep = [ "/public/base/common",
+            "container_util",
+          ])
+
+lib(name = "equator",
+    hdr = [ "equator.h" ])
+
+lib(name = "functional",
+    hdr = [ "functional.h" ],
+    dep = [ "/public/util/serial/serializer" ])
+
+lib(name = "hash",
+    hdr = [ "hash.h" ])
+
+lib(name = "iterator",
+    hdr = [ "iterator.h" ])
+
+lib(name = "sfinae",
+    hdr = [ "sfinae.h" ])
+
+lib(name = "singleton",
+    hdr  = ["singleton.h"])
+
+lib(name = "type_traits",
+    hdr = [ "type_traits.h" ])
+
+# Tests.
+test(name = "comparator_test",
+     src  = [ "comparator_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "comparator",
+            ])
+
+test(name = "container_util_test",
+     src  = [ "container_util_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "container_util",
+            ])
+
+test(name = "functional_test",
+    src = [ "functional_test.cc" ],
+    dep = [ "functional",
+            "/public/test/cc/test_main" ])
+
+test(name = "hash_test",
+    src = [ "hash_test.cc" ],
+    dep = [ "hash",
+            "/public/test/cc/test_main" ])
+
+test(name = "iterator_test",
+     src  = [ "iterator_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "iterator",
+            ])
+
+test(name = "sfinae_test",
+     src  = [ "sfinae_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "sfinae",
+            ])

@@ -1,0 +1,37 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_twiddler",
+    hdr = [ "suggest_twiddler.h"],
+    dep = [ "/public/base/common",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/factory/factory",
+            "/public/util/thread/counters",
+            "/public/util/thread/thread_pool",
+          ])
+
+lib(name = "suggest_twiddler_group",
+    src = [ "suggest_twiddler_group.cc"],
+    hdr = [ "suggest_twiddler_group.h"],
+    dep = [ "/public/base/common",
+            "/public/meta/rank/operators",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/serial/serializer",
+            "/public/util/time/simple_timer",
+            "suggest_twiddler",
+          ])
+
+lib(name = "suggest_twiddler_groups",
+    src = [ "suggest_twiddler_groups.cc"],
+    dep = [ "/public/base/common",
+            "/public/meta/suggest/common/twiddler/domain_boost/suggest_domain_boost",
+            "/public/meta/suggest/common/twiddler/identity/suggest_identity_twiddler",
+            "suggest_twiddler_group",
+          ])
+
+# Binaries
+
+# Tests

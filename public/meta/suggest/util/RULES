@@ -1,0 +1,18 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_utils",
+    src = [ "suggest_utils.cc"],
+    hdr = [ "suggest_utils.h"],
+    dep = [ "/public/base/defs",
+            "/public/util/string/strutil",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/entity/entity_type",
+          ])
+
+# Binaries
+
+# Tests

@@ -1,0 +1,48 @@
+# Copyright 2014 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "end_point_interface",
+    hdr  = [ "end_point_interface.h" ],
+    dep  = [ "/public/meta/log/common/log_datatypes",
+             "/public/util/factory/factory",
+           ])
+
+lib(name = "log_writer_manager",
+    src  = [ "log_writer_manager.cc" ],
+    dep  = [ "/public/meta/log/common/log_datatypes",
+             "shared_buffer_writer",
+           ])
+
+lib(name = "shared_buffer_writer",
+    src  = [ "shared_buffer_writer.cc" ],
+    dep  = [ "/public/meta/log/common/log_datatypes",
+             "/public/base/logging",
+             "/public/util/file/file",
+             "/public/util/time/localtime",
+             "/public/util/time/timestamp"
+           ])
+
+# Binaries
+cc_bin(name = "data_sharding_filtering_controller",
+       src  = [ "data_sharding_filtering_controller.cc" ],
+       dep  = [ "/public/base/lite",
+                "/public/meta/log/offline/filtering/end_points/end_point_sharding",
+                "/public/meta/log/offline/filtering/triggers/sharding_filtering_trigger",
+                "/public/meta/log/offline/reader/element_readers/element_reader_lm",
+                "/public/meta/log/offline/reader/log_reader",
+                "/public/util/time/localtime",
+              ])
+
+cc_bin(name = "filtering_controller",
+       src  = [ "filtering_controller.cc" ],
+       dep  = [ "/public/base/lite",
+                "/public/meta/log/offline/filtering/end_points/all_end_points",
+                "/public/meta/log/offline/filtering/triggers/all_triggers",
+                "/public/meta/log/offline/reader/element_readers/element_reader_lm",
+                "/public/meta/log/offline/reader/log_reader",
+                "/public/util/time/localtime",
+              ])
+# Tests

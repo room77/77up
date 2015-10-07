@@ -1,0 +1,17 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_twiddler_utils",
+    src = [ "suggest_twiddler_utils.cc"],
+    hdr = [ "suggest_twiddler_utils.h"],
+    dep = [ "/public/base/common",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/meta/suggest/common/twiddler/suggest_twiddler",
+          ])
+
+# Binaries
+
+# Tests

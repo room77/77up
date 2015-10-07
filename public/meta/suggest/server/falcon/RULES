@@ -1,0 +1,18 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "suggest_falcon",
+    hdr = [ "suggest_falcon.h"],
+    dep = [ "/public/base/common",
+            "/public/meta/suggest/common/suggest_datatypes",
+            "/public/util/factory/factory",
+            "/public/util/templates/container_util",
+            "/public/util/thread/counters",
+          ])
+
+# Binaries
+
+# Tests

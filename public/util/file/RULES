@@ -1,0 +1,41 @@
+lib(name = "file",
+    src = [ "file.cc" ],
+    hdr = [ "file.h" ],
+    dep = [ "/public/base/args/args", "/public/base/logging" ])
+
+test(name = "file_test",
+     src = [ "file_test.cc"],
+     dep = [ "/public/test/cc/test_main",
+             "file",
+           ])
+
+lib(name = "filereader",
+    hdr = [ "filereader.h" ],
+    dep = [ "/public/util/serial/serializer" ])
+
+test(name = "filereader_test",
+     src = [ "filereader_test.cc" ],
+     dep = [ "filereader", "/public/test/cc/test_main" ])
+
+lib(name = "monitor_file_access",
+    src = [ "monitor_file_access.cc" ],
+    hdr = [ "monitor_file_access.h" ],
+    dep = [ "/public/base/args/args", "/public/base/logging", "/public/util/init/init" ])
+
+bin(name = "monitor_file_access_example",
+    src = [ "monitor_file_access_example.cc" ],
+    dep = [ "monitor_file_access", "/public/util/init/main" ])
+
+lib(name = "shared_writer",
+    src  = ["shared_writer.cc"],
+    dep  = ["/public/base/common"])
+
+lib(name = "field_reader",
+    hdr = [ "field_reader.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/serial/serializer",
+            "/public/util/memory/unique" ])
+
+test(name = "field_reader_test",
+     src = [ "field_reader_test.cc" ],
+     dep = [ "field_reader", "/public/test/cc/test_main" ])

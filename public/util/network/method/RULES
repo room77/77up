@@ -1,0 +1,71 @@
+# libraries
+
+lib(name = "server_method",
+    src = [ "server_method.cc" ],
+    hdr = [ "server_method.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/geo/geoip",
+            "/public/util/network/server",
+            "/public/util/network/util",
+            "/public/third_party/md5/md5",
+            "/public/util/random/random",
+            "server_method_handler",
+          ])
+
+lib(name = "server_method_forward",
+    hdr = [ "server_method_forward.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/network/rpcclient",
+            "/public/util/network/util",
+            "server_method",
+            "server_method_handler",
+          ])
+
+lib(name = "server_method_handler",
+    src = [ "server_method_handler.cc" ],
+    hdr = [ "server_method_handler.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/serial/serializer",
+            "/public/util/templates/sfinae",
+            "/public/util/network/rpcclient",
+            "/public/util/network/server",
+            "/public/util/network/util",
+          ])
+
+lib(name = "context_builder",
+    hdr  = [ "context_builder.h" ],
+    dep  = [ "/public/util/factory/factory" ])
+
+lib(name = "context_builders",
+    src  = [ "context_builders.cc" ],
+    dep  = [ "/public/base/common", "context_builder" ])
+
+# Tests
+test(name = "server_method_test",
+     src  = [ "server_method_test.cc" ],
+     dep  = [ "server_method",
+              "/public/test/cc/test_main",
+            ])
+
+test(name = "server_method_handler_test",
+     src  = [ "server_method_handler_test.cc" ],
+     dep  = [ "server_method_handler",
+              "server_method",
+              "/public/test/cc/test_main",
+            ])
+test(name = "server_method_handler2_test",
+     src  = [ "server_method_handler2_test.cc" ],
+     dep  = [ "server_method_handler",
+              "server_method",
+              "/public/test/cc/test_main",
+            ])
+
+test(name = "server_method_forward_test",
+     src  = [ "server_method_forward_test.cc" ],
+     dep  = [ "server_method_forward",
+              "/public/test/cc/test_main",
+            ])
+
+test(name = "context_builder_test",
+     src  = [ "context_builder_test.cc" ],
+     dep  = [ "context_builders" ])

@@ -1,0 +1,21 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "canonical_objects_validator",
+    hdr  = [ "canonical_objects_validator.h" ],
+    dep  = [ "/public/base/defs",
+             "/public/meta/log/common/event/datatypes/canonical_objects",
+             "/public/meta/log/common/log_datatypes",
+           ])
+
+# Binaries
+
+# Tests
+test(name = "canonical_objects_validator_test",
+     src  = [ "canonical_objects_validator_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "canonical_objects_validator",
+           ])

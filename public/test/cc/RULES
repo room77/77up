@@ -1,0 +1,38 @@
+# libraries
+
+# Rule that defines the google test third party dir.
+google_test_dir = "third_party/google/gtest/latest"
+lib(name = "gtest",
+    src = [ "/%s/src/gtest-all.cc" % google_test_dir ],
+    flag = [ "-I$(SRCROOT)/%s/include" % google_test_dir,
+             "-I$(SRCROOT)/%s" % google_test_dir,
+           ])
+
+# Rule that defines the google mock third party dir.
+google_mock_dir = "third_party/google/gmock/latest"
+lib(name = "gmock",
+    src = [ "/%s/src/gmock-all.cc" % google_mock_dir ],
+    dep = [ "gtest" ],
+    flag = [ "-I$(SRCROOT)/%s/include" % google_mock_dir,
+             "-I$(SRCROOT)/%s" % google_mock_dir,
+             "-Wno-unused-local-typedefs",
+           ])
+
+# Utility mock rule to encapsulate gmock rule.
+lib(name = "mock",
+    dep = [ "gmock" ])
+
+lib(name = "test",
+    src = [ "test.cc" ],
+    hdr = [ "test.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/init/main",
+            "gmock",
+            "gtest",
+          ])
+
+lib(name = "test_main",
+    src = [ "test_main.cc" ],
+    dep = [ "/public/base/common",
+            "test"
+          ])

@@ -1,0 +1,41 @@
+lib(name = "unique",
+    hdr = [ "unique.h"])
+
+test(name = "unique_test",
+     src = [ "unique_test.cc" ],
+     dep = [ "unique", "/public/util/serial/serializer"])
+
+lib(name = "new_handler",
+     src = ["new_handler.cc"],
+     dep = ["/public/base/common"])
+
+bin(name = "new_handler_example",
+     src = ["new_handler_example.cc"],
+     dep = ["new_handler"])
+
+
+# Deprecated / old targets:
+
+lib(name = "collection",
+    hdr = [ "collection.h" ],
+    dep = ["/public/util/serial/serializer",
+           "/public/util/templates/functional",
+          ])
+
+test(name = "collection_test",
+     src  = ["collection_test.cc"],
+     dep  = ["collection", "/public/test/cc/test_main" ])
+
+lib(name = "memory_block",
+    hdr = [ "memory_block.h" ])
+
+lib(name = "stringstorage",
+    src = ["stringstorage.cc"],
+    dep = ["/public/base/common", "/public/util/string/strutil" ])
+
+test(name = "stringstorage_test",
+     src = ["stringstorage_test.cc"],
+     dep = ["/public/base/common",
+            "/public/test/cc/test_main",
+            "/public/util/thread/thread_pool",
+           ])

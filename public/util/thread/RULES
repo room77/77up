@@ -1,0 +1,118 @@
+# Libs.
+lib(name = "counters",
+    hdr  = [ "counters.h" ],
+    dep  = [ "/public/base/common" ])
+
+lib(name = "shared_queue",
+    hdr  = [ "shared_queue.h" ],
+    dep  = [ "/public/base/common" ])
+
+lib(name = "rate_limited_shared_queue",
+    hdr  = [ "rate_limited_shared_queue.h" ],
+    dep  = [ "/public/base/common",
+             "shared_queue"
+           ])
+
+lib(name = "shared_queue_consumers",
+    hdr  = [ "shared_queue_consumers.h" ],
+    dep  = [ "/public/base/common",
+             "shared_queue",
+           ])
+
+lib(name = "thread_pool",
+    hdr  = [ "thread_pool.h" ],
+    dep  = [ "/public/base/common",
+             "shared_queue",
+           ])
+
+lib(name = "rate_limited_thread_pool",
+    hdr  = [ "rate_limited_thread_pool.h" ],
+    dep  = [ "/public/base/common",
+             "rate_limited_shared_queue",
+             "thread_pool",
+           ])
+
+lib(name = "task",
+    hdr = ["task.h"])
+
+lib(name = "task_list",
+    hdr = ["task_list.h"],
+    dep = ["task"])
+
+lib(name = "task_server",
+    hdr = ["task_server.h"],
+    dep = ["/public/base/common",
+           "/public/util/network/method/server_method",
+          ])
+
+bin(name = "task_server_example",
+    src  = ["task_server_example.cc"],
+    dep  = ["/public/util/network/rpcserver",
+            "task_server",
+           ])
+
+lib(name = "thread_stack",
+    src  = [ "thread_stack.cc" ],
+    hdr  = [ "thread_stack.h" ],
+    dep  = [ "/public/base/common",
+             "/public/util/time/simple_timer",
+             "counters",
+             "util",
+           ])
+
+lib(name = "util",
+    hdr  = [ "util.h" ],
+    dep  = [ "/public/base/common" ])
+
+
+lib(name = "utility_thread_pools",
+    src  = [ "utility_thread_pools.cc" ],
+    hdr  = [ "utility_thread_pools.h" ],
+    dep  = [ "thread_pool",
+           ])
+
+# Tests.
+lib(name = "test_util",
+    hdr  = [ "test_util.h" ],
+    dep  = [ "/public/base/defs",
+             "/public/base/logging",
+             "counters",
+             "shared_queue",
+             "thread_pool",
+            ],
+    test_only = 1)
+
+test(name = "counters_test",
+     src  = [ "counters_test.cc" ],
+     dep  = [ "/public/base/common",
+              "/public/test/cc/test_main",
+              "counters",
+            ])
+
+test(name = "rate_limited_shared_queue_test",
+     src  = ["rate_limited_shared_queue_test.cc"],
+     dep  = [ "/public/test/cc/test_main",
+              "rate_limited_shared_queue"
+            ])
+
+test(name = "shared_queue_test",
+     src  = [ "shared_queue_test.cc" ],
+     dep  = [ "/public/base/common",
+              "/public/test/cc/test_main",
+              "counters",
+              "shared_queue",
+              "shared_queue_consumers",
+              "test_util",
+            ])
+
+test(name = "task_test",
+     src  = [ "task_test.cc" ],
+     dep  = [ "task_list" ])
+
+test(name = "thread_pool_test",
+     src  = [ "thread_pool_test.cc" ],
+     dep  = [ "/public/base/common",
+              "/public/test/cc/test_main",
+              "test_util",
+              "thread_pool",
+            ])

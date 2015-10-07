@@ -1,0 +1,33 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+lib(name = "all_validators",
+    dep = ["application/event_validator_application_uncaught_exception",
+           "booking/event_validator_booking_visit",
+           "hotel_profile/event_validator_hotel_profile_visit",
+           "hotel_search/event_validator_hotel_search",
+           "hotel_search/event_validator_search_hotel_profile_click",
+           "hotel_search/event_validator_search_impressions",
+           "monetized_click/event_validator_mclick_expanded_card",
+           "monetized_click/event_validator_mclick_hotel_profile_featured",
+           "monetized_click/event_validator_mclick_hotel_profile_rates_table",
+           "monetized_click/event_validator_mclick_serp",
+           "monetized_click/event_validator_mclick_similar_hotel",
+           "monetized_click/event_validator_mclick_sponsored",
+           "new_visit/event_validator_new_visit",
+           "sort/event_validator_sort_click",
+          ])
+
+lib(name = "event_validator",
+    dep  = [ "/public/base/defs",
+             "/public/meta/log/common/log_datatypes",
+             "/public/util/factory/factory",
+             "../event",
+           ])
+
+# Binaries
+
+# Tests

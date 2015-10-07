@@ -1,3 +1,0 @@
-test(name = "ruleset_test",
-     src  = [ "ruleset_test.cc" ],
-     dep  = [ "/base/common", "/public/util/serial/serializer" ])

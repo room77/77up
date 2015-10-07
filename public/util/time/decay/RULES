@@ -1,0 +1,34 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "exponential_decay",
+       hdr = [ "exponential_decay.h" ],
+       dep = [ "/public/base/defs",
+             ])
+
+cc_lib(name = "time_decay",
+       hdr = [ "time_decay.h" ],
+       dep = [ "/public/base/defs",
+               "/public/util/time/duration",
+               "exponential_decay",
+             ])
+
+# Binaries
+
+# Tests
+cc_test(name = "exponential_decay_test",
+        src = [ "exponential_decay_test.cc" ],
+        dep = [ "/public/base/lite",
+                "/public/test/cc/test_main",
+                "exponential_decay",
+              ])
+
+cc_test(name = "time_decay_test",
+        src = [ "time_decay_test.cc" ],
+        dep = [ "/public/base/lite",
+                "/public/test/cc/test_main",
+                "time_decay",
+              ])

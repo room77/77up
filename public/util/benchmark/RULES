@@ -1,0 +1,5 @@
+bin(name = "thread_bench",
+    src  = ["thread_bench.cc"],
+    dep  = ["/public/base/common", "/public/util/serial/serializer"],
+    #flag = [ "-O3" ],
+    link = [ "-lpthread" ])

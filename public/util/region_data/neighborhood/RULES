@@ -1,0 +1,32 @@
+
+# Libraries
+lib(name = "neighborhood_datatypes",
+    hdr = [ "neighborhood_datatypes.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/entity/entity_id",
+            "/public/util/serial/serializer",
+            "../region",
+          ])
+
+lib(name = "neighborhoods",
+    src = [ "neighborhoods.cc" ],
+    hdr = [ "neighborhoods.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/string/strutil",
+            "/public/util/file/filereader",
+            "/public/util/geo/latlong",
+            "/public/util/templates/comparator",
+            "/public/util/templates/container_util",
+            "/public/util/time/simple_timer",
+            "../region",
+            "../utils",
+            "neighborhood_datatypes",
+          ])
+
+bin(name = "dump_neighborhoods",
+    src = ["dump_neighborhoods.cc"],
+    dep = ["neighborhoods"])
+
+# Binaries
+
+# Tests

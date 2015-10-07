@@ -1,0 +1,8 @@
+lib(name = "aspell_checker",
+    hdr = ["aspell_checker.h"],
+    dep = ["/public/base/common"],
+    link = ["-laspell"])
+
+bin(name = "aspell_checker_example",
+    src = ["aspell_checker_example.cc"],
+    dep = ["aspell_checker"])

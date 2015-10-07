@@ -1,0 +1,26 @@
+# Copyright 2013 Room77 Inc. All Rights Reserved.
+#
+
+# Generated Files
+
+# Libraries
+cc_lib(name = "user_log_element",
+       src  = [ "user_log_element.cc" ],
+       hdr  = [ "user_log_element.h" ],
+       dep  = [ "/public/base/defs",
+                "/public/util/geo/geoip",
+                "/public/meta/log/common/log_datatypes",
+                "/public/util/log/channel/channel",
+                "/public/util/network/util",
+                "/public/util/templates/container_util",
+                "/public/util/serial/serializer",
+              ])
+# Binaries
+
+# Tests
+cc_test(name = "user_log_element_test",
+        src  = [ "user_log_element_test.cc" ],
+        dep  = [ "/public/base/defs",
+                 "/public/test/cc/test_main",
+                 "user_log_element",
+               ])

@@ -1,0 +1,156 @@
+
+# Libraries
+lib(name = "airports",
+    src  = ["airports.cc"],
+    dep  = ["/public/base/defs",
+             "/public/util/entity/entity_id",
+             "region",
+            ])
+
+lib(name = "attractions",
+    src = [ "attractions.cc" ],
+    hdr = [ "attractions.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/geo/latlong",
+            "/public/util/serial/serializer",
+            "region",
+            "states",
+            "cities",
+            "utils",
+          ])
+
+lib(name = "neighborhoods",
+    src = ["neighborhoods.cc"],
+    hdr = ["neighborhoods.h"],
+    dep = ["/public/base/defs",
+           "/public/util/file/field_reader",
+           "/public/util/region_data/cities",
+           "/public/util/region_data/neighborhood/neighborhoods",
+          ])
+
+lib(name = "cities",
+    src = [ "cities.cc" ],
+    hdr = [ "cities.h" ],
+    dep = [ "/public/base/defs",
+            "/data/hotel_info",
+            "/public/util/abbreviations/abbreviations_lib",
+            "/public/util/memory/collection",
+            "/public/util/geo/latlong",
+            "/public/util/serial/serializer",
+            "/public/util/time/simple_timer",
+            "countries",
+            "states",
+            "utils",
+          ])
+
+lib(name = "countries",
+    src = [ "countries.cc" ],
+    hdr = [ "countries.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/entity/entity_id",
+            "/public/util/serial/serializer",
+            "/public/util/templates/container_util",
+            "region",
+            "utils",
+          ])
+
+lib(name = "geo_code",
+    hdr = [ "geo_code.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/serial/serializer",
+            "region",
+          ])
+
+lib(name = "region",
+    src = [ "region.cc" ],
+    hdr = [ "region.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/abbreviations/abbreviations_lib",
+            "/public/util/entity/entity",
+            "/public/util/entity/entity_manager",
+            "/public/util/entity/parser/entity_parser",
+            "/public/util/geo/latlong",
+            "/public/util/serial/serializer",
+            "/public/util/templates/comparator",
+            "utils",
+          ])
+
+# WARNING: !!!!!DO NOT!!!! make this a dependency of any other library unless you are absolutely
+# sure. Ideally directly add this as a dependency in the final binary and no where else.
+lib(name = "scored_cities",
+    src = [ "scored_cities.cc" ],
+    dep = [ "/public/util/init/init",
+            "cities",
+          ])
+
+lib(name = "states",
+    src = [ "states.cc" ],
+    hdr = [ "states.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/abbreviations/abbreviations_lib",
+            "/public/util/memory/collection",
+            "/public/util/entity/entity_id",
+            "/public/util/serial/serializer",
+            "countries",
+            "utils",
+          ])
+
+lib(name = "region_data",
+    dep = [ "cities",
+            "countries",
+            "states",
+          ])
+
+lib(name = "region_utils",
+    src = [ "region_utils.cc" ],
+    hdr = [ "region_utils.h" ],
+    dep = [ "/public/base/defs",
+            "/public/util/geo/latlong",
+            "attractions",
+            "cities",
+            "neighborhood/neighborhoods",
+          ])
+
+lib(name = "utils",
+    src = [ "utils.cc" ],
+    hdr = [ "utils.h" ],
+    dep = [ "/public/base/common",
+            "/public/util/i18n/unicode",
+          ])
+
+lib(name = "alternate_names",
+    src = ["alternate_names.cc"],
+    hdr = ["alternate_names.h"],
+    dep = ["/public/base/defs",
+           "cities",
+           "region",
+           "utils",
+            "/public/util/abbreviations/abbreviations",
+            "/public/util/abbreviations/abbreviation_name_map",
+            "/public/util/region_data/synonyms",
+          ])
+
+lib(name = "synonyms",
+    hdr = ["synonyms.h"],
+    dep = [])
+
+# Binaries
+bin(name = "region_data_test_server",
+    src  = [ "region_data_test_server.cc" ],
+    dep  = [ "/public/util/network/rpcserver",
+             "/public/util/network/method/server_method",
+             "/public/util/geo/latlong",
+             "attractions",
+             "cities",
+             "countries",
+             "states",
+           ])
+
+# Tests
+
+test(name = "utils_test",
+     src  = [ "utils_test.cc" ],
+     dep  = [ "/public/test/cc/test_main",
+              "/public/util/serial/serializer",
+              "utils",
+            ])
