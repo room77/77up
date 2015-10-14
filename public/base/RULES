@@ -9,8 +9,29 @@ lib(name = "lite",
             "logging",
           ])
 
+# TODO(pramodg,eng):
+# 1. Move each of the files to their own libraries.
+# 2. Move all string stuff to util/string.
+# 3. Deprecate. This library has grown too big to be useful any more.
 lib(name = "common",
-    dep = [ "logging", "args/args" ])
+    hdr = [ "common.h" ],
+    dep = [ "/public/base/args/args",
+            "/public/util/file/file",
+            "/public/util/file/monitor_file_access",
+            "/public/util/init/init",
+            "/public/util/init/main",
+            "/public/util/memory/new_handler",
+            "/public/util/memory/stringstorage",
+            "/public/util/process/external",
+            "/public/util/string/strutil",
+            "defs",
+            "logging",
+            "signal_handler",
+            "sysinfo",
+            "system",
+          ],
+    flag = ["-DR77_USE_STRINGSTORAGE"],   # Needed for open sourced test/cc/test
+    link = ["-ldl" ])
 
 lib(name = "defs",
     hdr = [ "defs.h" ])
@@ -24,10 +45,15 @@ lib(name = "logging",
     hdr = [ "logging.h" ],
     dep = [ "sysinfo", "system" ])
 
+lib(name = "signal_handler",
+    hdr = [ "signal_handler.h" ],
+    dep = [ "logging" ])
+
 lib(name = "sysinfo",
     src = [ "sysinfo.cc" ],
     hdr = [ "sysinfo.h" ],
-    dep = [ "args/args", "logging" ])
+    dep = [ "/public/base/args/args",
+            "logging" ])
 
 lib(name = "system",
     src = [ "system.cc" ],
