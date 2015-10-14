@@ -7,7 +7,7 @@ lib(name = "server_method",
             "/public/util/geo/geoip",
             "/public/util/network/server",
             "/public/util/network/util",
-            "/public/third_party/md5/md5",
+            "/third_party/md5/md5",
             "/public/util/random/random",
             "server_method_handler",
           ])

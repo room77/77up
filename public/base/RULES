@@ -1,6 +1,19 @@
 # Libs
+
+# This is new lite version that most libraries would need to get started.
+# WARNING: DO NOT ADD anything to this rule without checking with oztekin@ or pramodg@ first.
+lib(name = "lite",
+    hdr = [ "lite.h" ],
+    dep = [ "/public/base/args/args",
+            "defs",
+            "logging",
+          ])
+
 lib(name = "common",
     dep = [ "logging", "args/args" ])
+
+lib(name = "defs",
+    hdr = [ "defs.h" ])
 
 lib(name = "demangle",
     src = [ "demangle.cc" ],
