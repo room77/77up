@@ -115,7 +115,7 @@ lib(name = "utils",
     src = [ "utils.cc" ],
     hdr = [ "utils.h" ],
     dep = [ "/public/base/common",
-            "/public/util/i18n/unicode",
+            "/public/util/string/unicode",
           ])
 
 lib(name = "alternate_names",
