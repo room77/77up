@@ -11,6 +11,7 @@
 #include "util/network/netserver.h"
 #include "util/network/rpc_datatypes.h"
 #include "util/network/method/server_method_handler.h"
+#include "util/network/method/server_method_forward_collection.h"
 #include "util/network/util.h"
 #include "util/serial/serializer.h"
 #include "util/file/shared_writer.h"
