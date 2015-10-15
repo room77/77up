@@ -39,10 +39,17 @@ lib(name = "rpcclient",
     hdr = [ "rpcclient.h" ],
     dep = [ "/public/util/serial/serializer",
             "/public/util/serial/encoding/encoding",
-            "/public/util/codetranslator/server_config",
             "/public/util/time/simple_timer",
             "netclient",
             "rpc_datatypes",
+          ])
+
+lib(name = "rpcclient_util",
+    hdr = [ "rpcclient_util.h" ],
+    dep = [ "/public/util/serial/serializer",
+            "/public/util/codetranslator/server_config",
+            "rpc_datatypes",
+            "rpcclient",
           ])
 
 lib(name = "rpcserver",

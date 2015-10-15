@@ -12,7 +12,7 @@
 #include <unordered_map>
 
 #include "base/common.h"
-#include "util/network/rpcclient.h"
+#include "util/network/rpcclient_util.h"
 #include "util/network/method/server_method.h"
 #include "util/network/method/server_method_handler.h"
 #include "util/factory/factory.h"
