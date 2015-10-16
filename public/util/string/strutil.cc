@@ -819,8 +819,8 @@ void PrintRaw(const string& s) {
 // returns a human-readable error message caused by the previous system call
 string LastSystemError() {
   char buf[1024];
-  char *error_msg = strerror_r(errno, buf, 1024);  // thread-safe
-  return error_msg;
+  strerror_r(errno, buf, 1024);  // thread-safe
+  return buf;
 }
 
 // Filters out non-letter characters; when applicable, converts to
