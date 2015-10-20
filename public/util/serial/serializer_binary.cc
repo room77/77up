@@ -103,7 +103,7 @@ void DeSerializeBinary::SkipAheadUnknownId(istream& in, int type) {
         util::LogParsingError(in, -1, "Failed to skip ahead.", params_.err);
         break;
       }
-      in.seekg(in.tellg() + static_cast<long>(size));
+      in.seekg(in.tellg() + istream::pos_type(static_cast<long>(size)));
       break;
     }
     case kSerialTypeUnknownFixedInt : {
@@ -113,11 +113,11 @@ void DeSerializeBinary::SkipAheadUnknownId(istream& in, int type) {
         util::LogParsingError(in, -1, "Failed to skip ahead.", params_.err);
         break;
       }
-      in.seekg(in.tellg() + static_cast<long>(size));
+      in.seekg(in.tellg() + istream::pos_type(static_cast<long>(size)));
       break;
     }
-    case kSerialTypeSizeFour : in.seekg(in.tellg() + 4l); break;
-    case kSerialTypeSizeEight : in.seekg(in.tellg() + 8l); break;
+    case kSerialTypeSizeFour : in.seekg(in.tellg() + istream::pos_type(4l)); break;
+    case kSerialTypeSizeEight : in.seekg(in.tellg() + istream::pos_type(8l)); break;
     default: {
       util::LogParsingError(in, in.tellg(), "Invalid Type", params_.err);
       break;

@@ -27,8 +27,13 @@ namespace util {
 inline void LogParsingError(istream& in, istream::pos_type pos,
                             const string& prefix = "", string* err = nullptr) {
   in.clear();  // Clear the error state temporarily.
-  if (pos < 0) pos = in.tellg() < 10 ?
-      istream::pos_type(0) : in.tellg() - 10l;
+  if (pos < 0) {
+    if (in.tellg() < 10l) {
+      pos = istream::pos_type(0l);
+    } else {
+      pos = istream::pos_type(in.tellg() - istream::pos_type(10l));
+    }
+  }
   in.seekg(pos);
   string c(32, '\0');
   in.read(const_cast<char*>(c.c_str()), 32);
@@ -187,7 +192,7 @@ inline char ExpectNext(istream& in, const string& expected,
   char ch = util::SkipToNextChar(in, consume);
   if (expected.find(ch) != string::npos) return ch;
 
-  istream::pos_type pos = in.tellg() - 1l;
+  istream::pos_type pos = in.tellg() - istream::pos_type(1l);
   stringstream ss;
   ss << "Did not find any of expected chars: " << expected  << " found '" << ch
      << "' instead.";
