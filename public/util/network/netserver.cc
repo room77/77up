@@ -14,8 +14,11 @@
 // Definitions of these functions are hijacked by macros in opt mode, which
 // causes compiler errors with gcc 4.9. Undefine them for now to avoid issues.
 // TODO(oztekin,pramodg,everyone): Remove these undefs when glibc is fixed.
+
+#if __GNUC__ == 4 && __GNUC_MINOR_ == 9
 #undef ntohs
 #undef htons
+#endif
 
 FLAG_int(use_thread_pool, false,
          "Use thread pool for the server.");
