@@ -177,7 +177,7 @@ void LogManager::Wait() const {
 
 uint8_t LogManager::ValidateHeaderData(shared_ptr<tLogRequestInterface> log_request) const {
   // TODO(otasevic): add more checks to this function
-  if (log_request->created < 0) return 0;
+  if (log_request->created == 0) return 0;
 
   return event::ValidatorBase::kHeaderBit;  // set header bit to 1
 }
