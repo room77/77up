@@ -41,10 +41,15 @@ rm -rf $BIN.??? || true
 mkdir $BIN.lib || true
 
 # echo the libraries
-ldd $BIN
+if hash ldd &>/dev/null ; then
+  ldd $BIN
 
-cp `ldd $BIN | awk '{print $3}'` $BIN.lib &>/dev/null || true
-#cp `ldd $BIN | grep 'ld-linux' | awk '{print $BIN}'` $BIN.lib &>/dev/null || true
+  cp `ldd $BIN | awk '{print $3}'` $BIN.lib &>/dev/null || true
+  #cp `ldd $BIN | grep 'ld-linux' | awk '{print $BIN}'` $BIN.lib &>/dev/null || true
+else
+  otool -L $BIN
+  cp `otool -L $BIN | awk 'NR>1{print $1}'` $BIN.lib &>/dev/null || true
+fi
 
 EXTRA_ARGS=""
 [ -z "$2" ] || EXTRA_ARGS='--init_data_dir=$TMP_DIR'
@@ -85,10 +90,15 @@ exit $?
 # Append payload
 chmod +x $BIN.run
 pushd `dirname $BIN` >/dev/null
-tar --ignore-failed-read -c -f - `basename $BIN` `basename $BIN`.lib "$@" >> `basename $BIN`.run
+# Prefer to use --ignore-failed-read flag if it exists on the current system
+if tar --help | grep 'ignore-failed-read' &>/dev/null ; then
+  tar --ignore-failed-read -c -f - `basename $BIN` `basename $BIN`.lib "$@" >> `basename $BIN`.run
+else
+  tar -c -f - `basename $BIN` `basename $BIN`.lib "$@" >> `basename $BIN`.run
+fi
 popd >/dev/null
 
 #echo "Replacing original binary"
- cp $BIN $BIN.bak
+cp $BIN $BIN.bak
 mv $BIN.run $BIN
 #echo "Package created $BIN"
