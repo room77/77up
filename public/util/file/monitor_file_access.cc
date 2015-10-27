@@ -18,8 +18,21 @@ FLAG_string(init_data_dir, "",
     "If set, try this directory first for all file accesses.");
 
 #include <dlfcn.h>
-#define _FCNTL_H
-#include <bits/fcntl.h>
+
+// Compatibility for libc++ and libstdc++
+#if defined(__GLIBCXX__)
+  // For libstdc++
+  #define _FCNTL_H
+  #include <bits/fcntl.h>
+  #define FOPEN_NAME "fopen64"
+#elif defined(__clang__) && defined(__x86_64__)
+  #if !__has_include(<bits/fcntl.h>)
+    // For 64 bit libc++, fopen is used
+    #define fopen64 fopen
+    #define FOPEN_NAME "fopen"
+  #endif
+#endif
+
 
 extern string gFlag_init_data_dir;
 
@@ -31,7 +44,7 @@ FILE* fopen64(const char* filename, const char* mode) {
       // pointer-to-function and pointer-to-ojbect but there does not seems to
       // be another option in this case. Use reinterpret cast to keep the
       // compiler quiet (we enable -pedantic).
-      auto ptr = reinterpret_cast<size_t>(dlsym(RTLD_NEXT, "fopen64"));
+      auto ptr = reinterpret_cast<size_t>(dlsym(RTLD_NEXT, FOPEN_NAME));
       auto _fopen64 = reinterpret_cast<FILE*(*)(const char *, const char *)>(ptr);
       FILE* f = _fopen64(filename, mode);
       // If set, record file accesses.
