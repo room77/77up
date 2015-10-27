@@ -26,14 +26,13 @@ class Timestamp {
   }
 
   // get the timestamp of the previous midnight
-  static std::chrono::high_resolution_clock::time_point PrevMidnight() {
-    auto now = std::chrono::high_resolution_clock::now();
-    time_t tnow = std::chrono::system_clock::to_time_t(now);
+  static std::chrono::system_clock::time_point PrevMidnight() {
+    time_t tnow = chrono::system_clock::to_time_t(chrono::system_clock::now());
     tm *date = std::localtime(&tnow);
     date->tm_hour = 0;
     date->tm_min = 0;
     date->tm_sec = 0;
-    return std::chrono::system_clock::from_time_t(std::mktime(date));
+    return chrono::system_clock::from_time_t(std::mktime(date));
   }
 
   // get the timestamp of the previous midnight
