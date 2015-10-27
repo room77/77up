@@ -36,7 +36,7 @@ fi
 
 echo Fetching
 
-wget "$URL"
+curl -O "$URL"
 
 unzip -x $NAME.zip
 
