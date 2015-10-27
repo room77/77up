@@ -30,9 +30,10 @@ compiled or added to other codebases. Some of the components have more
 dependencies that are not as trivial to decouple. We tried to streamline the
 dependencies for most useful components when practical.
 
-Some of the code depend on external libraries (e.g. icu, zlib, leveldb, etc.).
-In order to compile and use them, you would need to install the appropriate
-libraries. In most Linux distributions, you may already have packages for them.
+Some of the code depend on external libraries (e.g. geoip, icu, zlib, leveldb,
+etc.). In order to compile and use them, you would need to install the
+appropriate libraries. In most Linux distributions, you may already have
+packages for them.
 
 A good portion of the tests use googletest / googlemock which are not included
 as part of this package. We added convenience scripts under third_party/google/*
