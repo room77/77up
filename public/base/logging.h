@@ -108,7 +108,13 @@ class Logger {
       PrintStackTraceToStream(str_, 1);
     }
 
-    if (active_) cout <<  str_.str() << endl;
+    if (active_) {
+      #ifdef R77_GUARD_STDOUT_WRITE
+      static mutex mutex_;
+      lock_guard<mutex> l(mutex_);
+      #endif
+      cout << str_.str() << endl;
+    }
 
     // Force a segfault.
     if (terminate_) ShutdownSystem(2);

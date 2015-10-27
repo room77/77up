@@ -43,7 +43,9 @@ lib(name = "demangle",
 lib(name = "logging",
     src = [ "logging.cc" ],
     hdr = [ "logging.h" ],
-    dep = [ "sysinfo", "system" ])
+    dep = [ "sysinfo", "system" ],
+#   flag = ["-DR77_GUARD_STDOUT_WRITE"],  # Needed if system interleaves characters on multithreaded cout writes
+    )
 
 lib(name = "signal_handler",
     hdr = [ "signal_handler.h" ],
