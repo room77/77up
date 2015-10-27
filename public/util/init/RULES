@@ -10,6 +10,7 @@ lib(name = "main",
     hdr = [ "main.h" ],
     dep = [ "/public//base/args/args",
             "/public/base/logging",
+            "/third_party/libc/stdlib/quick_exit",
             "init",
           ])
 

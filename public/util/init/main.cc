@@ -8,6 +8,7 @@
 #include "init.h"
 #include "base/signal_handler.h"
 #include "base/system.h"
+#include "third_party/libc/stdlib/quick_exit.h"
 
 FLAG_bool(r77_run_main, true, "If false, don't run main. Init and exit only.");
 

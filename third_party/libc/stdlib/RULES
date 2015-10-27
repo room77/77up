@@ -1,0 +1,3 @@
+lib(name = "quick_exit",
+    hdr = [ "quick_exit.h" ],
+    src = [ "quick_exit.cc" ])

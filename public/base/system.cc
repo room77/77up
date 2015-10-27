@@ -9,6 +9,8 @@
 #include <execinfo.h>
 #include <unistd.h>
 
+#include "third_party/libc/stdlib/quick_exit.h"
+
 using namespace std;
 
 const string& GetExecutableName() {

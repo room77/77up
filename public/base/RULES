@@ -60,6 +60,7 @@ lib(name = "sysinfo",
 lib(name = "system",
     src = [ "system.cc" ],
     hdr = [ "system.h" ],
+    dep = [ "/third_party/libc/stdlib/quick_exit" ],
     link = ["-ldl"])
 
 # Tests
